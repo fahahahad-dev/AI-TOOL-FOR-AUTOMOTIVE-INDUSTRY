@@ -1,0 +1,51 @@
+{
+  "?xml": {
+    "@_version": 1
+  },
+  "doc": {
+    "message": [
+      {
+        "file": "config\\imposter.c",
+        "line": 14,
+        "type": "note",
+        "code": 9066,
+        "desc": "C++ comment contains C comment [MISRA 2012 Rule 3.1, required]"
+      },
+      {
+        "file": "config\\imposter.c",
+        "line": 15,
+        "type": "warning",
+        "code": 438,
+        "desc": "last value assigned to 'a' not used [MISRA 2012 Rule 2.2, required]"
+      },
+      {
+        "file": "config\\imposter.c",
+        "line": 13,
+        "type": "supplemental",
+        "code": 891,
+        "desc": "previous assignment is here"
+      },
+      {
+        "file": "config\\imposter.c",
+        "line": 13,
+        "type": "warning",
+        "code": 529,
+        "desc": "local variable 'a' declared in 'fn' not subsequently referenced"
+      },
+      {
+        "file": "config\\imposter.c",
+        "line": 32,
+        "type": "warning",
+        "code": 523,
+        "desc": "expression statement involving function 'fn' lacks side effects"
+      },
+      {
+        "file": "config\\imposter.c",
+        "line": 32,
+        "type": "warning",
+        "code": 522,
+        "desc": "highest operation, function 'fn', lacks side effects [MISRA 2012 Rule 2.2, required]"
+      }
+    ]
+  }
+}

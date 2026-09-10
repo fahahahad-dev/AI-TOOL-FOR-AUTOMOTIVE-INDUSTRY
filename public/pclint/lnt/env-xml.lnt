@@ -1,0 +1,29 @@
+// ---------------------------------------------------------------------------
+// Copyright Vector Informatik GmbH 2019. All rights reserved.
+//
+// This file is provided by Vector Informatik GmbH (https://www.gimpel.com) for
+// use with PC-lint Plus. Redistribution is permitted but any redistribution
+// must preserve this notice and, if the redistributed file has been modified,
+// provide notice that the file has been modified from the original.
+// ---------------------------------------------------------------------------
+
+/*  env-xml.lnt
+    The following options cause the output of PC-lint Plus to
+    assume the format of an XML file.  The tags chosen are the obvious
+    ones; but they can be customized as needed.
+ */
+
+
+-v          // turn off verbosity
+
+-width(0)   // don't insert line breaks (unlimited output width).
+
++xml(?xml version="1.0" ?)   // add version information
+
++xml(doc)   // turn on xml escapes; the whole is bracketed with the
+            // pair <doc> ... </doc>
+
+-"format=<message><file>%f</file> <line>%l</line> <type>%t</type> <code>%n</code> <desc>%m</desc></message>"
+
+-hs1    // The height of a message should be 1 (i.e. don't output the
+        // line in error); and Space between messages

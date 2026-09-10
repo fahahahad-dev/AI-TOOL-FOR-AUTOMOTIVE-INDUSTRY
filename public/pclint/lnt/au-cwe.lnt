@@ -1,0 +1,5946 @@
+// ---------------------------------------------------------------------------
+// Copyright Vector Informatik GmbH 2024. All rights reserved.
+//
+// PC-lint Plus (version 2.1) CWE (version 4.12) mappings
+// as of June 6, 2024.
+//
+// This file is provided by Vector Informatik GmbH (https://www.vector.com)
+// for use with PC-lint Plus (https://pclintplus.com/).
+//
+// Redistribution is permitted but any redistribution must preserve
+// this notice and, if the redistributed file has been modified,
+// provide notice that the file has been modified from the original.
+// ---------------------------------------------------------------------------
+// The CWE terms of Use is from: https://cwe.mitre.org/about/termsofuse.html
+//
+// CWE Terms of Use
+//
+// CWE is free to use by any organization or individual for any research, development,
+// and/or commercial purposes, per these CWE Terms of Use. The MITRE Corporation
+// ("MITRE") has copyrighted the CWE List, Top 25, CWSS, and CWRAF for the benefit
+// of the community in order to ensure each remains a free and open standard,
+// as well as to legally protect the ongoing use of it and any resulting content
+// by government, vendors, and/or users. CWE is a trademark of MITRE.
+// Please contact cwe@mitre.org if you require further clarification on this issue.
+//
+// LICENSE
+//
+// CWE Usage: MITRE hereby grants you a non-exclusive, royalty-free license to use
+// CWE for research, development, and commercial purposes. Any copy you make for such
+// purposes is authorized on the condition that you reproduce MITRE’s copyright
+// designation and this license in any such copy.
+//
+// DISCLAIMERS
+//
+// ALL DOCUMENTS AND THE INFORMATION CONTAINED IN THE CWE ARE PROVIDED ON AN "AS IS"
+// BASIS AND THE CONTRIBUTOR, THE ORGANIZATION HE/SHE REPRESENTS OR IS SPONSORED BY
+// (IF ANY), THE MITRE CORPORATION, ITS BOARD OF TRUSTEES, OFFICERS, AGENTS, AND
+// EMPLOYEES, DISCLAIM ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
+// TO ANY WARRANTY THAT THE USE OF THE INFORMATION THEREIN WILL NOT INFRINGE ANY RIGHTS
+// OR ANY IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT.
+//
+// IN NO EVENT SHALL THE CONTRIBUTOR, THE ORGANIZATION HE/SHE REPRESENTS OR IS SPONSORED
+// BY (IF ANY), THE MITRE CORPORATION, ITS BOARD OF TRUSTEES, OFFICERS, AGENTS, AND
+// EMPLOYEES BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+// INFORMATION OR THE USE OR OTHER DEALINGS IN THE CWE.
+// ---------------------------------------------------------------------------
+// Comments containing CERT (R) C guideline text incorporate portions of
+// the "SEI CERT C Coding Standard Wiki"
+// (https://wiki.sei.cmu.edu/confluence/display/c/SEI+CERT+C+Coding+Standard),
+// Copyright (C) 1995-2016 Carnegie Mellon University, with special permission
+// from its Software Engineering Institute.
+//
+// ANY MATERIAL OF CARNEGIE MELLON UNIVERSITY AND/OR ITS SOFTWARE ENGINEERING
+// INSTITUTE CONTAINED HEREIN IS FURNISHED ON AN "AS-IS" BASIS. CARNEGIE
+// MELLON UNIVERSITY MAKES NO WARRANTIES OF ANY KIND, EITHER EXPRESSED OR
+// IMPLIED, AS TO ANY MATTER INCLUDING, BUT NOT LIMITED TO, WARRANTY OF
+// FITNESS FOR PURPOSE OR MERCHANTABILITY, EXCLUSIVITY, OR RESULTS OBTAINED
+// FROM USE OF THE MATERIAL. CARNEGIE MELLON UNIVERSITY DOES NOT MAKE ANY
+// WARRANTY OF ANY KIND WITH RESPECT TO FREEDOM FROM PATENT, TRADEMARK, OR
+// COPYRIGHT INFRINGEMENT.
+//
+// This configuration file has not been reviewed nor is it endorsed by
+// Carnegie Mellon University or its Software Engineering Institute.
+//
+// CERT is a registered trademark of Carnegie Mellon University.
+//
+// (R) CERT is a registered trademark of Carnegie Mellon University.
+// ---------------------------------------------------------------------------
+
+// Version check
+
+-cond('%PCLP_NO_LNT_VERSION_CHECK%' != '1' && (%LINT_MAJOR_VERSION% != 2 || %LINT_MINOR_VERSION% != 2),
+    +fatal_error(This configuration file is intended for PC-lint Plus 2.2.
+                 You are attempting to use it with PC-lint Plus %LINT_MAJOR_VERSION%.%LINT_MINOR_VERSION%.
+                 It is recommended that you use configuration files intended
+                 for PC-lint Plus %LINT_MAJOR_VERSION%.%LINT_MINOR_VERSION%.)
+)
+
+/* CWE-14 */
+/* Compiler Removal of Code to Clear Buffers */
+
+    -deprecate(function, ZeroMemory, [CWE-14])
+
+/* CWE-20 */
+/* Improper Input Validation */
+
+    -deprecate(function, atof, [CWE-20])
+
+    -deprecate(function, atoi, [CWE-20])
+
+    -deprecate(function, atol, [CWE-20])
+
+    -deprecate(function, atoll, [CWE-20])
+
+    -deprecate(function, rewind, [CWE-20])
+
+    -deprecate(function, setbuf, [CWE-20])
+
+    -deprecate(function, ctime, [CWE-20])
+
+    +e592 /* non-literal format specifier used without arguments */
+    +elib(592)
+    -append(592, [CWE-20])
+
+/* CWE-22 */
+/* Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal') */
+    /* Not currently supported */
+
+/* CWE-37 */
+/* Path Traversal: '/absolute/pathname/here' */
+    /* Not currently supported */
+
+/* CWE-38 */
+/* Path Traversal: '\absolute\pathname\here' */
+    /* Not currently supported */
+
+/* CWE-39 */
+/* Path Traversal: 'C:dirname' */
+    /* Not currently supported */
+
+/* CWE-41 */
+/* Improper Resolution of Path Equivalence */
+    /* Not currently supported */
+
+/* CWE-59 */
+/* Improper Link Resolution Before File Access ('Link Following') */
+    /* Not currently supported */
+
+/* CWE-62 */
+/* UNIX Hard Link */
+    /* Not currently supported */
+
+/* CWE-64 */
+/* Windows Shortcut Following (.LNK) */
+    /* Not currently supported */
+
+/* CWE-65 */
+/* Windows Hard Link */
+    /* Not currently supported */
+
+/* CWE-67 */
+/* Improper Handling of Windows Device Names */
+    /* Not currently supported */
+
+/* CWE-77 */
+/* Improper Neutralization of Special Elements used in a Command ('Command Injection') */
+    /* Not currently supported */
+
+/* CWE-78 */
+/* Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection') */
+
+    -deprecate(function, system, [CWE-78])
+
+/* CWE-79 */
+/* Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting') */
+    /* Not currently supported */
+
+/* CWE-88 */
+/* Improper Neutralization of Argument Delimiters in a Command ('Argument Injection') */
+
+    -deprecate(function, system, [CWE-88])
+
+/* CWE-89 */
+/* Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') */
+    /* Not currently supported */
+
+/* CWE-94 */
+/* Improper Control of Generation of Code ('Code Injection') */
+    /* Not currently supported */
+
+/* CWE-119 */
+/* Improper Restriction of Operations within the Bounds of a Memory Buffer */
+
+    +e409 /* integer base for subscript operator */
+    +elib(409)
+    -append(409, [CWE-119])
+
+    +e429 /* custodial pointer not freed nor returned */
+    +elib(429)
+    -append(429, [CWE-119])
+
+    +e413 /* likely use of null pointer */
+    +elib(413)
+    -append(413, [CWE-119])
+
+    +e613 /* potential use of null pointer */
+    +elib(613)
+    -append(613, [CWE-119])
+
+    +e415 /* likely out of bounds pointer access */
+    +elib(415)
+    -append(415, [CWE-119])
+
+    +e416 /* likely creating out-of-bounds pointer */
+    +elib(416)
+    -append(416, [CWE-119])
+
+    +e661 /* potential out of bounds pointer access */
+    +elib(661)
+    -append(661, [CWE-119])
+
+    +e662 /* possibly creating out-of-bounds pointer */
+    +elib(662)
+    -append(662, [CWE-119])
+
+    +e676 /* possibly indexing before the beginning of an allocation */
+    +elib(676)
+    -append(676, [CWE-119])
+
+    +e419 /* apparent data overrun */
+    +elib(419)
+    -append(419, [CWE-119])
+
+    +e420 /* apparent access beyond array */
+    +elib(420)
+    -append(420, [CWE-119])
+
+    /* Assume an environment variable can be up to 4K in size */
+    -sem(getenv, @p == 0 || (@p > 0 && @p <= 4096))
+    +esym(426, getenv)
+    -append(426(getenv), [CWE-119])
+
+    +e421 /* caution -- function is considered dangerous (reported for gets) */
+    +elib(421)
+    -append(421, [CWE-119])
+
+    +e498 /* unbounded scanf conversion specifier may result in buffer overflow */
+    +elib(498)
+    -append(498, [CWE-119])
+
+    +e670 /* possible access beyond array for function */
+    +elib(670)
+    -append(670, [CWE-119])
+
+    +e2662 /* pointer arithmetic on pointer that may not refer to an array */
+    +elib(2662)
+    -append(2662, [CWE-119])
+
+/* CWE-120 */
+/* Buffer Copy without Checking Size of Input ('Classic Buffer Overflow') */
+
+    +e421 /* caution -- function is considered dangerous (reported for gets) */
+    +elib(421)
+    -append(421, [CWE-120])
+
+    +e498 /* unbounded scanf conversion specifier may result in buffer overflow */
+    +elib(498)
+    -append(498, [CWE-120])
+
+/* CWE-121 */
+/* Stack-based Buffer Overflow */
+
+    +e419 /* apparent data overrun */
+    +elib(419)
+    -append(419, [CWE-121])
+
+    +e420 /* apparent access beyond array */
+    +elib(420)
+    -append(420, [CWE-121])
+
+    +e421 /* caution -- function is considered dangerous (reported for gets) */
+    +elib(421)
+    -append(421, [CWE-121])
+
+    +e498 /* unbounded scanf conversion specifier may result in buffer overflow */
+    +elib(498)
+    -append(498, [CWE-121])
+
+/* CWE-122 */
+/* Heap-based Buffer Overflow */
+
+    +e421 /* caution -- function is considered dangerous (reported for gets) */
+    +elib(421)
+    -append(421, [CWE-122])
+
+    +e498 /* unbounded scanf conversion specifier may result in buffer overflow */
+    +elib(498)
+    -append(498, [CWE-122])
+
+/* CWE-123 */
+/* Write-what-where Condition */
+
+    +e413 /* likely use of null pointer */
+    +elib(413)
+    -append(413, [CWE-123])
+
+    +e415 /* likely out of bounds pointer access */
+    +elib(415)
+    -append(415, [CWE-123])
+
+    +e416 /* likely creating out-of-bounds pointer */
+    +elib(416)
+    -append(416, [CWE-123])
+
+    +e613 /* potential use of null pointer */
+    +elib(613)
+    -append(613, [CWE-123])
+
+    +e661 /* potential out of bounds pointer access */
+    +elib(661)
+    -append(661, [CWE-123])
+
+    +e662 /* possibly creating out-of-bounds pointer */
+    +elib(662)
+    -append(662, [CWE-123])
+
+    +e676 /* possibly indexing before the beginning of an allocation */
+    +elib(676)
+    -append(676, [CWE-123])
+
+    +e419 /* apparent data overrun */
+    +elib(419)
+    -append(419, [CWE-123])
+
+    +e420 /* apparent access beyond array */
+    +elib(420)
+    -append(420, [CWE-123])
+
+    +e421 /* caution -- function is considered dangerous (reported for gets) */
+    +elib(421)
+    -append(421, [CWE-123])
+
+    +e498 /* unbounded scanf conversion specifier may result in buffer overflow */
+    +elib(498)
+    -append(498, [CWE-123])
+
+/* CWE-124 */
+/* Buffer Underwrite ('Buffer Underflow') */
+
+    +e428 /* likely indexing before the beginning of an allocation */
+    +elib(428)
+    -append(428, [CWE-124])
+
+    +e676 /* possibly indexing before the beginning of an allocation */
+    +elib(676)
+    -append(676, [CWE-124])
+
+/* CWE-125 */
+/* Out-of-bounds Read */
+
+    +e413 /* likely use of null pointer */
+    +elib(413)
+    -append(413, [CWE-125])
+
+    +e415 /* likely out of bounds pointer access */
+    +elib(415)
+    -append(415, [CWE-125])
+
+    +e416 /* likely creating out-of-bounds pointer */
+    +elib(416)
+    -append(416, [CWE-125])
+
+    +e613 /* potential use of null pointer */
+    +elib(613)
+    -append(613, [CWE-125])
+
+    +e661 /* potential out of bounds pointer access */
+    +elib(661)
+    -append(661, [CWE-125])
+
+    +e662 /* possibly creating out-of-bounds pointer */
+    +elib(662)
+    -append(662, [CWE-125])
+
+    +e676 /* possibly indexing before the beginning of an allocation */
+    +elib(676)
+    -append(676, [CWE-125])
+
+    +e419 /* apparent data overrun */
+    +elib(419)
+    -append(419, [CWE-125])
+
+    +e420 /* apparent access beyond array */
+    +elib(420)
+    -append(420, [CWE-125])
+
+    +e421 /* caution -- function is considered dangerous (reported for gets) */
+    +elib(421)
+    -append(421, [CWE-125])
+
+    +e498 /* unbounded scanf conversion specifier may result in buffer overflow */
+    +elib(498)
+    -append(498, [CWE-125])
+
+/* CWE-126 */
+/* Buffer Over-read */
+
+    +e413 /* likely use of null pointer */
+    +elib(413)
+    -append(413, [CWE-126])
+
+    +e415 /* likely out of bounds pointer access */
+    +elib(415)
+    -append(415, [CWE-126])
+
+    +e416 /* likely creating out-of-bounds pointer */
+    +elib(416)
+    -append(416, [CWE-126])
+
+    +e419 /* apparent data overrun */
+    +elib(419)
+    -append(419, [CWE-126])
+
+    +e420 /* apparent access beyond array */
+    +elib(420)
+    -append(420, [CWE-126])
+
+    +e661 /* potential out of bounds pointer access */
+    +elib(661)
+    -append(661, [CWE-126])
+
+    +e662 /* possibly creating out-of-bounds pointer */
+    +elib(662)
+    -append(662, [CWE-126])
+
+    +e676 /* possibly indexing before the beginning of an allocation */
+    +elib(676)
+    -append(676, [CWE-126])
+
+/* CWE-127 */
+/* Buffer Under-read */
+
+    +e413 /* likely use of null pointer */
+    +elib(413)
+    -append(413, [CWE-127])
+
+    +e415 /* likely out of bounds pointer access */
+    +elib(415)
+    -append(415, [CWE-127])
+
+    +e416 /* likely creating out-of-bounds pointer */
+    +elib(416)
+    -append(416, [CWE-127])
+
+    +e613 /* potential use of null pointer */
+    +elib(613)
+    -append(613, [CWE-127])
+
+    +e661 /* potential out of bounds pointer access */
+    +elib(661)
+    -append(661, [CWE-127])
+
+    +e662 /* possibly creating out-of-bounds pointer */
+    +elib(662)
+    -append(662, [CWE-127])
+
+    +e676 /* possibly indexing before the beginning of an allocation */
+    +elib(676)
+    -append(676, [CWE-127])
+
+    +e420 /* apparent access beyond array */
+    +elib(420)
+    -append(420, [CWE-127])
+
+/* CWE-128 */
+/* Wrap-around Error */
+    /* Not currently supported */
+
+/* CWE-129 */
+/* Improper Validation of Array Index */
+
+    +e409 /* integer base for subscript operator */
+    +elib(409)
+    -append(409, [CWE-129])
+
+    +e429 /* custodial pointer not freed nor returned */
+    +elib(429)
+    -append(429, [CWE-129])
+
+    +e413 /* likely use of null pointer */
+    +elib(413)
+    -append(413, [CWE-129])
+
+    +e613 /* potential use of null pointer */
+    +elib(613)
+    -append(613, [CWE-129])
+
+    +e415 /* likely out of bounds pointer access */
+    +elib(415)
+    -append(415, [CWE-129])
+
+    +e416 /* likely creating out-of-bounds pointer */
+    +elib(416)
+    -append(416, [CWE-129])
+
+    +e661 /* potential out of bounds pointer access */
+    +elib(661)
+    -append(661, [CWE-129])
+
+    +e662 /* possibly creating out-of-bounds pointer */
+    +elib(662)
+    -append(662, [CWE-129])
+
+    +e676 /* possibly indexing before the beginning of an allocation */
+    +elib(676)
+    -append(676, [CWE-129])
+
+    +e419 /* apparent data overrun */
+    +elib(419)
+    -append(419, [CWE-129])
+
+    +e420 /* apparent access beyond array */
+    +elib(420)
+    -append(420, [CWE-129])
+
+/* CWE-130 */
+/* Improper Handling of Length Parameter Inconsistency */
+    /* Not currently supported */
+
+/* CWE-131 */
+/* Incorrect Calculation of Buffer Size */
+
+    +e433 /* allocated area not large enough for pointer */
+    +elib(433)
+    -append(433, [CWE-131])
+
+    +e826 /* suspicious pointer-to-pointer conversion (area too small) */
+    +elib(826)
+    -append(826, [CWE-131])
+
+/* CWE-134 */
+/* Use of Externally-Controlled Format String */
+
+    +e592 /* non-literal format specifier used without arguments */
+    +elib(592)
+    -append(592, [CWE-134])
+
+    +e492 /* incomplete format specifier */
+    +elib(492)
+    -append(492, [CWE-134])
+
+    +e493 /* position arguments in format strings start counting at 1 (not 0) */
+    +elib(493)
+    -append(493, [CWE-134])
+
+    +e494 /* data argument position exceeds the number of data arguments */
+    +elib(494)
+    -append(494, [CWE-134])
+
+    +e499 /* using length modifier 'string' with conversion specifier 'string' is not supported by ISO C */
+    +elib(499)
+    -append(499, [CWE-134])
+
+    +e557 /* invalid conversion specifier */
+    +elib(557)
+    -append(557, [CWE-134])
+
+    +e558 /* too few data arguments for format string */
+    +elib(558)
+    -append(558, [CWE-134])
+
+    +e559 /* format specifies type which is inconsistent with argument */
+    +elib(559)
+    -append(559, [CWE-134])
+
+    +e566 /* inconsistent or redundant length modifier or flag 'string' used with 'string' conversion specifier */
+    +elib(566)
+    -append(566, [CWE-134])
+
+    +e705 /* format specifies type which is nominally inconsistent with argument */
+    +elib(705)
+    -append(705, [CWE-134])
+
+    +e706 /* format specifies type whose pointee type is nominally inconsistent with argument */
+    +elib(706)
+    -append(706, [CWE-134])
+
+    +e719 /* data argument  not used by format string */
+    +elib(719)
+    -append(719, [CWE-134])
+
+    +e816 /* non-ISO format specification */
+    +elib(816)
+    -append(816, [CWE-134])
+
+    +e855 /* positional arguments are a non-ISO extension */
+    +elib(855)
+    -append(855, [CWE-134])
+
+    +e2401 /* cannot mix positional and non-positional arguments in format string */
+    +elib(2401)
+    -append(2401, [CWE-134])
+
+    +e2402 /* specified field is missing a matching 'int' argument */
+    +elib(2402)
+    -append(2402, [CWE-134])
+
+    +e2403 /* field should have type 'type', but argument has type 'type' */
+    +elib(2403)
+    -append(2403, [CWE-134])
+
+    +e2404 /* invalid position specified for field width or precision */
+    +elib(2404)
+    -append(2404, [CWE-134])
+
+    +e2405 /* field width or precision used with conversion specifier is undefined */
+    +elib(2405)
+    -append(2405, [CWE-134])
+
+    +e2406 /* no closing ']' for '%[' in scanf format string */
+    +elib(2406)
+    -append(2406, [CWE-134])
+
+    +e2407 /* zero field width in scanf format string is unused */
+    +elib(2407)
+    -append(2407, [CWE-134])
+
+    +e905 /* non-literal format specifier used (with arguments) */
+    +elib(905)
+    -append(905, [CWE-134])
+
+/* CWE-135 */
+/* Incorrect Calculation of Multi-Byte String Length */
+
+    +etype(2452,wchar_t*) /* converts between pointers to integer types */
+    +etype(2452,char16_t*)
+    +etype(2452,char32_t*)
+    -append(2452, [CWE-135])
+
+    +etype(2454,wchar_t*) /* incompatible pointer types */
+    +etype(2454,char16_t*)
+    +etype(2454,char32_t*)
+    -append(2454, [CWE-135])
+
+/* CWE-170 */
+/* Improper Null Termination */
+
+    +e495 /* format string body contains NUL character */
+    +elib(495)
+    -append(495, [CWE-170])
+
+    +e496 /* format string is not null terminated */
+    +elib(496)
+    -append(496, [CWE-170])
+
+    +e693 /* hexadecimal escape sequence actually introduces NUL character */
+    +elib(693)
+    -append(693, [CWE-170])
+
+    +e784 /* NUL character truncated from string */
+    +elib(784)
+    -append(784, [CWE-170])
+
+    +e840 /* NUL character in string literal */
+    +elib(840)
+    -append(840, [CWE-170])
+
+/* CWE-176 */
+/* Improper Handling of Unicode Encoding */
+
+    -sem(MultiByteToWideChar, 6n == 0 || 5p >= 6n)
+    +esym(426, MultiByteToWideChar)
+    -append(426(MultiByteToWideChar), [CWE-176])
+
+    -sem(BytesToUnicode, 5n == 0 || 4p >= 5n)
+    +esym(426, BytesToUnicode)
+    -append(426(BytesToUnicode), [CWE-176])
+
+/* CWE-188 */
+/* Reliance on Data/Memory Layout */
+    /* Not currently supported */
+
+/* CWE-190 */
+/* Integer Overflow or Wraparound */
+
+    +e433 /* allocated area not large enough for pointer */
+    +elib(433)
+    -append(433, [CWE-190])
+
+    +e826 /* suspicious pointer-to-pointer conversion (area too small) */
+    +elib(826)
+    -append(826, [CWE-190])
+
+/* CWE-191 */
+/* Integer Underflow (Wrap or Wraparound) */
+    /* Not currently supported */
+
+/* CWE-192 */
+/* Integer Coercion Error */
+
+    +e501 /* negation of value of unsigned type yields a value of unsigned type */
+    +elib(501)
+    -append(501, [CWE-192])
+
+    +e502 /* applying bitwise not to signed quantity */
+    +elib(502)
+    -append(502, [CWE-192])
+
+    +e569 /* loss of information in implicit conversion */
+    +elib(569)
+    -append(569, [CWE-192])
+
+    +e570 /* negative constant loses sign during implicit conversion */
+    +elib(570)
+    -append(570, [CWE-192])
+
+    +e573 /* signed-unsigned mix with divide */
+    +elib(573)
+    -append(573, [CWE-192])
+
+    +e574 /* signed-unsigned mix with relational */
+    +elib(574)
+    -append(574, [CWE-192])
+
+    +e701 /* signed int shifted left */
+    +elib(701)
+    -append(701, [CWE-192])
+
+    +e702 /* signed int shifted right */
+    +elib(702)
+    -append(702, [CWE-192])
+
+    +e732 /* loss of sign */
+    +elib(732)
+    -append(732, [CWE-192])
+
+    +e734 /* loss of precision */
+    +elib(734)
+    -append(734, [CWE-192])
+
+    +e737 /* loss of sign in promotion */
+    +elib(737)
+    -append(737, [CWE-192])
+
+    -deprecate(scanf_code, D, [CWE-192])
+
+    -deprecate(scanf_code, E, [CWE-192])
+
+    -deprecate(scanf_code, X, [CWE-192])
+
+    -deprecate(scanf_code, a, [CWE-192])
+
+    -deprecate(scanf_code, d, [CWE-192])
+
+    -deprecate(scanf_code, e, [CWE-192])
+
+    -deprecate(scanf_code, f, [CWE-192])
+
+    -deprecate(scanf_code, g, [CWE-192])
+
+    -deprecate(scanf_code, i, [CWE-192])
+
+    -deprecate(scanf_code, o, [CWE-192])
+
+    -deprecate(scanf_code, u, [CWE-192])
+
+    -deprecate(scanf_code, x, [CWE-192])
+
+    -deprecate(function, atof, [CWE-192])
+
+    -deprecate(function, atoi, [CWE-192])
+
+    -deprecate(function, atol, [CWE-192])
+
+    -deprecate(function, atoll, [CWE-192])
+
+    -deprecate(function, atoq, [CWE-192])
+
+/* CWE-193 */
+/* Off-by-one Error */
+
+    +e421 /* caution -- function is considered dangerous (reported for gets) */
+    +elib(421)
+    -append(421, [CWE-193])
+
+    +e498 /* unbounded scanf conversion specifier may result in buffer overflow */
+    +elib(498)
+    -append(498, [CWE-193])
+
+/* CWE-194 */
+/* Unexpected Sign Extension */
+    /* Not currently supported */
+
+/* CWE-195 */
+/* Signed to Unsigned Conversion Error */
+
+    +e732 /* loss of sign */
+    +elib(732)
+    -append(732, [CWE-195])
+
+    +e737 /* loss of sign in promotion */
+    +elib(737)
+    -append(737, [CWE-195])
+
+/* CWE-196 */
+/* Unsigned to Signed Conversion Error */
+    /* Not currently supported */
+
+/* CWE-197 */
+/* Numeric Truncation Error */
+
+    +e735 /* implicit conversion */
+    +elib(735)
+    -append(735, [CWE-197])
+
+    +e736 /* loss of precision */
+    +elib(736)
+    -append(736, [CWE-197])
+
+    /* implicit arithmetic conversion */
+    +egrep(915,"int' to 'float")                /* Assume more bits in an int than mantissa of a float */
+    +egrep(915,"long' to 'float")               /* Assume more bits in a (long) long than mantissa of a float */
+    +egrep(915,"long long' to 'double")         /* Assume more bits in a long long than mantissa of a double */
+    +egrep(915,"long long' to 'long double")    /* Assume more bits in a long long than mantissa of a long double */
+    -append(915, [CWE-197])
+
+    /* explicit cast */
+    +egrep(922,"int' to 'float")                /* Assume more bits in an int than mantissa of a float */
+    +egrep(922,"long' to 'float")               /* Assume more bits in a (long) long than mantissaof a float */
+    +egrep(922,"long long' to 'double")         /* Assume more bits in along long than mantissa ofa double */
+    +egrep(922,"long long' to 'long double")    /* Assume more bits in along long than mantissa ofa long double */
+    +egrep(922,"double' to 'float")
+    +egrep(922,"long double' to 'double")
+    -append(922, [CWE-197])
+
+    +e9118 /* implicit conversion from floating point to integer type */
+    +elib(9118)
+    -append(9118, [CWE-197])
+
+    +e9227 /* floating expression cannot be implicitly converted because it is not a wider floating type */
+    +elib(9227)
+    -append(9227, [CWE-197])
+
+    +e501 /* negation of value of unsigned type yields a value of unsigned type */
+    +elib(501)
+    -append(501, [CWE-197])
+
+    +e502 /* applying bitwise not to signed quantity */
+    +elib(502)
+    -append(502, [CWE-197])
+
+    +e569 /* loss of information in implicit conversion */
+    +elib(569)
+    -append(569, [CWE-197])
+
+    +e570 /* negative constant loses sign during implicit conversion */
+    +elib(570)
+    -append(570, [CWE-197])
+
+    +e573 /* signed-unsigned mix with divide */
+    +elib(573)
+    -append(573, [CWE-197])
+
+    +e574 /* signed-unsigned mix with relational */
+    +elib(574)
+    -append(574, [CWE-197])
+
+    +e701 /* signed int shifted left */
+    +elib(701)
+    -append(701, [CWE-197])
+
+    +e702 /* signed int shifted right */
+    +elib(702)
+    -append(702, [CWE-197])
+
+    +e732 /* loss of sign */
+    +elib(732)
+    -append(732, [CWE-197])
+
+    +e734 /* loss of precision */
+    +elib(734)
+    -append(734, [CWE-197])
+
+    +e737 /* loss of sign in promotion */
+    +elib(737)
+    -append(737, [CWE-197])
+
+    -deprecate(scanf_code, D, [CWE-197])
+
+    -deprecate(scanf_code, E, [CWE-197])
+
+    -deprecate(scanf_code, X, [CWE-197])
+
+    -deprecate(scanf_code, a, [CWE-197])
+
+    -deprecate(scanf_code, d, [CWE-197])
+
+    -deprecate(scanf_code, e, [CWE-197])
+
+    -deprecate(scanf_code, f, [CWE-197])
+
+    -deprecate(scanf_code, g, [CWE-197])
+
+    -deprecate(scanf_code, i, [CWE-197])
+
+    -deprecate(scanf_code, o, [CWE-197])
+
+    -deprecate(scanf_code, u, [CWE-197])
+
+    -deprecate(scanf_code, x, [CWE-197])
+
+    -deprecate(function, atof, [CWE-197])
+
+    -deprecate(function, atoi, [CWE-197])
+
+    -deprecate(function, atol, [CWE-197])
+
+    -deprecate(function, atoll, [CWE-197])
+
+    -deprecate(function, atoq, [CWE-197])
+
+/* CWE-200 */
+/* Exposure of Sensitive Information to an Unauthorized Actor */
+    /* Not currently supported */
+
+/* CWE-226 */
+/* Sensitive Information in Resource Not Removed Before Reuse */
+    /* Not currently supported */
+
+/* CWE-241 */
+/* Improper Handling of Unexpected Data Type */
+    /* Not currently supported */
+
+/* CWE-242 */
+/* Use of Inherently Dangerous Function */
+
+    -deprecate(function, vfork, [CWE-242])
+
+    +e421 /* function is considered dangerous */
+    +elib(421)
+    -append(421, [CWE-242])
+
+    // By default, the following functions are considered to be "dangerous":
+    //  -  gets
+    //  -  IsBadCodePtr
+    //  -  IsBadReadPtr
+    //  -  IsBadHugeReadPtr
+    //  -  IsBadStringPtrA
+    //  -  IsBadStringPtrW
+    //  -  IsBadWritePtr
+    //  -  IsBadHugeWritePtr
+    //  -  std::gets
+    //  -  std::uncaught_exception
+    //
+    // Other functions can be marked as dangerous by applying the 'dangerous'
+    // semantic using the -sem option, for example: -sem(foo,dangerous).
+
+/* CWE-243 */
+/* Creation of chroot Jail Without Changing Working Directory */
+    /* Not currently supported */
+
+/* CWE-244 */
+/* Improper Clearing of Heap Memory Before Release ('Heap Inspection') */
+    /* Not currently supported */
+
+/* CWE-248 */
+/* Uncaught Exception */
+
+    +e1559 /* uncaught exception may be thrown in destructor */
+    +elib(1559)
+    -append(1559, [CWE-248])
+
+    +e1560 /* uncaught exception not on throw-list of function */
+    +elib(1560)
+    -append(1560, [CWE-248])
+
+/* CWE-252 */
+/* Unchecked Return Value */
+
+    +esym(534,aligned_alloc) /* ignoring return value of function */
+    -append(534(aligned_alloc), [CWE-252])
+
+    +esym(534,asctime_s) /* ignoring return value of function */
+    -append(534(asctime_s), [CWE-252])
+
+    +esym(534,at_quick_exit) /* ignoring return value of function */
+    -append(534(at_quick_exit), [CWE-252])
+
+    +esym(534,atexit) /* ignoring return value of function */
+    -append(534(atexit), [CWE-252])
+
+    +esym(534,bsearch) /* ignoring return value of function */
+    -append(534(bsearch), [CWE-252])
+
+    +esym(534,bsearch_s) /* ignoring return value of function */
+    -append(534(bsearch_s), [CWE-252])
+
+    +esym(534,btowc) /* ignoring return value of function */
+    -append(534(btowc), [CWE-252])
+
+    +esym(534,c16rtomb) /* ignoring return value of function */
+    -append(534(c16rtomb), [CWE-252])
+
+    +esym(534,c32rtomb) /* ignoring return value of function */
+    -append(534(c32rtomb), [CWE-252])
+
+    +esym(534,calloc) /* ignoring return value of function */
+    -append(534(calloc), [CWE-252])
+
+    +esym(534,clock) /* ignoring return value of function */
+    -append(534(clock), [CWE-252])
+
+    +esym(534,cnd_broadcast) /* ignoring return value of function */
+    -append(534(cnd_broadcast), [CWE-252])
+
+    +esym(534,cnd_init) /* ignoring return value of function */
+    -append(534(cnd_init), [CWE-252])
+
+    +esym(534,cnd_signal) /* ignoring return value of function */
+    -append(534(cnd_signal), [CWE-252])
+
+    +esym(534,cnd_timedwait) /* ignoring return value of function */
+    -append(534(cnd_timedwait), [CWE-252])
+
+    +esym(534,cnd_wait) /* ignoring return value of function */
+    -append(534(cnd_wait), [CWE-252])
+
+    +esym(534,ctime_s) /* ignoring return value of function */
+    -append(534(ctime_s), [CWE-252])
+
+    +esym(534,fclose) /* ignoring return value of function */
+    -append(534(fclose), [CWE-252])
+
+    +esym(534,fflush) /* ignoring return value of function */
+    -append(534(fflush), [CWE-252])
+
+    +esym(534,fgetc) /* ignoring return value of function */
+    -append(534(fgetc), [CWE-252])
+
+    +esym(534,fgetpos) /* ignoring return value of function */
+    -append(534(fgetpos), [CWE-252])
+
+    +esym(534,fgets) /* ignoring return value of function */
+    -append(534(fgets), [CWE-252])
+
+    +esym(534,fgetwc) /* ignoring return value of function */
+    -append(534(fgetwc), [CWE-252])
+
+    +esym(534,fopen) /* ignoring return value of function */
+    -append(534(fopen), [CWE-252])
+
+    +esym(534,fopen_s) /* ignoring return value of function */
+    -append(534(fopen_s), [CWE-252])
+
+    +esym(534,fprintf) /* ignoring return value of function */
+    -append(534(fprintf), [CWE-252])
+
+    +esym(534,fprintf_s) /* ignoring return value of function */
+    -append(534(fprintf_s), [CWE-252])
+
+    +esym(534,fputc) /* ignoring return value of function */
+    -append(534(fputc), [CWE-252])
+
+    +esym(534,fputs) /* ignoring return value of function */
+    -append(534(fputs), [CWE-252])
+
+    +esym(534,fputws) /* ignoring return value of function */
+    -append(534(fputws), [CWE-252])
+
+    +esym(534,fread) /* ignoring return value of function */
+    -append(534(fread), [CWE-252])
+
+    +esym(534,freopen) /* ignoring return value of function */
+    -append(534(freopen), [CWE-252])
+
+    +esym(534,freopen_s) /* ignoring return value of function */
+    -append(534(freopen_s), [CWE-252])
+
+    +esym(534,fscanf) /* ignoring return value of function */
+    -append(534(fscanf), [CWE-252])
+
+    +esym(534,fscanf_s) /* ignoring return value of function */
+    -append(534(fscanf_s), [CWE-252])
+
+    +esym(534,fseek) /* ignoring return value of function */
+    -append(534(fseek), [CWE-252])
+
+    +esym(534,fsetpos) /* ignoring return value of function */
+    -append(534(fsetpos), [CWE-252])
+
+    +esym(534,ftell) /* ignoring return value of function */
+    -append(534(ftell), [CWE-252])
+
+    +esym(534,fwprintf) /* ignoring return value of function */
+    -append(534(fwprintf), [CWE-252])
+
+    +esym(534,fwprintf_s) /* ignoring return value of function */
+    -append(534(fwprintf_s), [CWE-252])
+
+    +esym(534,fwrite) /* ignoring return value of function */
+    -append(534(fwrite), [CWE-252])
+
+    +esym(534,fwscanf) /* ignoring return value of function */
+    -append(534(fwscanf), [CWE-252])
+
+    +esym(534,fwscanf_s) /* ignoring return value of function */
+    -append(534(fwscanf_s), [CWE-252])
+
+    +esym(534,getc) /* ignoring return value of function */
+    -append(534(getc), [CWE-252])
+
+    +esym(534,getchar) /* ignoring return value of function */
+    -append(534(getchar), [CWE-252])
+
+    +esym(534,getenv) /* ignoring return value of function */
+    -append(534(getenv), [CWE-252])
+
+    +esym(534,getenv_s) /* ignoring return value of function */
+    -append(534(getenv_s), [CWE-252])
+
+    +esym(534,gets_s) /* ignoring return value of function */
+    -append(534(gets_s), [CWE-252])
+
+    +esym(534,getwc) /* ignoring return value of function */
+    -append(534(getwc), [CWE-252])
+
+    +esym(534,getwchar) /* ignoring return value of function */
+    -append(534(getwchar), [CWE-252])
+
+    +esym(534,gmtime) /* ignoring return value of function */
+    -append(534(gmtime), [CWE-252])
+
+    +esym(534,gmtime_s) /* ignoring return value of function */
+    -append(534(gmtime_s), [CWE-252])
+
+    +esym(534,localtime) /* ignoring return value of function */
+    -append(534(localtime), [CWE-252])
+
+    +esym(534,localtime_s) /* ignoring return value of function */
+    -append(534(localtime_s), [CWE-252])
+
+    +esym(534,malloc) /* ignoring return value of function */
+    -append(534(malloc), [CWE-252])
+
+    +esym(534,mbrtoc16) /* ignoring return value of function */
+    -append(534(mbrtoc16), [CWE-252])
+
+    +esym(534,mbrtoc32) /* ignoring return value of function */
+    -append(534(mbrtoc32), [CWE-252])
+
+    +esym(534,mbsrtowcs) /* ignoring return value of function */
+    -append(534(mbsrtowcs), [CWE-252])
+
+    +esym(534,mbsrtowcs_s) /* ignoring return value of function */
+    -append(534(mbsrtowcs_s), [CWE-252])
+
+    +esym(534,mbstowcs) /* ignoring return value of function */
+    -append(534(mbstowcs), [CWE-252])
+
+    +esym(534,mbstowcs_s) /* ignoring return value of function */
+    -append(534(mbstowcs_s), [CWE-252])
+
+    +esym(534,memchr) /* ignoring return value of function */
+    -append(534(memchr), [CWE-252])
+
+    +esym(534,mktime) /* ignoring return value of function */
+    -append(534(mktime), [CWE-252])
+
+    +esym(534,mtx_init) /* ignoring return value of function */
+    -append(534(mtx_init), [CWE-252])
+
+    +esym(534,mtx_lock) /* ignoring return value of function */
+    -append(534(mtx_lock), [CWE-252])
+
+    +esym(534,mtx_timedlock) /* ignoring return value of function */
+    -append(534(mtx_timedlock), [CWE-252])
+
+    +esym(534,mtx_trylock) /* ignoring return value of function */
+    -append(534(mtx_trylock), [CWE-252])
+
+    +esym(534,mtx_unlock) /* ignoring return value of function */
+    -append(534(mtx_unlock), [CWE-252])
+
+    +esym(534,printf_s) /* ignoring return value of function */
+    -append(534(printf_s), [CWE-252])
+
+    +esym(534,pthread_atfork) /* ignoring return value of function */
+    -append(534(pthread_atfork), [CWE-252])
+
+    +esym(534,pthread_attr_destroy) /* ignoring return value of function */
+    -append(534(pthread_attr_destroy), [CWE-252])
+
+    +esym(534,pthread_attr_getdetachstate) /* ignoring return value of function */
+    -append(534(pthread_attr_getdetachstate), [CWE-252])
+
+    +esym(534,pthread_attr_getguardsize) /* ignoring return value of function */
+    -append(534(pthread_attr_getguardsize), [CWE-252])
+
+    +esym(534,pthread_attr_getinheritsched) /* ignoring return value of function */
+    -append(534(pthread_attr_getinheritsched), [CWE-252])
+
+    +esym(534,pthread_attr_getschedparam) /* ignoring return value of function */
+    -append(534(pthread_attr_getschedparam), [CWE-252])
+
+    +esym(534,pthread_attr_getschedpolicy) /* ignoring return value of function */
+    -append(534(pthread_attr_getschedpolicy), [CWE-252])
+
+    +esym(534,pthread_attr_getscope) /* ignoring return value of function */
+    -append(534(pthread_attr_getscope), [CWE-252])
+
+    +esym(534,pthread_attr_getstack) /* ignoring return value of function */
+    -append(534(pthread_attr_getstack), [CWE-252])
+
+    +esym(534,pthread_attr_getstacksize) /* ignoring return value of function */
+    -append(534(pthread_attr_getstacksize), [CWE-252])
+
+    +esym(534,pthread_attr_init) /* ignoring return value of function */
+    -append(534(pthread_attr_init), [CWE-252])
+
+    +esym(534,pthread_attr_setdetachstate) /* ignoring return value of function */
+    -append(534(pthread_attr_setdetachstate), [CWE-252])
+
+    +esym(534,pthread_attr_setguardsize) /* ignoring return value of function */
+    -append(534(pthread_attr_setguardsize), [CWE-252])
+
+    +esym(534,pthread_attr_setinheritsched) /* ignoring return value of function */
+    -append(534(pthread_attr_setinheritsched), [CWE-252])
+
+    +esym(534,pthread_attr_setschedparam) /* ignoring return value of function */
+    -append(534(pthread_attr_setschedparam), [CWE-252])
+
+    +esym(534,pthread_attr_setschedpolicy) /* ignoring return value of function */
+    -append(534(pthread_attr_setschedpolicy), [CWE-252])
+
+    +esym(534,pthread_attr_setscope) /* ignoring return value of function */
+    -append(534(pthread_attr_setscope), [CWE-252])
+
+    +esym(534,pthread_attr_setstack) /* ignoring return value of function */
+    -append(534(pthread_attr_setstack), [CWE-252])
+
+    +esym(534,pthread_attr_setstacksize) /* ignoring return value of function */
+    -append(534(pthread_attr_setstacksize), [CWE-252])
+
+    +esym(534,pthread_barrier_destroy) /* ignoring return value of function */
+    -append(534(pthread_barrier_destroy), [CWE-252])
+
+    +esym(534,pthread_barrier_init) /* ignoring return value of function */
+    -append(534(pthread_barrier_init), [CWE-252])
+
+    +esym(534,pthread_barrier_wait) /* ignoring return value of function */
+    -append(534(pthread_barrier_wait), [CWE-252])
+
+    +esym(534,pthread_barrierattr_destroy) /* ignoring return value of function */
+    -append(534(pthread_barrierattr_destroy), [CWE-252])
+
+    +esym(534,pthread_barrierattr_getpshared) /* ignoring return value of function */
+    -append(534(pthread_barrierattr_getpshared), [CWE-252])
+
+    +esym(534,pthread_barrierattr_init) /* ignoring return value of function */
+    -append(534(pthread_barrierattr_init), [CWE-252])
+
+    +esym(534,pthread_barrierattr_setpshared) /* ignoring return value of function */
+    -append(534(pthread_barrierattr_setpshared), [CWE-252])
+
+    +esym(534,pthread_cancel) /* ignoring return value of function */
+    -append(534(pthread_cancel), [CWE-252])
+
+    +esym(534,pthread_cond_broadcast) /* ignoring return value of function */
+    -append(534(pthread_cond_broadcast), [CWE-252])
+
+    +esym(534,pthread_cond_destroy) /* ignoring return value of function */
+    -append(534(pthread_cond_destroy), [CWE-252])
+
+    +esym(534,pthread_cond_init) /* ignoring return value of function */
+    -append(534(pthread_cond_init), [CWE-252])
+
+    +esym(534,pthread_cond_signal) /* ignoring return value of function */
+    -append(534(pthread_cond_signal), [CWE-252])
+
+    +esym(534,pthread_cond_timedwait) /* ignoring return value of function */
+    -append(534(pthread_cond_timedwait), [CWE-252])
+
+    +esym(534,pthread_cond_wait) /* ignoring return value of function */
+    -append(534(pthread_cond_wait), [CWE-252])
+
+    +esym(534,pthread_condattr_destroy) /* ignoring return value of function */
+    -append(534(pthread_condattr_destroy), [CWE-252])
+
+    +esym(534,pthread_condattr_getclock) /* ignoring return value of function */
+    -append(534(pthread_condattr_getclock), [CWE-252])
+
+    +esym(534,pthread_condattr_getpshared) /* ignoring return value of function */
+    -append(534(pthread_condattr_getpshared), [CWE-252])
+
+    +esym(534,pthread_condattr_init) /* ignoring return value of function */
+    -append(534(pthread_condattr_init), [CWE-252])
+
+    +esym(534,pthread_condattr_setclock) /* ignoring return value of function */
+    -append(534(pthread_condattr_setclock), [CWE-252])
+
+    +esym(534,pthread_condattr_setpshared) /* ignoring return value of function */
+    -append(534(pthread_condattr_setpshared), [CWE-252])
+
+    +esym(534,pthread_create) /* ignoring return value of function */
+    -append(534(pthread_create), [CWE-252])
+
+    +esym(534,pthread_detach) /* ignoring return value of function */
+    -append(534(pthread_detach), [CWE-252])
+
+    +esym(534,pthread_equal) /* ignoring return value of function */
+    -append(534(pthread_equal), [CWE-252])
+
+    +esym(534,pthread_getconcurrency) /* ignoring return value of function */
+    -append(534(pthread_getconcurrency), [CWE-252])
+
+    +esym(534,pthread_getcpuclockid) /* ignoring return value of function */
+    -append(534(pthread_getcpuclockid), [CWE-252])
+
+    +esym(534,pthread_getschedparam) /* ignoring return value of function */
+    -append(534(pthread_getschedparam), [CWE-252])
+
+    +esym(534,pthread_getspecific) /* ignoring return value of function */
+    -append(534(pthread_getspecific), [CWE-252])
+
+    +esym(534,pthread_join) /* ignoring return value of function */
+    -append(534(pthread_join), [CWE-252])
+
+    +esym(534,pthread_key_create) /* ignoring return value of function */
+    -append(534(pthread_key_create), [CWE-252])
+
+    +esym(534,pthread_key_delete) /* ignoring return value of function */
+    -append(534(pthread_key_delete), [CWE-252])
+
+    +esym(534,pthread_mutex_consistent) /* ignoring return value of function */
+    -append(534(pthread_mutex_consistent), [CWE-252])
+
+    +esym(534,pthread_mutex_destroy) /* ignoring return value of function */
+    -append(534(pthread_mutex_destroy), [CWE-252])
+
+    +esym(534,pthread_mutex_getprioceiling) /* ignoring return value of function */
+    -append(534(pthread_mutex_getprioceiling), [CWE-252])
+
+    +esym(534,pthread_mutex_init) /* ignoring return value of function */
+    -append(534(pthread_mutex_init), [CWE-252])
+
+    +esym(534,pthread_mutex_lock) /* ignoring return value of function */
+    -append(534(pthread_mutex_lock), [CWE-252])
+
+    +esym(534,pthread_mutex_setprioceiling) /* ignoring return value of function */
+    -append(534(pthread_mutex_setprioceiling), [CWE-252])
+
+    +esym(534,pthread_mutex_timedlock) /* ignoring return value of function */
+    -append(534(pthread_mutex_timedlock), [CWE-252])
+
+    +esym(534,pthread_mutex_trylock) /* ignoring return value of function */
+    -append(534(pthread_mutex_trylock), [CWE-252])
+
+    +esym(534,pthread_mutex_unlock) /* ignoring return value of function */
+    -append(534(pthread_mutex_unlock), [CWE-252])
+
+    +esym(534,pthread_mutexattr_destroy) /* ignoring return value of function */
+    -append(534(pthread_mutexattr_destroy), [CWE-252])
+
+    +esym(534,pthread_mutexattr_getprioceiling) /* ignoring return value of function */
+    -append(534(pthread_mutexattr_getprioceiling), [CWE-252])
+
+    +esym(534,pthread_mutexattr_getprotocol) /* ignoring return value of function */
+    -append(534(pthread_mutexattr_getprotocol), [CWE-252])
+
+    +esym(534,pthread_mutexattr_getpshared) /* ignoring return value of function */
+    -append(534(pthread_mutexattr_getpshared), [CWE-252])
+
+    +esym(534,pthread_mutexattr_getrobust) /* ignoring return value of function */
+    -append(534(pthread_mutexattr_getrobust), [CWE-252])
+
+    +esym(534,pthread_mutexattr_gettype) /* ignoring return value of function */
+    -append(534(pthread_mutexattr_gettype), [CWE-252])
+
+    +esym(534,pthread_mutexattr_init) /* ignoring return value of function */
+    -append(534(pthread_mutexattr_init), [CWE-252])
+
+    +esym(534,pthread_mutexattr_setprioceiling) /* ignoring return value of function */
+    -append(534(pthread_mutexattr_setprioceiling), [CWE-252])
+
+    +esym(534,pthread_mutexattr_setprotocol) /* ignoring return value of function */
+    -append(534(pthread_mutexattr_setprotocol), [CWE-252])
+
+    +esym(534,pthread_mutexattr_setpshared) /* ignoring return value of function */
+    -append(534(pthread_mutexattr_setpshared), [CWE-252])
+
+    +esym(534,pthread_mutexattr_setrobust) /* ignoring return value of function */
+    -append(534(pthread_mutexattr_setrobust), [CWE-252])
+
+    +esym(534,pthread_mutexattr_settype) /* ignoring return value of function */
+    -append(534(pthread_mutexattr_settype), [CWE-252])
+
+    +esym(534,pthread_once) /* ignoring return value of function */
+    -append(534(pthread_once), [CWE-252])
+
+    +esym(534,pthread_rwlock_destroy) /* ignoring return value of function */
+    -append(534(pthread_rwlock_destroy), [CWE-252])
+
+    +esym(534,pthread_rwlock_init) /* ignoring return value of function */
+    -append(534(pthread_rwlock_init), [CWE-252])
+
+    +esym(534,pthread_rwlock_rdlock) /* ignoring return value of function */
+    -append(534(pthread_rwlock_rdlock), [CWE-252])
+
+    +esym(534,pthread_rwlock_timedrdlock) /* ignoring return value of function */
+    -append(534(pthread_rwlock_timedrdlock), [CWE-252])
+
+    +esym(534,pthread_rwlock_timedwrlock) /* ignoring return value of function */
+    -append(534(pthread_rwlock_timedwrlock), [CWE-252])
+
+    +esym(534,pthread_rwlock_tryrdlock) /* ignoring return value of function */
+    -append(534(pthread_rwlock_tryrdlock), [CWE-252])
+
+    +esym(534,pthread_rwlock_trywrlock) /* ignoring return value of function */
+    -append(534(pthread_rwlock_trywrlock), [CWE-252])
+
+    +esym(534,pthread_rwlock_unlock) /* ignoring return value of function */
+    -append(534(pthread_rwlock_unlock), [CWE-252])
+
+    +esym(534,pthread_rwlock_wrlock) /* ignoring return value of function */
+    -append(534(pthread_rwlock_wrlock), [CWE-252])
+
+    +esym(534,pthread_rwlockattr_destroy) /* ignoring return value of function */
+    -append(534(pthread_rwlockattr_destroy), [CWE-252])
+
+    +esym(534,pthread_rwlockattr_getpshared) /* ignoring return value of function */
+    -append(534(pthread_rwlockattr_getpshared), [CWE-252])
+
+    +esym(534,pthread_rwlockattr_init) /* ignoring return value of function */
+    -append(534(pthread_rwlockattr_init), [CWE-252])
+
+    +esym(534,pthread_rwlockattr_setpshared) /* ignoring return value of function */
+    -append(534(pthread_rwlockattr_setpshared), [CWE-252])
+
+    +esym(534,pthread_setcancelstate) /* ignoring return value of function */
+    -append(534(pthread_setcancelstate), [CWE-252])
+
+    +esym(534,pthread_setcanceltype) /* ignoring return value of function */
+    -append(534(pthread_setcanceltype), [CWE-252])
+
+    +esym(534,pthread_setconcurrency) /* ignoring return value of function */
+    -append(534(pthread_setconcurrency), [CWE-252])
+
+    +esym(534,pthread_setschedparam) /* ignoring return value of function */
+    -append(534(pthread_setschedparam), [CWE-252])
+
+    +esym(534,pthread_setschedprio) /* ignoring return value of function */
+    -append(534(pthread_setschedprio), [CWE-252])
+
+    +esym(534,pthread_setspecific) /* ignoring return value of function */
+    -append(534(pthread_setspecific), [CWE-252])
+
+    +esym(534,pthread_spin_destroy) /* ignoring return value of function */
+    -append(534(pthread_spin_destroy), [CWE-252])
+
+    +esym(534,pthread_spin_init) /* ignoring return value of function */
+    -append(534(pthread_spin_init), [CWE-252])
+
+    +esym(534,pthread_spin_lock) /* ignoring return value of function */
+    -append(534(pthread_spin_lock), [CWE-252])
+
+    +esym(534,pthread_spin_trylock) /* ignoring return value of function */
+    -append(534(pthread_spin_trylock), [CWE-252])
+
+    +esym(534,pthread_spin_unlock) /* ignoring return value of function */
+    -append(534(pthread_spin_unlock), [CWE-252])
+
+    +esym(534,putc) /* ignoring return value of function */
+    -append(534(putc), [CWE-252])
+
+    +esym(534,putwc) /* ignoring return value of function */
+    -append(534(putwc), [CWE-252])
+
+    +esym(534,raise) /* ignoring return value of function */
+    -append(534(raise), [CWE-252])
+
+    +esym(534,realloc) /* ignoring return value of function */
+    -append(534(realloc), [CWE-252])
+
+    +esym(534,remove) /* ignoring return value of function */
+    -append(534(remove), [CWE-252])
+
+    +esym(534,rename) /* ignoring return value of function */
+    -append(534(rename), [CWE-252])
+
+    +esym(534,setlocale) /* ignoring return value of function */
+    -append(534(setlocale), [CWE-252])
+
+    +esym(534,setvbuf) /* ignoring return value of function */
+    -append(534(setvbuf), [CWE-252])
+
+    +esym(534,scanf) /* ignoring return value of function */
+    -append(534(scanf), [CWE-252])
+
+    +esym(534,scanf_s) /* ignoring return value of function */
+    -append(534(scanf_s), [CWE-252])
+
+    +esym(534,signal) /* ignoring return value of function */
+    -append(534(signal), [CWE-252])
+
+    +esym(534,snprintf) /* ignoring return value of function */
+    -append(534(snprintf), [CWE-252])
+
+    +esym(534,snprintf_s) /* ignoring return value of function */
+    -append(534(snprintf_s), [CWE-252])
+
+    +esym(534,sprintf) /* ignoring return value of function */
+    -append(534(sprintf), [CWE-252])
+
+    +esym(534,sprintf_s) /* ignoring return value of function */
+    -append(534(sprintf_s), [CWE-252])
+
+    +esym(534,sscanf) /* ignoring return value of function */
+    -append(534(sscanf), [CWE-252])
+
+    +esym(534,sscanf_s) /* ignoring return value of function */
+    -append(534(sscanf_s), [CWE-252])
+
+    +esym(534,strchr) /* ignoring return value of function */
+    -append(534(strchr), [CWE-252])
+
+    +esym(534,strerror_s) /* ignoring return value of function */
+    -append(534(strerror_s), [CWE-252])
+
+    +esym(534,strftime) /* ignoring return value of function */
+    -append(534(strftime), [CWE-252])
+
+    +esym(534,strpbrk) /* ignoring return value of function */
+    -append(534(strpbrk), [CWE-252])
+
+    +esym(534,strrchr) /* ignoring return value of function */
+    -append(534(strrchr), [CWE-252])
+
+    +esym(534,strstr) /* ignoring return value of function */
+    -append(534(strstr), [CWE-252])
+
+    +esym(534,strtod) /* ignoring return value of function */
+    -append(534(strtod), [CWE-252])
+
+    +esym(534,strtof) /* ignoring return value of function */
+    -append(534(strtof), [CWE-252])
+
+    +esym(534,strtoimax) /* ignoring return value of function */
+    -append(534(strtoimax), [CWE-252])
+
+    +esym(534,strtok) /* ignoring return value of function */
+    -append(534(strtok), [CWE-252])
+
+    +esym(534,strtok_s) /* ignoring return value of function */
+    -append(534(strtok_s), [CWE-252])
+
+    +esym(534,strtol) /* ignoring return value of function */
+    -append(534(strtol), [CWE-252])
+
+    +esym(534,strtold) /* ignoring return value of function */
+    -append(534(strtold), [CWE-252])
+
+    +esym(534,strtoll) /* ignoring return value of function */
+    -append(534(strtoll), [CWE-252])
+
+    +esym(534,strtoumax) /* ignoring return value of function */
+    -append(534(strtoumax), [CWE-252])
+
+    +esym(534,strtoul) /* ignoring return value of function */
+    -append(534(strtoul), [CWE-252])
+
+    +esym(534,strtoull) /* ignoring return value of function */
+    -append(534(strtoull), [CWE-252])
+
+    +esym(534,strxfrm) /* ignoring return value of function */
+    -append(534(strxfrm), [CWE-252])
+
+    +esym(534,swprintf) /* ignoring return value of function */
+    -append(534(swprintf), [CWE-252])
+
+    +esym(534,swprintf_s) /* ignoring return value of function */
+    -append(534(swprintf_s), [CWE-252])
+
+    +esym(534,swscanf) /* ignoring return value of function */
+    -append(534(swscanf), [CWE-252])
+
+    +esym(534,swscanf_s) /* ignoring return value of function */
+    -append(534(swscanf_s), [CWE-252])
+
+    +esym(534,thrd_create) /* ignoring return value of function */
+    -append(534(thrd_create), [CWE-252])
+
+    +esym(534,thrd_detach) /* ignoring return value of function */
+    -append(534(thrd_detach), [CWE-252])
+
+    +esym(534,thrd_join) /* ignoring return value of function */
+    -append(534(thrd_join), [CWE-252])
+
+    +esym(534,thrd_sleep) /* ignoring return value of function */
+    -append(534(thrd_sleep), [CWE-252])
+
+    +esym(534,time) /* ignoring return value of function */
+    -append(534(time), [CWE-252])
+
+    +esym(534,timespec_get) /* ignoring return value of function */
+    -append(534(timespec_get), [CWE-252])
+
+    +esym(534,tmpfile) /* ignoring return value of function */
+    -append(534(tmpfile), [CWE-252])
+
+    +esym(534,tmpfile_s) /* ignoring return value of function */
+    -append(534(tmpfile_s), [CWE-252])
+
+    +esym(534,tmpnam) /* ignoring return value of function */
+    -append(534(tmpnam), [CWE-252])
+
+    +esym(534,tmpnam_s) /* ignoring return value of function */
+    -append(534(tmpnam_s), [CWE-252])
+
+    +esym(534,tss_create) /* ignoring return value of function */
+    -append(534(tss_create), [CWE-252])
+
+    +esym(534,tss_get) /* ignoring return value of function */
+    -append(534(tss_get), [CWE-252])
+
+    +esym(534,tss_set) /* ignoring return value of function */
+    -append(534(tss_set), [CWE-252])
+
+    +esym(534,ungetc) /* ignoring return value of function */
+    -append(534(ungetc), [CWE-252])
+
+    +esym(534,ungetwc) /* ignoring return value of function */
+    -append(534(ungetwc), [CWE-252])
+
+    +esym(534,vfprintf) /* ignoring return value of function */
+    -append(534(vfprintf), [CWE-252])
+
+    +esym(534,vfprintf_s) /* ignoring return value of function */
+    -append(534(vfprintf_s), [CWE-252])
+
+    +esym(534,vfscanf) /* ignoring return value of function */
+    -append(534(vfscanf), [CWE-252])
+
+    +esym(534,vfscanf_s) /* ignoring return value of function */
+    -append(534(vfscanf_s), [CWE-252])
+
+    +esym(534,vfwprintf) /* ignoring return value of function */
+    -append(534(vfwprintf), [CWE-252])
+
+    +esym(534,vfwprintf_s) /* ignoring return value of function */
+    -append(534(vfwprintf_s), [CWE-252])
+
+    +esym(534,vfwscanf) /* ignoring return value of function */
+    -append(534(vfwscanf), [CWE-252])
+
+    +esym(534,vfwscanf_s) /* ignoring return value of function */
+    -append(534(vfwscanf_s), [CWE-252])
+
+    +esym(534,vprintf_s) /* ignoring return value of function */
+    -append(534(vprintf_s), [CWE-252])
+
+    +esym(534,vscanf) /* ignoring return value of function */
+    -append(534(vscanf), [CWE-252])
+
+    +esym(534,vscanf_s) /* ignoring return value of function */
+    -append(534(vscanf_s), [CWE-252])
+
+    +esym(534,vsnprintf) /* ignoring return value of function */
+    -append(534(vsnprintf), [CWE-252])
+
+    +esym(534,vsnprintf_s) /* ignoring return value of function */
+    -append(534(vsnprintf_s), [CWE-252])
+
+    +esym(534,vsprintf) /* ignoring return value of function */
+    -append(534(vsprintf), [CWE-252])
+
+    +esym(534,vsprintf_s) /* ignoring return value of function */
+    -append(534(vsprintf_s), [CWE-252])
+
+    +esym(534,vsscanf) /* ignoring return value of function */
+    -append(534(vsscanf), [CWE-252])
+
+    +esym(534,vsscanf_s) /* ignoring return value of function */
+    -append(534(vsscanf_s), [CWE-252])
+
+    +esym(534,vswprintf) /* ignoring return value of function */
+    -append(534(vswprintf), [CWE-252])
+
+    +esym(534,vswprintf_s) /* ignoring return value of function */
+    -append(534(vswprintf_s), [CWE-252])
+
+    +esym(534,vswscanf) /* ignoring return value of function */
+    -append(534(vswscanf), [CWE-252])
+
+    +esym(534,vswscanf_s) /* ignoring return value of function */
+    -append(534(vswscanf_s), [CWE-252])
+
+    +esym(534,vwprintf_s) /* ignoring return value of function */
+    -append(534(vwprintf_s), [CWE-252])
+
+    +esym(534,vwscanf) /* ignoring return value of function */
+    -append(534(vwscanf), [CWE-252])
+
+    +esym(534,vwscanf_s) /* ignoring return value of function */
+    -append(534(vwscanf_s), [CWE-252])
+
+    +esym(534,wcrtomb) /* ignoring return value of function */
+    -append(534(wcrtomb), [CWE-252])
+
+    +esym(534,wcschr) /* ignoring return value of function */
+    -append(534(wcschr), [CWE-252])
+
+    +esym(534,wcsftime) /* ignoring return value of function */
+    -append(534(wcsftime), [CWE-252])
+
+    +esym(534,wcspbrk) /* ignoring return value of function */
+    -append(534(wcspbrk), [CWE-252])
+
+    +esym(534,wcsrchr) /* ignoring return value of function */
+    -append(534(wcsrchr), [CWE-252])
+
+    +esym(534,wcsrtombs) /* ignoring return value of function */
+    -append(534(wcsrtombs), [CWE-252])
+
+    +esym(534,wcsrtombs_s) /* ignoring return value of function */
+    -append(534(wcsrtombs_s), [CWE-252])
+
+    +esym(534,wcsstr) /* ignoring return value of function */
+    -append(534(wcsstr), [CWE-252])
+
+    +esym(534,wcstod) /* ignoring return value of function */
+    -append(534(wcstod), [CWE-252])
+
+    +esym(534,wcstof) /* ignoring return value of function */
+    -append(534(wcstof), [CWE-252])
+
+    +esym(534,wcstoimax) /* ignoring return value of function */
+    -append(534(wcstoimax), [CWE-252])
+
+    +esym(534,wcstok) /* ignoring return value of function */
+    -append(534(wcstok), [CWE-252])
+
+    +esym(534,wcstok_s) /* ignoring return value of function */
+    -append(534(wcstok_s), [CWE-252])
+
+    +esym(534,wcstol) /* ignoring return value of function */
+    -append(534(wcstol), [CWE-252])
+
+    +esym(534,wcstold) /* ignoring return value of function */
+    -append(534(wcstold), [CWE-252])
+
+    +esym(534,wcstoll) /* ignoring return value of function */
+    -append(534(wcstoll), [CWE-252])
+
+    +esym(534,wcstombs) /* ignoring return value of function */
+    -append(534(wcstombs), [CWE-252])
+
+    +esym(534,wcstombs_s) /* ignoring return value of function */
+    -append(534(wcstombs_s), [CWE-252])
+
+    +esym(534,wcstoumax) /* ignoring return value of function */
+    -append(534(wcstoumax), [CWE-252])
+
+    +esym(534,wcstoul) /* ignoring return value of function */
+    -append(534(wcstoul), [CWE-252])
+
+    +esym(534,wcstoull) /* ignoring return value of function */
+    -append(534(wcstoull), [CWE-252])
+
+    +esym(534,wcsxfrm) /* ignoring return value of function */
+    -append(534(wcsxfrm), [CWE-252])
+
+    +esym(534,wctob) /* ignoring return value of function */
+    -append(534(wctob), [CWE-252])
+
+    +esym(534,wctrans) /* ignoring return value of function */
+    -append(534(wctrans), [CWE-252])
+
+    +esym(534,wctype) /* ignoring return value of function */
+    -append(534(wctype), [CWE-252])
+
+    +esym(534,wmemchr) /* ignoring return value of function */
+    -append(534(wmemchr), [CWE-252])
+
+    +esym(534,wprintf_s) /* ignoring return value of function */
+    -append(534(wprintf_s), [CWE-252])
+
+    +esym(534,wscanf) /* ignoring return value of function */
+    -append(534(wscanf), [CWE-252])
+
+    +esym(534,wscanf_s) /* ignoring return value of function */
+    -append(534(wscanf_s), [CWE-252])
+
+    +esym(534,posix_memalign) /* ignoring return value of function */
+    -append(534(posix_memalign), [CWE-252])
+
+    +e413 /* likely use of null pointer */
+    +elib(413)
+    -append(413, [CWE-252])
+
+    +e613 /* potential use of null pointer */
+    +elib(613)
+    -append(613, [CWE-252])
+
+/* CWE-253 */
+/* Incorrect Check of Function Return Value */
+
+    +esym(534,aligned_alloc) /* ignoring return value of function */
+    -append(534(aligned_alloc), [CWE-253])
+
+    +esym(534,asctime_s) /* ignoring return value of function */
+    -append(534(asctime_s), [CWE-253])
+
+    +esym(534,at_quick_exit) /* ignoring return value of function */
+    -append(534(at_quick_exit), [CWE-253])
+
+    +esym(534,atexit) /* ignoring return value of function */
+    -append(534(atexit), [CWE-253])
+
+    +esym(534,bsearch) /* ignoring return value of function */
+    -append(534(bsearch), [CWE-253])
+
+    +esym(534,bsearch_s) /* ignoring return value of function */
+    -append(534(bsearch_s), [CWE-253])
+
+    +esym(534,btowc) /* ignoring return value of function */
+    -append(534(btowc), [CWE-253])
+
+    +esym(534,c16rtomb) /* ignoring return value of function */
+    -append(534(c16rtomb), [CWE-253])
+
+    +esym(534,c32rtomb) /* ignoring return value of function */
+    -append(534(c32rtomb), [CWE-253])
+
+    +esym(534,calloc) /* ignoring return value of function */
+    -append(534(calloc), [CWE-253])
+
+    +esym(534,clock) /* ignoring return value of function */
+    -append(534(clock), [CWE-253])
+
+    +esym(534,cnd_broadcast) /* ignoring return value of function */
+    -append(534(cnd_broadcast), [CWE-253])
+
+    +esym(534,cnd_init) /* ignoring return value of function */
+    -append(534(cnd_init), [CWE-253])
+
+    +esym(534,cnd_signal) /* ignoring return value of function */
+    -append(534(cnd_signal), [CWE-253])
+
+    +esym(534,cnd_timedwait) /* ignoring return value of function */
+    -append(534(cnd_timedwait), [CWE-253])
+
+    +esym(534,cnd_wait) /* ignoring return value of function */
+    -append(534(cnd_wait), [CWE-253])
+
+    +esym(534,ctime_s) /* ignoring return value of function */
+    -append(534(ctime_s), [CWE-253])
+
+    +esym(534,fclose) /* ignoring return value of function */
+    -append(534(fclose), [CWE-253])
+
+    +esym(534,fflush) /* ignoring return value of function */
+    -append(534(fflush), [CWE-253])
+
+    +esym(534,fgetc) /* ignoring return value of function */
+    -append(534(fgetc), [CWE-253])
+
+    +esym(534,fgetpos) /* ignoring return value of function */
+    -append(534(fgetpos), [CWE-253])
+
+    +esym(534,fgets) /* ignoring return value of function */
+    -append(534(fgets), [CWE-253])
+
+    +esym(534,fgetwc) /* ignoring return value of function */
+    -append(534(fgetwc), [CWE-253])
+
+    +esym(534,fopen) /* ignoring return value of function */
+    -append(534(fopen), [CWE-253])
+
+    +esym(534,fopen_s) /* ignoring return value of function */
+    -append(534(fopen_s), [CWE-253])
+
+    +esym(534,fprintf) /* ignoring return value of function */
+    -append(534(fprintf), [CWE-253])
+
+    +esym(534,fprintf_s) /* ignoring return value of function */
+    -append(534(fprintf_s), [CWE-253])
+
+    +esym(534,fputc) /* ignoring return value of function */
+    -append(534(fputc), [CWE-253])
+
+    +esym(534,fputs) /* ignoring return value of function */
+    -append(534(fputs), [CWE-253])
+
+    +esym(534,fputws) /* ignoring return value of function */
+    -append(534(fputws), [CWE-253])
+
+    +esym(534,fread) /* ignoring return value of function */
+    -append(534(fread), [CWE-253])
+
+    +esym(534,freopen) /* ignoring return value of function */
+    -append(534(freopen), [CWE-253])
+
+    +esym(534,freopen_s) /* ignoring return value of function */
+    -append(534(freopen_s), [CWE-253])
+
+    +esym(534,fscanf) /* ignoring return value of function */
+    -append(534(fscanf), [CWE-253])
+
+    +esym(534,fscanf_s) /* ignoring return value of function */
+    -append(534(fscanf_s), [CWE-253])
+
+    +esym(534,fseek) /* ignoring return value of function */
+    -append(534(fseek), [CWE-253])
+
+    +esym(534,fsetpos) /* ignoring return value of function */
+    -append(534(fsetpos), [CWE-253])
+
+    +esym(534,ftell) /* ignoring return value of function */
+    -append(534(ftell), [CWE-253])
+
+    +esym(534,fwprintf) /* ignoring return value of function */
+    -append(534(fwprintf), [CWE-253])
+
+    +esym(534,fwprintf_s) /* ignoring return value of function */
+    -append(534(fwprintf_s), [CWE-253])
+
+    +esym(534,fwrite) /* ignoring return value of function */
+    -append(534(fwrite), [CWE-253])
+
+    +esym(534,fwscanf) /* ignoring return value of function */
+    -append(534(fwscanf), [CWE-253])
+
+    +esym(534,fwscanf_s) /* ignoring return value of function */
+    -append(534(fwscanf_s), [CWE-253])
+
+    +esym(534,getc) /* ignoring return value of function */
+    -append(534(getc), [CWE-253])
+
+    +esym(534,getchar) /* ignoring return value of function */
+    -append(534(getchar), [CWE-253])
+
+    +esym(534,getenv) /* ignoring return value of function */
+    -append(534(getenv), [CWE-253])
+
+    +esym(534,getenv_s) /* ignoring return value of function */
+    -append(534(getenv_s), [CWE-253])
+
+    +esym(534,gets_s) /* ignoring return value of function */
+    -append(534(gets_s), [CWE-253])
+
+    +esym(534,getwc) /* ignoring return value of function */
+    -append(534(getwc), [CWE-253])
+
+    +esym(534,getwchar) /* ignoring return value of function */
+    -append(534(getwchar), [CWE-253])
+
+    +esym(534,gmtime) /* ignoring return value of function */
+    -append(534(gmtime), [CWE-253])
+
+    +esym(534,gmtime_s) /* ignoring return value of function */
+    -append(534(gmtime_s), [CWE-253])
+
+    +esym(534,localtime) /* ignoring return value of function */
+    -append(534(localtime), [CWE-253])
+
+    +esym(534,localtime_s) /* ignoring return value of function */
+    -append(534(localtime_s), [CWE-253])
+
+    +esym(534,malloc) /* ignoring return value of function */
+    -append(534(malloc), [CWE-253])
+
+    +esym(534,mbrtoc16) /* ignoring return value of function */
+    -append(534(mbrtoc16), [CWE-253])
+
+    +esym(534,mbrtoc32) /* ignoring return value of function */
+    -append(534(mbrtoc32), [CWE-253])
+
+    +esym(534,mbsrtowcs) /* ignoring return value of function */
+    -append(534(mbsrtowcs), [CWE-253])
+
+    +esym(534,mbsrtowcs_s) /* ignoring return value of function */
+    -append(534(mbsrtowcs_s), [CWE-253])
+
+    +esym(534,mbstowcs) /* ignoring return value of function */
+    -append(534(mbstowcs), [CWE-253])
+
+    +esym(534,mbstowcs_s) /* ignoring return value of function */
+    -append(534(mbstowcs_s), [CWE-253])
+
+    +esym(534,memchr) /* ignoring return value of function */
+    -append(534(memchr), [CWE-253])
+
+    +esym(534,mktime) /* ignoring return value of function */
+    -append(534(mktime), [CWE-253])
+
+    +esym(534,mtx_init) /* ignoring return value of function */
+    -append(534(mtx_init), [CWE-253])
+
+    +esym(534,mtx_lock) /* ignoring return value of function */
+    -append(534(mtx_lock), [CWE-253])
+
+    +esym(534,mtx_timedlock) /* ignoring return value of function */
+    -append(534(mtx_timedlock), [CWE-253])
+
+    +esym(534,mtx_trylock) /* ignoring return value of function */
+    -append(534(mtx_trylock), [CWE-253])
+
+    +esym(534,mtx_unlock) /* ignoring return value of function */
+    -append(534(mtx_unlock), [CWE-253])
+
+    +esym(534,printf_s) /* ignoring return value of function */
+    -append(534(printf_s), [CWE-253])
+
+    +esym(534,pthread_atfork) /* ignoring return value of function */
+    -append(534(pthread_atfork), [CWE-253])
+
+    +esym(534,pthread_attr_destroy) /* ignoring return value of function */
+    -append(534(pthread_attr_destroy), [CWE-253])
+
+    +esym(534,pthread_attr_getdetachstate) /* ignoring return value of function */
+    -append(534(pthread_attr_getdetachstate), [CWE-253])
+
+    +esym(534,pthread_attr_getguardsize) /* ignoring return value of function */
+    -append(534(pthread_attr_getguardsize), [CWE-253])
+
+    +esym(534,pthread_attr_getinheritsched) /* ignoring return value of function */
+    -append(534(pthread_attr_getinheritsched), [CWE-253])
+
+    +esym(534,pthread_attr_getschedparam) /* ignoring return value of function */
+    -append(534(pthread_attr_getschedparam), [CWE-253])
+
+    +esym(534,pthread_attr_getschedpolicy) /* ignoring return value of function */
+    -append(534(pthread_attr_getschedpolicy), [CWE-253])
+
+    +esym(534,pthread_attr_getscope) /* ignoring return value of function */
+    -append(534(pthread_attr_getscope), [CWE-253])
+
+    +esym(534,pthread_attr_getstack) /* ignoring return value of function */
+    -append(534(pthread_attr_getstack), [CWE-253])
+
+    +esym(534,pthread_attr_getstacksize) /* ignoring return value of function */
+    -append(534(pthread_attr_getstacksize), [CWE-253])
+
+    +esym(534,pthread_attr_init) /* ignoring return value of function */
+    -append(534(pthread_attr_init), [CWE-253])
+
+    +esym(534,pthread_attr_setdetachstate) /* ignoring return value of function */
+    -append(534(pthread_attr_setdetachstate), [CWE-253])
+
+    +esym(534,pthread_attr_setguardsize) /* ignoring return value of function */
+    -append(534(pthread_attr_setguardsize), [CWE-253])
+
+    +esym(534,pthread_attr_setinheritsched) /* ignoring return value of function */
+    -append(534(pthread_attr_setinheritsched), [CWE-253])
+
+    +esym(534,pthread_attr_setschedparam) /* ignoring return value of function */
+    -append(534(pthread_attr_setschedparam), [CWE-253])
+
+    +esym(534,pthread_attr_setschedpolicy) /* ignoring return value of function */
+    -append(534(pthread_attr_setschedpolicy), [CWE-253])
+
+    +esym(534,pthread_attr_setscope) /* ignoring return value of function */
+    -append(534(pthread_attr_setscope), [CWE-253])
+
+    +esym(534,pthread_attr_setstack) /* ignoring return value of function */
+    -append(534(pthread_attr_setstack), [CWE-253])
+
+    +esym(534,pthread_attr_setstacksize) /* ignoring return value of function */
+    -append(534(pthread_attr_setstacksize), [CWE-253])
+
+    +esym(534,pthread_barrier_destroy) /* ignoring return value of function */
+    -append(534(pthread_barrier_destroy), [CWE-253])
+
+    +esym(534,pthread_barrier_init) /* ignoring return value of function */
+    -append(534(pthread_barrier_init), [CWE-253])
+
+    +esym(534,pthread_barrier_wait) /* ignoring return value of function */
+    -append(534(pthread_barrier_wait), [CWE-253])
+
+    +esym(534,pthread_barrierattr_destroy) /* ignoring return value of function */
+    -append(534(pthread_barrierattr_destroy), [CWE-253])
+
+    +esym(534,pthread_barrierattr_getpshared) /* ignoring return value of function */
+    -append(534(pthread_barrierattr_getpshared), [CWE-253])
+
+    +esym(534,pthread_barrierattr_init) /* ignoring return value of function */
+    -append(534(pthread_barrierattr_init), [CWE-253])
+
+    +esym(534,pthread_barrierattr_setpshared) /* ignoring return value of function */
+    -append(534(pthread_barrierattr_setpshared), [CWE-253])
+
+    +esym(534,pthread_cancel) /* ignoring return value of function */
+    -append(534(pthread_cancel), [CWE-253])
+
+    +esym(534,pthread_cond_broadcast) /* ignoring return value of function */
+    -append(534(pthread_cond_broadcast), [CWE-253])
+
+    +esym(534,pthread_cond_destroy) /* ignoring return value of function */
+    -append(534(pthread_cond_destroy), [CWE-253])
+
+    +esym(534,pthread_cond_init) /* ignoring return value of function */
+    -append(534(pthread_cond_init), [CWE-253])
+
+    +esym(534,pthread_cond_signal) /* ignoring return value of function */
+    -append(534(pthread_cond_signal), [CWE-253])
+
+    +esym(534,pthread_cond_timedwait) /* ignoring return value of function */
+    -append(534(pthread_cond_timedwait), [CWE-253])
+
+    +esym(534,pthread_cond_wait) /* ignoring return value of function */
+    -append(534(pthread_cond_wait), [CWE-253])
+
+    +esym(534,pthread_condattr_destroy) /* ignoring return value of function */
+    -append(534(pthread_condattr_destroy), [CWE-253])
+
+    +esym(534,pthread_condattr_getclock) /* ignoring return value of function */
+    -append(534(pthread_condattr_getclock), [CWE-253])
+
+    +esym(534,pthread_condattr_getpshared) /* ignoring return value of function */
+    -append(534(pthread_condattr_getpshared), [CWE-253])
+
+    +esym(534,pthread_condattr_init) /* ignoring return value of function */
+    -append(534(pthread_condattr_init), [CWE-253])
+
+    +esym(534,pthread_condattr_setclock) /* ignoring return value of function */
+    -append(534(pthread_condattr_setclock), [CWE-253])
+
+    +esym(534,pthread_condattr_setpshared) /* ignoring return value of function */
+    -append(534(pthread_condattr_setpshared), [CWE-253])
+
+    +esym(534,pthread_create) /* ignoring return value of function */
+    -append(534(pthread_create), [CWE-253])
+
+    +esym(534,pthread_detach) /* ignoring return value of function */
+    -append(534(pthread_detach), [CWE-253])
+
+    +esym(534,pthread_equal) /* ignoring return value of function */
+    -append(534(pthread_equal), [CWE-253])
+
+    +esym(534,pthread_getconcurrency) /* ignoring return value of function */
+    -append(534(pthread_getconcurrency), [CWE-253])
+
+    +esym(534,pthread_getcpuclockid) /* ignoring return value of function */
+    -append(534(pthread_getcpuclockid), [CWE-253])
+
+    +esym(534,pthread_getschedparam) /* ignoring return value of function */
+    -append(534(pthread_getschedparam), [CWE-253])
+
+    +esym(534,pthread_getspecific) /* ignoring return value of function */
+    -append(534(pthread_getspecific), [CWE-253])
+
+    +esym(534,pthread_join) /* ignoring return value of function */
+    -append(534(pthread_join), [CWE-253])
+
+    +esym(534,pthread_key_create) /* ignoring return value of function */
+    -append(534(pthread_key_create), [CWE-253])
+
+    +esym(534,pthread_key_delete) /* ignoring return value of function */
+    -append(534(pthread_key_delete), [CWE-253])
+
+    +esym(534,pthread_mutex_consistent) /* ignoring return value of function */
+    -append(534(pthread_mutex_consistent), [CWE-253])
+
+    +esym(534,pthread_mutex_destroy) /* ignoring return value of function */
+    -append(534(pthread_mutex_destroy), [CWE-253])
+
+    +esym(534,pthread_mutex_getprioceiling) /* ignoring return value of function */
+    -append(534(pthread_mutex_getprioceiling), [CWE-253])
+
+    +esym(534,pthread_mutex_init) /* ignoring return value of function */
+    -append(534(pthread_mutex_init), [CWE-253])
+
+    +esym(534,pthread_mutex_lock) /* ignoring return value of function */
+    -append(534(pthread_mutex_lock), [CWE-253])
+
+    +esym(534,pthread_mutex_setprioceiling) /* ignoring return value of function */
+    -append(534(pthread_mutex_setprioceiling), [CWE-253])
+
+    +esym(534,pthread_mutex_timedlock) /* ignoring return value of function */
+    -append(534(pthread_mutex_timedlock), [CWE-253])
+
+    +esym(534,pthread_mutex_trylock) /* ignoring return value of function */
+    -append(534(pthread_mutex_trylock), [CWE-253])
+
+    +esym(534,pthread_mutex_unlock) /* ignoring return value of function */
+    -append(534(pthread_mutex_unlock), [CWE-253])
+
+    +esym(534,pthread_mutexattr_destroy) /* ignoring return value of function */
+    -append(534(pthread_mutexattr_destroy), [CWE-253])
+
+    +esym(534,pthread_mutexattr_getprioceiling) /* ignoring return value of function */
+    -append(534(pthread_mutexattr_getprioceiling), [CWE-253])
+
+    +esym(534,pthread_mutexattr_getprotocol) /* ignoring return value of function */
+    -append(534(pthread_mutexattr_getprotocol), [CWE-253])
+
+    +esym(534,pthread_mutexattr_getpshared) /* ignoring return value of function */
+    -append(534(pthread_mutexattr_getpshared), [CWE-253])
+
+    +esym(534,pthread_mutexattr_getrobust) /* ignoring return value of function */
+    -append(534(pthread_mutexattr_getrobust), [CWE-253])
+
+    +esym(534,pthread_mutexattr_gettype) /* ignoring return value of function */
+    -append(534(pthread_mutexattr_gettype), [CWE-253])
+
+    +esym(534,pthread_mutexattr_init) /* ignoring return value of function */
+    -append(534(pthread_mutexattr_init), [CWE-253])
+
+    +esym(534,pthread_mutexattr_setprioceiling) /* ignoring return value of function */
+    -append(534(pthread_mutexattr_setprioceiling), [CWE-253])
+
+    +esym(534,pthread_mutexattr_setprotocol) /* ignoring return value of function */
+    -append(534(pthread_mutexattr_setprotocol), [CWE-253])
+
+    +esym(534,pthread_mutexattr_setpshared) /* ignoring return value of function */
+    -append(534(pthread_mutexattr_setpshared), [CWE-253])
+
+    +esym(534,pthread_mutexattr_setrobust) /* ignoring return value of function */
+    -append(534(pthread_mutexattr_setrobust), [CWE-253])
+
+    +esym(534,pthread_mutexattr_settype) /* ignoring return value of function */
+    -append(534(pthread_mutexattr_settype), [CWE-253])
+
+    +esym(534,pthread_once) /* ignoring return value of function */
+    -append(534(pthread_once), [CWE-253])
+
+    +esym(534,pthread_rwlock_destroy) /* ignoring return value of function */
+    -append(534(pthread_rwlock_destroy), [CWE-253])
+
+    +esym(534,pthread_rwlock_init) /* ignoring return value of function */
+    -append(534(pthread_rwlock_init), [CWE-253])
+
+    +esym(534,pthread_rwlock_rdlock) /* ignoring return value of function */
+    -append(534(pthread_rwlock_rdlock), [CWE-253])
+
+    +esym(534,pthread_rwlock_timedrdlock) /* ignoring return value of function */
+    -append(534(pthread_rwlock_timedrdlock), [CWE-253])
+
+    +esym(534,pthread_rwlock_timedwrlock) /* ignoring return value of function */
+    -append(534(pthread_rwlock_timedwrlock), [CWE-253])
+
+    +esym(534,pthread_rwlock_tryrdlock) /* ignoring return value of function */
+    -append(534(pthread_rwlock_tryrdlock), [CWE-253])
+
+    +esym(534,pthread_rwlock_trywrlock) /* ignoring return value of function */
+    -append(534(pthread_rwlock_trywrlock), [CWE-253])
+
+    +esym(534,pthread_rwlock_unlock) /* ignoring return value of function */
+    -append(534(pthread_rwlock_unlock), [CWE-253])
+
+    +esym(534,pthread_rwlock_wrlock) /* ignoring return value of function */
+    -append(534(pthread_rwlock_wrlock), [CWE-253])
+
+    +esym(534,pthread_rwlockattr_destroy) /* ignoring return value of function */
+    -append(534(pthread_rwlockattr_destroy), [CWE-253])
+
+    +esym(534,pthread_rwlockattr_getpshared) /* ignoring return value of function */
+    -append(534(pthread_rwlockattr_getpshared), [CWE-253])
+
+    +esym(534,pthread_rwlockattr_init) /* ignoring return value of function */
+    -append(534(pthread_rwlockattr_init), [CWE-253])
+
+    +esym(534,pthread_rwlockattr_setpshared) /* ignoring return value of function */
+    -append(534(pthread_rwlockattr_setpshared), [CWE-253])
+
+    +esym(534,pthread_setcancelstate) /* ignoring return value of function */
+    -append(534(pthread_setcancelstate), [CWE-253])
+
+    +esym(534,pthread_setcanceltype) /* ignoring return value of function */
+    -append(534(pthread_setcanceltype), [CWE-253])
+
+    +esym(534,pthread_setconcurrency) /* ignoring return value of function */
+    -append(534(pthread_setconcurrency), [CWE-253])
+
+    +esym(534,pthread_setschedparam) /* ignoring return value of function */
+    -append(534(pthread_setschedparam), [CWE-253])
+
+    +esym(534,pthread_setschedprio) /* ignoring return value of function */
+    -append(534(pthread_setschedprio), [CWE-253])
+
+    +esym(534,pthread_setspecific) /* ignoring return value of function */
+    -append(534(pthread_setspecific), [CWE-253])
+
+    +esym(534,pthread_spin_destroy) /* ignoring return value of function */
+    -append(534(pthread_spin_destroy), [CWE-253])
+
+    +esym(534,pthread_spin_init) /* ignoring return value of function */
+    -append(534(pthread_spin_init), [CWE-253])
+
+    +esym(534,pthread_spin_lock) /* ignoring return value of function */
+    -append(534(pthread_spin_lock), [CWE-253])
+
+    +esym(534,pthread_spin_trylock) /* ignoring return value of function */
+    -append(534(pthread_spin_trylock), [CWE-253])
+
+    +esym(534,pthread_spin_unlock) /* ignoring return value of function */
+    -append(534(pthread_spin_unlock), [CWE-253])
+
+    +esym(534,putc) /* ignoring return value of function */
+    -append(534(putc), [CWE-253])
+
+    +esym(534,putwc) /* ignoring return value of function */
+    -append(534(putwc), [CWE-253])
+
+    +esym(534,raise) /* ignoring return value of function */
+    -append(534(raise), [CWE-253])
+
+    +esym(534,realloc) /* ignoring return value of function */
+    -append(534(realloc), [CWE-253])
+
+    +esym(534,remove) /* ignoring return value of function */
+    -append(534(remove), [CWE-253])
+
+    +esym(534,rename) /* ignoring return value of function */
+    -append(534(rename), [CWE-253])
+
+    +esym(534,setlocale) /* ignoring return value of function */
+    -append(534(setlocale), [CWE-253])
+
+    +esym(534,setvbuf) /* ignoring return value of function */
+    -append(534(setvbuf), [CWE-253])
+
+    +esym(534,scanf) /* ignoring return value of function */
+    -append(534(scanf), [CWE-253])
+
+    +esym(534,scanf_s) /* ignoring return value of function */
+    -append(534(scanf_s), [CWE-253])
+
+    +esym(534,signal) /* ignoring return value of function */
+    -append(534(signal), [CWE-253])
+
+    +esym(534,snprintf) /* ignoring return value of function */
+    -append(534(snprintf), [CWE-253])
+
+    +esym(534,snprintf_s) /* ignoring return value of function */
+    -append(534(snprintf_s), [CWE-253])
+
+    +esym(534,sprintf) /* ignoring return value of function */
+    -append(534(sprintf), [CWE-253])
+
+    +esym(534,sprintf_s) /* ignoring return value of function */
+    -append(534(sprintf_s), [CWE-253])
+
+    +esym(534,sscanf) /* ignoring return value of function */
+    -append(534(sscanf), [CWE-253])
+
+    +esym(534,sscanf_s) /* ignoring return value of function */
+    -append(534(sscanf_s), [CWE-253])
+
+    +esym(534,strchr) /* ignoring return value of function */
+    -append(534(strchr), [CWE-253])
+
+    +esym(534,strerror_s) /* ignoring return value of function */
+    -append(534(strerror_s), [CWE-253])
+
+    +esym(534,strftime) /* ignoring return value of function */
+    -append(534(strftime), [CWE-253])
+
+    +esym(534,strpbrk) /* ignoring return value of function */
+    -append(534(strpbrk), [CWE-253])
+
+    +esym(534,strrchr) /* ignoring return value of function */
+    -append(534(strrchr), [CWE-253])
+
+    +esym(534,strstr) /* ignoring return value of function */
+    -append(534(strstr), [CWE-253])
+
+    +esym(534,strtod) /* ignoring return value of function */
+    -append(534(strtod), [CWE-253])
+
+    +esym(534,strtof) /* ignoring return value of function */
+    -append(534(strtof), [CWE-253])
+
+    +esym(534,strtoimax) /* ignoring return value of function */
+    -append(534(strtoimax), [CWE-253])
+
+    +esym(534,strtok) /* ignoring return value of function */
+    -append(534(strtok), [CWE-253])
+
+    +esym(534,strtok_s) /* ignoring return value of function */
+    -append(534(strtok_s), [CWE-253])
+
+    +esym(534,strtol) /* ignoring return value of function */
+    -append(534(strtol), [CWE-253])
+
+    +esym(534,strtold) /* ignoring return value of function */
+    -append(534(strtold), [CWE-253])
+
+    +esym(534,strtoll) /* ignoring return value of function */
+    -append(534(strtoll), [CWE-253])
+
+    +esym(534,strtoumax) /* ignoring return value of function */
+    -append(534(strtoumax), [CWE-253])
+
+    +esym(534,strtoul) /* ignoring return value of function */
+    -append(534(strtoul), [CWE-253])
+
+    +esym(534,strtoull) /* ignoring return value of function */
+    -append(534(strtoull), [CWE-253])
+
+    +esym(534,strxfrm) /* ignoring return value of function */
+    -append(534(strxfrm), [CWE-253])
+
+    +esym(534,swprintf) /* ignoring return value of function */
+    -append(534(swprintf), [CWE-253])
+
+    +esym(534,swprintf_s) /* ignoring return value of function */
+    -append(534(swprintf_s), [CWE-253])
+
+    +esym(534,swscanf) /* ignoring return value of function */
+    -append(534(swscanf), [CWE-253])
+
+    +esym(534,swscanf_s) /* ignoring return value of function */
+    -append(534(swscanf_s), [CWE-253])
+
+    +esym(534,thrd_create) /* ignoring return value of function */
+    -append(534(thrd_create), [CWE-253])
+
+    +esym(534,thrd_detach) /* ignoring return value of function */
+    -append(534(thrd_detach), [CWE-253])
+
+    +esym(534,thrd_join) /* ignoring return value of function */
+    -append(534(thrd_join), [CWE-253])
+
+    +esym(534,thrd_sleep) /* ignoring return value of function */
+    -append(534(thrd_sleep), [CWE-253])
+
+    +esym(534,time) /* ignoring return value of function */
+    -append(534(time), [CWE-253])
+
+    +esym(534,timespec_get) /* ignoring return value of function */
+    -append(534(timespec_get), [CWE-253])
+
+    +esym(534,tmpfile) /* ignoring return value of function */
+    -append(534(tmpfile), [CWE-253])
+
+    +esym(534,tmpfile_s) /* ignoring return value of function */
+    -append(534(tmpfile_s), [CWE-253])
+
+    +esym(534,tmpnam) /* ignoring return value of function */
+    -append(534(tmpnam), [CWE-253])
+
+    +esym(534,tmpnam_s) /* ignoring return value of function */
+    -append(534(tmpnam_s), [CWE-253])
+
+    +esym(534,tss_create) /* ignoring return value of function */
+    -append(534(tss_create), [CWE-253])
+
+    +esym(534,tss_get) /* ignoring return value of function */
+    -append(534(tss_get), [CWE-253])
+
+    +esym(534,tss_set) /* ignoring return value of function */
+    -append(534(tss_set), [CWE-253])
+
+    +esym(534,ungetc) /* ignoring return value of function */
+    -append(534(ungetc), [CWE-253])
+
+    +esym(534,ungetwc) /* ignoring return value of function */
+    -append(534(ungetwc), [CWE-253])
+
+    +esym(534,vfprintf) /* ignoring return value of function */
+    -append(534(vfprintf), [CWE-253])
+
+    +esym(534,vfprintf_s) /* ignoring return value of function */
+    -append(534(vfprintf_s), [CWE-253])
+
+    +esym(534,vfscanf) /* ignoring return value of function */
+    -append(534(vfscanf), [CWE-253])
+
+    +esym(534,vfscanf_s) /* ignoring return value of function */
+    -append(534(vfscanf_s), [CWE-253])
+
+    +esym(534,vfwprintf) /* ignoring return value of function */
+    -append(534(vfwprintf), [CWE-253])
+
+    +esym(534,vfwprintf_s) /* ignoring return value of function */
+    -append(534(vfwprintf_s), [CWE-253])
+
+    +esym(534,vfwscanf) /* ignoring return value of function */
+    -append(534(vfwscanf), [CWE-253])
+
+    +esym(534,vfwscanf_s) /* ignoring return value of function */
+    -append(534(vfwscanf_s), [CWE-253])
+
+    +esym(534,vprintf_s) /* ignoring return value of function */
+    -append(534(vprintf_s), [CWE-253])
+
+    +esym(534,vscanf) /* ignoring return value of function */
+    -append(534(vscanf), [CWE-253])
+
+    +esym(534,vscanf_s) /* ignoring return value of function */
+    -append(534(vscanf_s), [CWE-253])
+
+    +esym(534,vsnprintf) /* ignoring return value of function */
+    -append(534(vsnprintf), [CWE-253])
+
+    +esym(534,vsnprintf_s) /* ignoring return value of function */
+    -append(534(vsnprintf_s), [CWE-253])
+
+    +esym(534,vsprintf) /* ignoring return value of function */
+    -append(534(vsprintf), [CWE-253])
+
+    +esym(534,vsprintf_s) /* ignoring return value of function */
+    -append(534(vsprintf_s), [CWE-253])
+
+    +esym(534,vsscanf) /* ignoring return value of function */
+    -append(534(vsscanf), [CWE-253])
+
+    +esym(534,vsscanf_s) /* ignoring return value of function */
+    -append(534(vsscanf_s), [CWE-253])
+
+    +esym(534,vswprintf) /* ignoring return value of function */
+    -append(534(vswprintf), [CWE-253])
+
+    +esym(534,vswprintf_s) /* ignoring return value of function */
+    -append(534(vswprintf_s), [CWE-253])
+
+    +esym(534,vswscanf) /* ignoring return value of function */
+    -append(534(vswscanf), [CWE-253])
+
+    +esym(534,vswscanf_s) /* ignoring return value of function */
+    -append(534(vswscanf_s), [CWE-253])
+
+    +esym(534,vwprintf_s) /* ignoring return value of function */
+    -append(534(vwprintf_s), [CWE-253])
+
+    +esym(534,vwscanf) /* ignoring return value of function */
+    -append(534(vwscanf), [CWE-253])
+
+    +esym(534,vwscanf_s) /* ignoring return value of function */
+    -append(534(vwscanf_s), [CWE-253])
+
+    +esym(534,wcrtomb) /* ignoring return value of function */
+    -append(534(wcrtomb), [CWE-253])
+
+    +esym(534,wcschr) /* ignoring return value of function */
+    -append(534(wcschr), [CWE-253])
+
+    +esym(534,wcsftime) /* ignoring return value of function */
+    -append(534(wcsftime), [CWE-253])
+
+    +esym(534,wcspbrk) /* ignoring return value of function */
+    -append(534(wcspbrk), [CWE-253])
+
+    +esym(534,wcsrchr) /* ignoring return value of function */
+    -append(534(wcsrchr), [CWE-253])
+
+    +esym(534,wcsrtombs) /* ignoring return value of function */
+    -append(534(wcsrtombs), [CWE-253])
+
+    +esym(534,wcsrtombs_s) /* ignoring return value of function */
+    -append(534(wcsrtombs_s), [CWE-253])
+
+    +esym(534,wcsstr) /* ignoring return value of function */
+    -append(534(wcsstr), [CWE-253])
+
+    +esym(534,wcstod) /* ignoring return value of function */
+    -append(534(wcstod), [CWE-253])
+
+    +esym(534,wcstof) /* ignoring return value of function */
+    -append(534(wcstof), [CWE-253])
+
+    +esym(534,wcstoimax) /* ignoring return value of function */
+    -append(534(wcstoimax), [CWE-253])
+
+    +esym(534,wcstok) /* ignoring return value of function */
+    -append(534(wcstok), [CWE-253])
+
+    +esym(534,wcstok_s) /* ignoring return value of function */
+    -append(534(wcstok_s), [CWE-253])
+
+    +esym(534,wcstol) /* ignoring return value of function */
+    -append(534(wcstol), [CWE-253])
+
+    +esym(534,wcstold) /* ignoring return value of function */
+    -append(534(wcstold), [CWE-253])
+
+    +esym(534,wcstoll) /* ignoring return value of function */
+    -append(534(wcstoll), [CWE-253])
+
+    +esym(534,wcstombs) /* ignoring return value of function */
+    -append(534(wcstombs), [CWE-253])
+
+    +esym(534,wcstombs_s) /* ignoring return value of function */
+    -append(534(wcstombs_s), [CWE-253])
+
+    +esym(534,wcstoumax) /* ignoring return value of function */
+    -append(534(wcstoumax), [CWE-253])
+
+    +esym(534,wcstoul) /* ignoring return value of function */
+    -append(534(wcstoul), [CWE-253])
+
+    +esym(534,wcstoull) /* ignoring return value of function */
+    -append(534(wcstoull), [CWE-253])
+
+    +esym(534,wcsxfrm) /* ignoring return value of function */
+    -append(534(wcsxfrm), [CWE-253])
+
+    +esym(534,wctob) /* ignoring return value of function */
+    -append(534(wctob), [CWE-253])
+
+    +esym(534,wctrans) /* ignoring return value of function */
+    -append(534(wctrans), [CWE-253])
+
+    +esym(534,wctype) /* ignoring return value of function */
+    -append(534(wctype), [CWE-253])
+
+    +esym(534,wmemchr) /* ignoring return value of function */
+    -append(534(wmemchr), [CWE-253])
+
+    +esym(534,wprintf_s) /* ignoring return value of function */
+    -append(534(wprintf_s), [CWE-253])
+
+    +esym(534,wscanf) /* ignoring return value of function */
+    -append(534(wscanf), [CWE-253])
+
+    +esym(534,wscanf_s) /* ignoring return value of function */
+    -append(534(wscanf_s), [CWE-253])
+
+    +esym(534,posix_memalign) /* ignoring return value of function */
+    -append(534(posix_memalign), [CWE-253])
+
+    +e413 /* likely use of null pointer */
+    +elib(413)
+    -append(413, [CWE-253])
+
+    +e613 /* potential use of null pointer */
+    +elib(613)
+    -append(613, [CWE-253])
+
+/* CWE-269 */
+/* Improper Privilege Management */
+    /* Not currently supported */
+
+/* CWE-272 */
+/* Least Privilege Violation */
+    /* Not currently supported */
+
+/* CWE-273 */
+/* Improper Check for Dropped Privileges */
+    /* Not currently supported */
+
+/* CWE-276 */
+/* Incorrect Default Permissions */
+    /* Not statically checkable */
+
+/* CWE-279 */
+/* Incorrect Execution-Assigned Permissions */
+    /* Not currently supported */
+
+/* CWE-287 */
+/* Improper Authentication */
+    /* Not statically checkable */
+
+/* CWE-295 */
+/* Improper Certificate Validation */
+    /* Not currently supported */
+
+/* CWE-306 */
+/* Missing Authentication for Critical Function */
+    /* Not currently supported */
+
+/* CWE-327 */
+/* Use of a Broken or Risky Cryptographic Algorithm */
+
+    -deprecate(function, rand, [CWE-327])
+
+    +e2461 /* call to rand/random without srand/srandom */
+    +elib(2461)
+    -append(2461, [CWE-327])
+
+    +e2760 /* call to srand/srandom with result of call to time */
+    +elib(2760)
+    -append(2760, [CWE-327])
+
+    -sem(srand, noliteral(1))
+    +esym(2960,srand)
+    -append(2960(srand), [CWE-327])
+
+    -sem(srandom, noliteral(1))
+    +esym(2960,srandom)
+    -append(2960(srandom), [CWE-327])
+
+/* CWE-330 */
+/* Use of Insufficiently Random Values */
+
+    /* ANSI functions and macros */
+
+    -deprecate(function, asctime, [CWE-330])
+
+    -deprecate(function, c16rtomb, [CWE-330])
+
+    -deprecate(function, c32rtomb, [CWE-330])
+
+    -deprecate(function, ctime, [CWE-330])
+
+    -deprecate(function, getenv, [CWE-330])
+
+    -deprecate(function, getenv_s, [CWE-330])
+
+    -deprecate(function, gmtime, [CWE-330])
+
+    -deprecate(function, localtime, [CWE-330])
+
+    -deprecate(function, mbrtoc16, [CWE-330])
+
+    -deprecate(function, mbrtoc32, [CWE-330])
+
+    -deprecate(function, rand, [CWE-330])
+
+    -deprecate(function, setlocale, [CWE-330])
+
+    -deprecate(function, srand, [CWE-330])
+
+    -deprecate(function, strerror, [CWE-330])
+
+    -deprecate(function, strtok, [CWE-330])
+
+    -deprecate(function, tmpnam, [CWE-330])
+
+    /* POSIX functions and macros */
+
+    -deprecate(function, basename, [CWE-330])
+
+    -deprecate(function, catgets, [CWE-330])
+
+    -deprecate(function, crypt, [CWE-330])
+
+    -deprecate(function, dbm_clearerr, [CWE-330])
+
+    -deprecate(function, dbm_close, [CWE-330])
+
+    -deprecate(function, dbm_delete, [CWE-330])
+
+    -deprecate(function, dbm_error, [CWE-330])
+
+    -deprecate(function, dbm_fetch, [CWE-330])
+
+    -deprecate(function, dbm_firstkey, [CWE-330])
+
+    -deprecate(function, dbm_nextkey, [CWE-330])
+
+    -deprecate(function, dbm_open, [CWE-330])
+
+    -deprecate(function, dbm_store, [CWE-330])
+
+    -deprecate(function, dirname, [CWE-330])
+
+    -deprecate(function, dlerror, [CWE-330])
+
+    -deprecate(function, drand48, [CWE-330])
+
+    -deprecate(function, encrypt, [CWE-330])
+
+    -deprecate(function, endgrent, [CWE-330])
+
+    -deprecate(function, endpwent, [CWE-330])
+
+    -deprecate(function, endutxent, [CWE-330])
+
+    -deprecate(function, ftw, [CWE-330])
+
+    -deprecate(function, getdate, [CWE-330])
+
+    -deprecate(function, getgrent, [CWE-330])
+
+    -deprecate(function, getgrgid, [CWE-330])
+
+    -deprecate(function, getgrnam, [CWE-330])
+
+    -deprecate(function, gethostent, [CWE-330])
+
+    -deprecate(function, getlogin, [CWE-330])
+
+    -deprecate(function, getnetbyaddr, [CWE-330])
+
+    -deprecate(function, getnetbyname, [CWE-330])
+
+    -deprecate(function, getnetent, [CWE-330])
+
+    -deprecate(function, getopt, [CWE-330])
+
+    -deprecate(function, getprotobyname, [CWE-330])
+
+    -deprecate(function, getprotobynumber, [CWE-330])
+
+    -deprecate(function, getprotoent, [CWE-330])
+
+    -deprecate(function, getpwent, [CWE-330])
+
+    -deprecate(function, getpwnam, [CWE-330])
+
+    -deprecate(function, getpwuid, [CWE-330])
+
+    -deprecate(function, getservbyname, [CWE-330])
+
+    -deprecate(function, getservbyport, [CWE-330])
+
+    -deprecate(function, getservent, [CWE-330])
+
+    -deprecate(function, getutxent, [CWE-330])
+
+    -deprecate(function, getutxid, [CWE-330])
+
+    -deprecate(function, getutxline, [CWE-330])
+
+    -deprecate(function, hcreate, [CWE-330])
+
+    -deprecate(function, hdestroy, [CWE-330])
+
+    -deprecate(function, hsearch, [CWE-330])
+
+    -deprecate(function, inet_ntoa, [CWE-330])
+
+    -deprecate(function, l64a, [CWE-330])
+
+    -deprecate(function, lgamma, [CWE-330])
+
+    -deprecate(function, lgammaf, [CWE-330])
+
+    -deprecate(function, lgammal, [CWE-330])
+
+    -deprecate(function, localeconv, [CWE-330])
+
+    -deprecate(function, lrand48, [CWE-330])
+
+    -deprecate(function, mblen, [CWE-330])
+
+    -deprecate(function, mbtowc, [CWE-330])
+
+    -deprecate(function, mrand48, [CWE-330])
+
+    -deprecate(function, nftw, [CWE-330])
+
+    -deprecate(function, nl_langinfo, [CWE-330])
+
+    -deprecate(function, ptsname(), [CWE-330])
+
+    +e2461 /* call to rand/random without srand/srandom */
+    +elib(2461)
+    -append(2461, [CWE-330])
+
+    +e2760 /* call to srand/srandom with result of call to time */
+    +elib(2760)
+    -append(2760, [CWE-330])
+
+    -sem(srand, noliteral(1))
+    +esym(2960,srand)
+    -append(2960(srand), [CWE-330])
+
+    -sem(srandom, noliteral(1))
+    +esym(2960,srandom)
+    -append(2960(srandom), [CWE-330])
+
+/* CWE-331 */
+/* Insufficient Entropy */
+
+    +e2461 /* call to rand/random without srand/srandom */
+    +elib(2461)
+    -append(2461, [CWE-331])
+
+    +e2760 /* call to srand/srandom with result of call to time */
+    +elib(2760)
+    -append(2760, [CWE-331])
+
+    -sem(srand, noliteral(1))
+    +esym(2960,srand)
+    -append(2960(srand), [CWE-331])
+
+    -sem(srandom, noliteral(1))
+    +esym(2960,srandom)
+    -append(2960(srandom), [CWE-331])
+
+/* CWE-337 */
+/* Predictable Seed in Pseudo-Random Number Generator (PRNG) */
+
+    +e2461 /* rand/random' function used without any explicit call to srand/srandom */
+    +elib(2461)
+    -append(2461, [CWE-337])
+
+    +e2760 /* srand/srandom' seeded with 'time' */
+    +elib(2760)
+    -append(2760, [CWE-337])
+
+    -sem(srand, noliteral(1))
+    +esym(2960,srand)
+    -append(2960(srand), [CWE-337])
+
+    -sem(srandom, noliteral(1))
+    +esym(2960,srandom)
+    -append(2960(srandom), [CWE-337])
+
+/* CWE-338 */
+/* Use of Cryptographically Weak Pseudo-Random Number Generator (PRNG) */
+
+    -deprecate(function, rand, [CWE-338])
+
+/* CWE-352 */
+/* Cross-Site Request Forgery (CSRF) */
+    /* Not statically checkable */
+
+/* CWE-362 */
+/* Concurrent Execution using Shared Resource with Improper Synchronization ('Race Condition') */
+
+    +e457 /* unprotected access in multiple threads */
+    +elib(457)
+    -append(457, [CWE-362])
+
+    +e459 /* function whose address was taken has an unprotected access */
+    +elib(459)
+    -append(459, [CWE-362])
+
+    +e460 /* unprotected call to thread unsafe function */
+    +elib(460)
+    -append(460, [CWE-362])
+
+    +e461 /* unprotected call to function of group */
+    +elib(461)
+    -append(461, [CWE-362])
+
+    +e462 /* thread calling function is inconsistent with the semantic */
+    +elib(462)
+    -append(462, [CWE-362])
+
+    +e2511 /* try_lock return value was discarded */
+    +elib(2511)
+    -append(2511, [CWE-362])
+
+    +e2512 /* try_lock return value was modified */
+    +elib(2512)
+    -append(2512, [CWE-362])
+
+    +e2513 /* try_lock return value was manipulated */
+    +elib(2513)
+    -append(2513, [CWE-362])
+
+/* CWE-363 */
+/* Race Condition Enabling Link Following */
+    /* Not currently supported */
+
+/* CWE-364 */
+/* Signal Handler Race Condition */
+
+    +e2670 /* call to async-signal-unsafe function */
+    +elib(2670)
+    -append(2670, [CWE-364])
+
+    +e2761 /* call to non-async-signal-safe function */
+    +elib(2761)
+    -append(2761, [CWE-364])
+
+    +e2762 /* call to signal registration function */
+    +elib(2762)
+    -append(2762, [CWE-364])
+
+    +e2763 /* call to signal registration function */
+    +elib(2763)
+    -append(2763, [CWE-364])
+
+    +e2765 /* reference to variable which is neither atomic nor volatile */
+    +elib(2765)
+    -append(2765, [CWE-364])
+
+/* CWE-366 */
+/* Race Condition within a Thread */
+
+    +e457 /* dangerous access */
+    +elib(457)
+    -append(457, [CWE-366])
+
+/* CWE-367 */
+/* Time-of-check Time-of-use (TOCTOU) Race Condition */
+    /* Not currently supported */
+
+/* CWE-369 */
+/* Divide By Zero */
+
+    +e736 /* loss of precision */
+    +elib(736)
+    -append(736, [CWE-369])
+
+    +e9120 /* implicit conversion of floating point to smaller type */
+    +elib(9120)
+    -append(9120, [CWE-369])
+
+    +e9227 /* floating expression cannot be implicitly converted because it is not a wider floating type */
+    +elib(9227)
+    -append(9227, [CWE-369])
+
+    +e54 /* division/remainder by zero */
+    +elib(54)
+    -append(54, [CWE-369])
+
+    +e414 /* possible division by zero */
+    +elib(414)
+    -append(414, [CWE-369])
+
+/* CWE-374 */
+/* Passing Mutable Objects to an Untrusted Method */
+    /* Not currently supported */
+
+/* CWE-375 */
+/* Returning a Mutable Object to an Untrusted Caller */
+    /* Not currently supported */
+
+/* CWE-377 */
+/* Insecure Temporary File */
+
+    -deprecate(function, tmpnam, [CWE-377])
+
+    -deprecate(function, tmpnam_r, [CWE-377])
+
+    -deprecate(function, tmpnam_s, [CWE-377])
+
+/* CWE-379 */
+/* Creation of Temporary File in Directory with Insecure Permissions */
+    /* Not currently supported */
+
+/* CWE-391 */
+/* Unchecked Error Condition */
+
+    +esym(534,aligned_alloc) /* ignoring return value of function */
+    -append(534(aligned_alloc), [CWE-391])
+
+    +esym(534,asctime_s) /* ignoring return value of function */
+    -append(534(asctime_s), [CWE-391])
+
+    +esym(534,at_quick_exit) /* ignoring return value of function */
+    -append(534(at_quick_exit), [CWE-391])
+
+    +esym(534,atexit) /* ignoring return value of function */
+    -append(534(atexit), [CWE-391])
+
+    +esym(534,bsearch) /* ignoring return value of function */
+    -append(534(bsearch), [CWE-391])
+
+    +esym(534,bsearch_s) /* ignoring return value of function */
+    -append(534(bsearch_s), [CWE-391])
+
+    +esym(534,btowc) /* ignoring return value of function */
+    -append(534(btowc), [CWE-391])
+
+    +esym(534,c16rtomb) /* ignoring return value of function */
+    -append(534(c16rtomb), [CWE-391])
+
+    +esym(534,c32rtomb) /* ignoring return value of function */
+    -append(534(c32rtomb), [CWE-391])
+
+    +esym(534,calloc) /* ignoring return value of function */
+    -append(534(calloc), [CWE-391])
+
+    +esym(534,clock) /* ignoring return value of function */
+    -append(534(clock), [CWE-391])
+
+    +esym(534,cnd_broadcast) /* ignoring return value of function */
+    -append(534(cnd_broadcast), [CWE-391])
+
+    +esym(534,cnd_init) /* ignoring return value of function */
+    -append(534(cnd_init), [CWE-391])
+
+    +esym(534,cnd_signal) /* ignoring return value of function */
+    -append(534(cnd_signal), [CWE-391])
+
+    +esym(534,cnd_timedwait) /* ignoring return value of function */
+    -append(534(cnd_timedwait), [CWE-391])
+
+    +esym(534,cnd_wait) /* ignoring return value of function */
+    -append(534(cnd_wait), [CWE-391])
+
+    +esym(534,ctime_s) /* ignoring return value of function */
+    -append(534(ctime_s), [CWE-391])
+
+    +esym(534,fclose) /* ignoring return value of function */
+    -append(534(fclose), [CWE-391])
+
+    +esym(534,fflush) /* ignoring return value of function */
+    -append(534(fflush), [CWE-391])
+
+    +esym(534,fgetc) /* ignoring return value of function */
+    -append(534(fgetc), [CWE-391])
+
+    +esym(534,fgetpos) /* ignoring return value of function */
+    -append(534(fgetpos), [CWE-391])
+
+    +esym(534,fgets) /* ignoring return value of function */
+    -append(534(fgets), [CWE-391])
+
+    +esym(534,fgetwc) /* ignoring return value of function */
+    -append(534(fgetwc), [CWE-391])
+
+    +esym(534,fopen) /* ignoring return value of function */
+    -append(534(fopen), [CWE-391])
+
+    +esym(534,fopen_s) /* ignoring return value of function */
+    -append(534(fopen_s), [CWE-391])
+
+    +esym(534,fprintf) /* ignoring return value of function */
+    -append(534(fprintf), [CWE-391])
+
+    +esym(534,fprintf_s) /* ignoring return value of function */
+    -append(534(fprintf_s), [CWE-391])
+
+    +esym(534,pthread_atfork) /* ignoring return value of function */
+    -append(534(pthread_atfork), [CWE-391])
+
+    +esym(534,pthread_attr_destroy) /* ignoring return value of function */
+    -append(534(pthread_attr_destroy), [CWE-391])
+
+    +esym(534,pthread_attr_getdetachstate) /* ignoring return value of function */
+    -append(534(pthread_attr_getdetachstate), [CWE-391])
+
+    +esym(534,pthread_attr_getguardsize) /* ignoring return value of function */
+    -append(534(pthread_attr_getguardsize), [CWE-391])
+
+    +esym(534,pthread_attr_getinheritsched) /* ignoring return value of function */
+    -append(534(pthread_attr_getinheritsched), [CWE-391])
+
+    +esym(534,pthread_attr_getschedparam) /* ignoring return value of function */
+    -append(534(pthread_attr_getschedparam), [CWE-391])
+
+    +esym(534,pthread_attr_getschedpolicy) /* ignoring return value of function */
+    -append(534(pthread_attr_getschedpolicy), [CWE-391])
+
+    +esym(534,pthread_attr_getscope) /* ignoring return value of function */
+    -append(534(pthread_attr_getscope), [CWE-391])
+
+    +esym(534,pthread_attr_getstack) /* ignoring return value of function */
+    -append(534(pthread_attr_getstack), [CWE-391])
+
+    +esym(534,pthread_attr_getstacksize) /* ignoring return value of function */
+    -append(534(pthread_attr_getstacksize), [CWE-391])
+
+    +esym(534,pthread_attr_init) /* ignoring return value of function */
+    -append(534(pthread_attr_init), [CWE-391])
+
+    +esym(534,pthread_attr_setdetachstate) /* ignoring return value of function */
+    -append(534(pthread_attr_setdetachstate), [CWE-391])
+
+    +esym(534,pthread_attr_setguardsize) /* ignoring return value of function */
+    -append(534(pthread_attr_setguardsize), [CWE-391])
+
+    +esym(534,pthread_attr_setinheritsched) /* ignoring return value of function */
+    -append(534(pthread_attr_setinheritsched), [CWE-391])
+
+    +esym(534,pthread_attr_setschedparam) /* ignoring return value of function */
+    -append(534(pthread_attr_setschedparam), [CWE-391])
+
+    +esym(534,pthread_attr_setschedpolicy) /* ignoring return value of function */
+    -append(534(pthread_attr_setschedpolicy), [CWE-391])
+
+    +esym(534,pthread_attr_setscope) /* ignoring return value of function */
+    -append(534(pthread_attr_setscope), [CWE-391])
+
+    +esym(534,pthread_attr_setstack) /* ignoring return value of function */
+    -append(534(pthread_attr_setstack), [CWE-391])
+
+    +esym(534,pthread_attr_setstacksize) /* ignoring return value of function */
+    -append(534(pthread_attr_setstacksize), [CWE-391])
+
+    +esym(534,pthread_barrier_destroy) /* ignoring return value of function */
+    -append(534(pthread_barrier_destroy), [CWE-391])
+
+    +esym(534,pthread_barrier_init) /* ignoring return value of function */
+    -append(534(pthread_barrier_init), [CWE-391])
+
+    +esym(534,pthread_barrier_wait) /* ignoring return value of function */
+    -append(534(pthread_barrier_wait), [CWE-391])
+
+    +esym(534,pthread_barrierattr_destroy) /* ignoring return value of function */
+    -append(534(pthread_barrierattr_destroy), [CWE-391])
+
+    +esym(534,pthread_barrierattr_getpshared) /* ignoring return value of function */
+    -append(534(pthread_barrierattr_getpshared), [CWE-391])
+
+    +esym(534,pthread_barrierattr_init) /* ignoring return value of function */
+    -append(534(pthread_barrierattr_init), [CWE-391])
+
+    +esym(534,pthread_barrierattr_setpshared) /* ignoring return value of function */
+    -append(534(pthread_barrierattr_setpshared), [CWE-391])
+
+    +esym(534,pthread_cancel) /* ignoring return value of function */
+    -append(534(pthread_cancel), [CWE-391])
+
+    +esym(534,pthread_cond_broadcast) /* ignoring return value of function */
+    -append(534(pthread_cond_broadcast), [CWE-391])
+
+    +esym(534,pthread_cond_destroy) /* ignoring return value of function */
+    -append(534(pthread_cond_destroy), [CWE-391])
+
+    +esym(534,pthread_cond_init) /* ignoring return value of function */
+    -append(534(pthread_cond_init), [CWE-391])
+
+    +esym(534,pthread_cond_signal) /* ignoring return value of function */
+    -append(534(pthread_cond_signal), [CWE-391])
+
+    +esym(534,pthread_cond_timedwait) /* ignoring return value of function */
+    -append(534(pthread_cond_timedwait), [CWE-391])
+
+    +esym(534,pthread_cond_wait) /* ignoring return value of function */
+    -append(534(pthread_cond_wait), [CWE-391])
+
+    +esym(534,pthread_condattr_destroy) /* ignoring return value of function */
+    -append(534(pthread_condattr_destroy), [CWE-391])
+
+    +esym(534,pthread_condattr_getclock) /* ignoring return value of function */
+    -append(534(pthread_condattr_getclock), [CWE-391])
+
+    +esym(534,pthread_condattr_getpshared) /* ignoring return value of function */
+    -append(534(pthread_condattr_getpshared), [CWE-391])
+
+    +esym(534,pthread_condattr_init) /* ignoring return value of function */
+    -append(534(pthread_condattr_init), [CWE-391])
+
+    +esym(534,pthread_condattr_setclock) /* ignoring return value of function */
+    -append(534(pthread_condattr_setclock), [CWE-391])
+
+    +esym(534,pthread_condattr_setpshared) /* ignoring return value of function */
+    -append(534(pthread_condattr_setpshared), [CWE-391])
+
+    +esym(534,pthread_create) /* ignoring return value of function */
+    -append(534(pthread_create), [CWE-391])
+
+    +esym(534,pthread_detach) /* ignoring return value of function */
+    -append(534(pthread_detach), [CWE-391])
+
+    +esym(534,pthread_equal) /* ignoring return value of function */
+    -append(534(pthread_equal), [CWE-391])
+
+    +esym(534,pthread_getconcurrency) /* ignoring return value of function */
+    -append(534(pthread_getconcurrency), [CWE-391])
+
+    +esym(534,pthread_getcpuclockid) /* ignoring return value of function */
+    -append(534(pthread_getcpuclockid), [CWE-391])
+
+    +esym(534,pthread_getschedparam) /* ignoring return value of function */
+    -append(534(pthread_getschedparam), [CWE-391])
+
+    +esym(534,pthread_getspecific) /* ignoring return value of function */
+    -append(534(pthread_getspecific), [CWE-391])
+
+    +esym(534,pthread_join) /* ignoring return value of function */
+    -append(534(pthread_join), [CWE-391])
+
+    +esym(534,pthread_key_create) /* ignoring return value of function */
+    -append(534(pthread_key_create), [CWE-391])
+
+    +esym(534,pthread_key_delete) /* ignoring return value of function */
+    -append(534(pthread_key_delete), [CWE-391])
+
+    +esym(534,pthread_mutex_consistent) /* ignoring return value of function */
+    -append(534(pthread_mutex_consistent), [CWE-391])
+
+    +esym(534,pthread_mutex_destroy) /* ignoring return value of function */
+    -append(534(pthread_mutex_destroy), [CWE-391])
+
+    +esym(534,pthread_mutex_getprioceiling) /* ignoring return value of function */
+    -append(534(pthread_mutex_getprioceiling), [CWE-391])
+
+    +esym(534,pthread_mutex_init) /* ignoring return value of function */
+    -append(534(pthread_mutex_init), [CWE-391])
+
+    +esym(534,pthread_mutex_lock) /* ignoring return value of function */
+    -append(534(pthread_mutex_lock), [CWE-391])
+
+    +esym(534,pthread_mutex_setprioceiling) /* ignoring return value of function */
+    -append(534(pthread_mutex_setprioceiling), [CWE-391])
+
+    +esym(534,pthread_mutex_timedlock) /* ignoring return value of function */
+    -append(534(pthread_mutex_timedlock), [CWE-391])
+
+    +esym(534,pthread_mutex_trylock) /* ignoring return value of function */
+    -append(534(pthread_mutex_trylock), [CWE-391])
+
+    +esym(534,pthread_mutex_unlock) /* ignoring return value of function */
+    -append(534(pthread_mutex_unlock), [CWE-391])
+
+    +esym(534,pthread_mutexattr_destroy) /* ignoring return value of function */
+    -append(534(pthread_mutexattr_destroy), [CWE-391])
+
+    +esym(534,pthread_mutexattr_getprioceiling) /* ignoring return value of function */
+    -append(534(pthread_mutexattr_getprioceiling), [CWE-391])
+
+    +esym(534,pthread_mutexattr_getprotocol) /* ignoring return value of function */
+    -append(534(pthread_mutexattr_getprotocol), [CWE-391])
+
+    +esym(534,pthread_mutexattr_getpshared) /* ignoring return value of function */
+    -append(534(pthread_mutexattr_getpshared), [CWE-391])
+
+    +esym(534,pthread_mutexattr_getrobust) /* ignoring return value of function */
+    -append(534(pthread_mutexattr_getrobust), [CWE-391])
+
+    +esym(534,pthread_mutexattr_gettype) /* ignoring return value of function */
+    -append(534(pthread_mutexattr_gettype), [CWE-391])
+
+    +esym(534,pthread_mutexattr_init) /* ignoring return value of function */
+    -append(534(pthread_mutexattr_init), [CWE-391])
+
+    +esym(534,pthread_mutexattr_setprioceiling) /* ignoring return value of function */
+    -append(534(pthread_mutexattr_setprioceiling), [CWE-391])
+
+    +esym(534,pthread_mutexattr_setprotocol) /* ignoring return value of function */
+    -append(534(pthread_mutexattr_setprotocol), [CWE-391])
+
+    +esym(534,pthread_mutexattr_setpshared) /* ignoring return value of function */
+    -append(534(pthread_mutexattr_setpshared), [CWE-391])
+
+    +esym(534,pthread_mutexattr_setrobust) /* ignoring return value of function */
+    -append(534(pthread_mutexattr_setrobust), [CWE-391])
+
+    +esym(534,pthread_mutexattr_settype) /* ignoring return value of function */
+    -append(534(pthread_mutexattr_settype), [CWE-391])
+
+    +esym(534,pthread_once) /* ignoring return value of function */
+    -append(534(pthread_once), [CWE-391])
+
+    +esym(534,pthread_rwlock_destroy) /* ignoring return value of function */
+    -append(534(pthread_rwlock_destroy), [CWE-391])
+
+    +esym(534,pthread_rwlock_init) /* ignoring return value of function */
+    -append(534(pthread_rwlock_init), [CWE-391])
+
+    +esym(534,pthread_rwlock_rdlock) /* ignoring return value of function */
+    -append(534(pthread_rwlock_rdlock), [CWE-391])
+
+    +esym(534,pthread_rwlock_timedrdlock) /* ignoring return value of function */
+    -append(534(pthread_rwlock_timedrdlock), [CWE-391])
+
+    +esym(534,pthread_rwlock_timedwrlock) /* ignoring return value of function */
+    -append(534(pthread_rwlock_timedwrlock), [CWE-391])
+
+    +esym(534,pthread_rwlock_tryrdlock) /* ignoring return value of function */
+    -append(534(pthread_rwlock_tryrdlock), [CWE-391])
+
+    +esym(534,pthread_rwlock_trywrlock) /* ignoring return value of function */
+    -append(534(pthread_rwlock_trywrlock), [CWE-391])
+
+    +esym(534,pthread_rwlock_unlock) /* ignoring return value of function */
+    -append(534(pthread_rwlock_unlock), [CWE-391])
+
+    +esym(534,pthread_rwlock_wrlock) /* ignoring return value of function */
+    -append(534(pthread_rwlock_wrlock), [CWE-391])
+
+    +esym(534,pthread_rwlockattr_destroy) /* ignoring return value of function */
+    -append(534(pthread_rwlockattr_destroy), [CWE-391])
+
+    +esym(534,pthread_rwlockattr_getpshared) /* ignoring return value of function */
+    -append(534(pthread_rwlockattr_getpshared), [CWE-391])
+
+    +esym(534,pthread_rwlockattr_init) /* ignoring return value of function */
+    -append(534(pthread_rwlockattr_init), [CWE-391])
+
+    +esym(534,pthread_rwlockattr_setpshared) /* ignoring return value of function */
+    -append(534(pthread_rwlockattr_setpshared), [CWE-391])
+
+    +esym(534,pthread_setcancelstate) /* ignoring return value of function */
+    -append(534(pthread_setcancelstate), [CWE-391])
+
+    +esym(534,pthread_setcanceltype) /* ignoring return value of function */
+    -append(534(pthread_setcanceltype), [CWE-391])
+
+    +esym(534,pthread_setconcurrency) /* ignoring return value of function */
+    -append(534(pthread_setconcurrency), [CWE-391])
+
+    +esym(534,pthread_setschedparam) /* ignoring return value of function */
+    -append(534(pthread_setschedparam), [CWE-391])
+
+    +esym(534,pthread_setschedprio) /* ignoring return value of function */
+    -append(534(pthread_setschedprio), [CWE-391])
+
+    +esym(534,pthread_setspecific) /* ignoring return value of function */
+    -append(534(pthread_setspecific), [CWE-391])
+
+    +esym(534,pthread_spin_destroy) /* ignoring return value of function */
+    -append(534(pthread_spin_destroy), [CWE-391])
+
+    +esym(534,pthread_spin_init) /* ignoring return value of function */
+    -append(534(pthread_spin_init), [CWE-391])
+
+    +esym(534,pthread_spin_lock) /* ignoring return value of function */
+    -append(534(pthread_spin_lock), [CWE-391])
+
+    +esym(534,pthread_spin_trylock) /* ignoring return value of function */
+    -append(534(pthread_spin_trylock), [CWE-391])
+
+    +esym(534,pthread_spin_unlock) /* ignoring return value of function */
+    -append(534(pthread_spin_unlock), [CWE-391])
+
+    +esym(534,fputc) /* ignoring return value of function */
+    -append(534(fputc), [CWE-391])
+
+    +esym(534,fputs) /* ignoring return value of function */
+    -append(534(fputs), [CWE-391])
+
+    +esym(534,fputws) /* ignoring return value of function */
+    -append(534(fputws), [CWE-391])
+
+    +esym(534,fread) /* ignoring return value of function */
+    -append(534(fread), [CWE-391])
+
+    +esym(534,freopen) /* ignoring return value of function */
+    -append(534(freopen), [CWE-391])
+
+    +esym(534,freopen_s) /* ignoring return value of function */
+    -append(534(freopen_s), [CWE-391])
+
+    +esym(534,fscanf) /* ignoring return value of function */
+    -append(534(fscanf), [CWE-391])
+
+    +esym(534,fscanf_s) /* ignoring return value of function */
+    -append(534(fscanf_s), [CWE-391])
+
+    +esym(534,fseek) /* ignoring return value of function */
+    -append(534(fseek), [CWE-391])
+
+    +esym(534,fsetpos) /* ignoring return value of function */
+    -append(534(fsetpos), [CWE-391])
+
+    +esym(534,ftell) /* ignoring return value of function */
+    -append(534(ftell), [CWE-391])
+
+    +esym(534,fwprintf) /* ignoring return value of function */
+    -append(534(fwprintf), [CWE-391])
+
+    +esym(534,fwprintf_s) /* ignoring return value of function */
+    -append(534(fwprintf_s), [CWE-391])
+
+    +esym(534,fwrite) /* ignoring return value of function */
+    -append(534(fwrite), [CWE-391])
+
+    +esym(534,fwscanf) /* ignoring return value of function */
+    -append(534(fwscanf), [CWE-391])
+
+    +esym(534,fwscanf_s) /* ignoring return value of function */
+    -append(534(fwscanf_s), [CWE-391])
+
+    +esym(534,getc) /* ignoring return value of function */
+    -append(534(getc), [CWE-391])
+
+    +esym(534,getchar) /* ignoring return value of function */
+    -append(534(getchar), [CWE-391])
+
+    +esym(534,getenv) /* ignoring return value of function */
+    -append(534(getenv), [CWE-391])
+
+    +esym(534,getenv_s) /* ignoring return value of function */
+    -append(534(getenv_s), [CWE-391])
+
+    +esym(534,gets_s) /* ignoring return value of function */
+    -append(534(gets_s), [CWE-391])
+
+    +esym(534,getwc) /* ignoring return value of function */
+    -append(534(getwc), [CWE-391])
+
+    +esym(534,getwchar) /* ignoring return value of function */
+    -append(534(getwchar), [CWE-391])
+
+    +esym(534,gmtime) /* ignoring return value of function */
+    -append(534(gmtime), [CWE-391])
+
+    +esym(534,gmtime_s) /* ignoring return value of function */
+    -append(534(gmtime_s), [CWE-391])
+
+    +esym(534,localtime) /* ignoring return value of function */
+    -append(534(localtime), [CWE-391])
+
+    +esym(534,localtime_s) /* ignoring return value of function */
+    -append(534(localtime_s), [CWE-391])
+
+    +esym(534,malloc) /* ignoring return value of function */
+    -append(534(malloc), [CWE-391])
+
+    +esym(534,mbrtoc16) /* ignoring return value of function */
+    -append(534(mbrtoc16), [CWE-391])
+
+    +esym(534,mbrtoc32) /* ignoring return value of function */
+    -append(534(mbrtoc32), [CWE-391])
+
+    +esym(534,mbsrtowcs) /* ignoring return value of function */
+    -append(534(mbsrtowcs), [CWE-391])
+
+    +esym(534,mbsrtowcs_s) /* ignoring return value of function */
+    -append(534(mbsrtowcs_s), [CWE-391])
+
+    +esym(534,mbstowcs) /* ignoring return value of function */
+    -append(534(mbstowcs), [CWE-391])
+
+    +esym(534,mbstowcs_s) /* ignoring return value of function */
+    -append(534(mbstowcs_s), [CWE-391])
+
+    +esym(534,memchr) /* ignoring return value of function */
+    -append(534(memchr), [CWE-391])
+
+    +esym(534,mktime) /* ignoring return value of function */
+    -append(534(mktime), [CWE-391])
+
+    +esym(534,mtx_init) /* ignoring return value of function */
+    -append(534(mtx_init), [CWE-391])
+
+    +esym(534,mtx_lock) /* ignoring return value of function */
+    -append(534(mtx_lock), [CWE-391])
+
+    +esym(534,mtx_timedlock) /* ignoring return value of function */
+    -append(534(mtx_timedlock), [CWE-391])
+
+    +esym(534,mtx_trylock) /* ignoring return value of function */
+    -append(534(mtx_trylock), [CWE-391])
+
+    +esym(534,mtx_unlock) /* ignoring return value of function */
+    -append(534(mtx_unlock), [CWE-391])
+
+    +esym(534,printf_s) /* ignoring return value of function */
+    -append(534(printf_s), [CWE-391])
+
+    +esym(534,putc) /* ignoring return value of function */
+    -append(534(putc), [CWE-391])
+
+    +esym(534,putwc) /* ignoring return value of function */
+    -append(534(putwc), [CWE-391])
+
+    +esym(534,raise) /* ignoring return value of function */
+    -append(534(raise), [CWE-391])
+
+    +esym(534,realloc) /* ignoring return value of function */
+    -append(534(realloc), [CWE-391])
+
+    +esym(534,remove) /* ignoring return value of function */
+    -append(534(remove), [CWE-391])
+
+    +esym(534,rename) /* ignoring return value of function */
+    -append(534(rename), [CWE-391])
+
+    +esym(534,setlocale) /* ignoring return value of function */
+    -append(534(setlocale), [CWE-391])
+
+    +esym(534,setvbuf) /* ignoring return value of function */
+    -append(534(setvbuf), [CWE-391])
+
+    +esym(534,scanf) /* ignoring return value of function */
+    -append(534(scanf), [CWE-391])
+
+    +esym(534,scanf_s) /* ignoring return value of function */
+    -append(534(scanf_s), [CWE-391])
+
+    +esym(534,signal) /* ignoring return value of function */
+    -append(534(signal), [CWE-391])
+
+    +esym(534,snprintf) /* ignoring return value of function */
+    -append(534(snprintf), [CWE-391])
+
+    +esym(534,snprintf_s) /* ignoring return value of function */
+    -append(534(snprintf_s), [CWE-391])
+
+    +esym(534,sprintf) /* ignoring return value of function */
+    -append(534(sprintf), [CWE-391])
+
+    +esym(534,sprintf_s) /* ignoring return value of function */
+    -append(534(sprintf_s), [CWE-391])
+
+    +esym(534,sscanf) /* ignoring return value of function */
+    -append(534(sscanf), [CWE-391])
+
+    +esym(534,sscanf_s) /* ignoring return value of function */
+    -append(534(sscanf_s), [CWE-391])
+
+    +esym(534,strchr) /* ignoring return value of function */
+    -append(534(strchr), [CWE-391])
+
+    +esym(534,strerror_s) /* ignoring return value of function */
+    -append(534(strerror_s), [CWE-391])
+
+    +esym(534,strftime) /* ignoring return value of function */
+    -append(534(strftime), [CWE-391])
+
+    +esym(534,strpbrk) /* ignoring return value of function */
+    -append(534(strpbrk), [CWE-391])
+
+    +esym(534,strrchr) /* ignoring return value of function */
+    -append(534(strrchr), [CWE-391])
+
+    +esym(534,strstr) /* ignoring return value of function */
+    -append(534(strstr), [CWE-391])
+
+    +esym(534,strtod) /* ignoring return value of function */
+    -append(534(strtod), [CWE-391])
+
+    +esym(534,strtof) /* ignoring return value of function */
+    -append(534(strtof), [CWE-391])
+
+    +esym(534,strtoimax) /* ignoring return value of function */
+    -append(534(strtoimax), [CWE-391])
+
+    +esym(534,strtok) /* ignoring return value of function */
+    -append(534(strtok), [CWE-391])
+
+    +esym(534,strtok_s) /* ignoring return value of function */
+    -append(534(strtok_s), [CWE-391])
+
+    +esym(534,strtol) /* ignoring return value of function */
+    -append(534(strtol), [CWE-391])
+
+    +esym(534,strtold) /* ignoring return value of function */
+    -append(534(strtold), [CWE-391])
+
+    +esym(534,strtoll) /* ignoring return value of function */
+    -append(534(strtoll), [CWE-391])
+
+    +esym(534,strtoumax) /* ignoring return value of function */
+    -append(534(strtoumax), [CWE-391])
+
+    +esym(534,strtoul) /* ignoring return value of function */
+    -append(534(strtoul), [CWE-391])
+
+    +esym(534,strtoull) /* ignoring return value of function */
+    -append(534(strtoull), [CWE-391])
+
+    +esym(534,strxfrm) /* ignoring return value of function */
+    -append(534(strxfrm), [CWE-391])
+
+    +esym(534,swprintf) /* ignoring return value of function */
+    -append(534(swprintf), [CWE-391])
+
+    +esym(534,swprintf_s) /* ignoring return value of function */
+    -append(534(swprintf_s), [CWE-391])
+
+    +esym(534,swscanf) /* ignoring return value of function */
+    -append(534(swscanf), [CWE-391])
+
+    +esym(534,swscanf_s) /* ignoring return value of function */
+    -append(534(swscanf_s), [CWE-391])
+
+    +esym(534,thrd_create) /* ignoring return value of function */
+    -append(534(thrd_create), [CWE-391])
+
+    +esym(534,thrd_detach) /* ignoring return value of function */
+    -append(534(thrd_detach), [CWE-391])
+
+    +esym(534,thrd_join) /* ignoring return value of function */
+    -append(534(thrd_join), [CWE-391])
+
+    +esym(534,thrd_sleep) /* ignoring return value of function */
+    -append(534(thrd_sleep), [CWE-391])
+
+    +esym(534,time) /* ignoring return value of function */
+    -append(534(time), [CWE-391])
+
+    +esym(534,timespec_get) /* ignoring return value of function */
+    -append(534(timespec_get), [CWE-391])
+
+    +esym(534,tmpfile) /* ignoring return value of function */
+    -append(534(tmpfile), [CWE-391])
+
+    +esym(534,tmpfile_s) /* ignoring return value of function */
+    -append(534(tmpfile_s), [CWE-391])
+
+    +esym(534,tmpnam) /* ignoring return value of function */
+    -append(534(tmpnam), [CWE-391])
+
+    +esym(534,tmpnam_s) /* ignoring return value of function */
+    -append(534(tmpnam_s), [CWE-391])
+
+    +esym(534,tss_create) /* ignoring return value of function */
+    -append(534(tss_create), [CWE-391])
+
+    +esym(534,tss_get) /* ignoring return value of function */
+    -append(534(tss_get), [CWE-391])
+
+    +esym(534,tss_set) /* ignoring return value of function */
+    -append(534(tss_set), [CWE-391])
+
+    +esym(534,ungetc) /* ignoring return value of function */
+    -append(534(ungetc), [CWE-391])
+
+    +esym(534,ungetwc) /* ignoring return value of function */
+    -append(534(ungetwc), [CWE-391])
+
+    +esym(534,vfprintf) /* ignoring return value of function */
+    -append(534(vfprintf), [CWE-391])
+
+    +esym(534,vfprintf_s) /* ignoring return value of function */
+    -append(534(vfprintf_s), [CWE-391])
+
+    +esym(534,vfscanf) /* ignoring return value of function */
+    -append(534(vfscanf), [CWE-391])
+
+    +esym(534,vfscanf_s) /* ignoring return value of function */
+    -append(534(vfscanf_s), [CWE-391])
+
+    +esym(534,vfwprintf) /* ignoring return value of function */
+    -append(534(vfwprintf), [CWE-391])
+
+    +esym(534,vfwprintf_s) /* ignoring return value of function */
+    -append(534(vfwprintf_s), [CWE-391])
+
+    +esym(534,vfwscanf) /* ignoring return value of function */
+    -append(534(vfwscanf), [CWE-391])
+
+    +esym(534,vfwscanf_s) /* ignoring return value of function */
+    -append(534(vfwscanf_s), [CWE-391])
+
+    +esym(534,vprintf_s) /* ignoring return value of function */
+    -append(534(vprintf_s), [CWE-391])
+
+    +esym(534,vscanf) /* ignoring return value of function */
+    -append(534(vscanf), [CWE-391])
+
+    +esym(534,vscanf_s) /* ignoring return value of function */
+    -append(534(vscanf_s), [CWE-391])
+
+    +esym(534,vsnprintf) /* ignoring return value of function */
+    -append(534(vsnprintf), [CWE-391])
+
+    +esym(534,vsnprintf_s) /* ignoring return value of function */
+    -append(534(vsnprintf_s), [CWE-391])
+
+    +esym(534,vsprintf) /* ignoring return value of function */
+    -append(534(vsprintf), [CWE-391])
+
+    +esym(534,vsprintf_s) /* ignoring return value of function */
+    -append(534(vsprintf_s), [CWE-391])
+
+    +esym(534,vsscanf) /* ignoring return value of function */
+    -append(534(vsscanf), [CWE-391])
+
+    +esym(534,vsscanf_s) /* ignoring return value of function */
+    -append(534(vsscanf_s), [CWE-391])
+
+    +esym(534,vswprintf) /* ignoring return value of function */
+    -append(534(vswprintf), [CWE-391])
+
+    +esym(534,vswprintf_s) /* ignoring return value of function */
+    -append(534(vswprintf_s), [CWE-391])
+
+    +esym(534,vswscanf) /* ignoring return value of function */
+    -append(534(vswscanf), [CWE-391])
+
+    +esym(534,vswscanf_s) /* ignoring return value of function */
+    -append(534(vswscanf_s), [CWE-391])
+
+    +esym(534,vwprintf_s) /* ignoring return value of function */
+    -append(534(vwprintf_s), [CWE-391])
+
+    +esym(534,vwscanf) /* ignoring return value of function */
+    -append(534(vwscanf), [CWE-391])
+
+    +esym(534,vwscanf_s) /* ignoring return value of function */
+    -append(534(vwscanf_s), [CWE-391])
+
+    +esym(534,wcrtomb) /* ignoring return value of function */
+    -append(534(wcrtomb), [CWE-391])
+
+    +esym(534,wcschr) /* ignoring return value of function */
+    -append(534(wcschr), [CWE-391])
+
+    +esym(534,wcsftime) /* ignoring return value of function */
+    -append(534(wcsftime), [CWE-391])
+
+    +esym(534,wcspbrk) /* ignoring return value of function */
+    -append(534(wcspbrk), [CWE-391])
+
+    +esym(534,wcsrchr) /* ignoring return value of function */
+    -append(534(wcsrchr), [CWE-391])
+
+    +esym(534,wcsrtombs) /* ignoring return value of function */
+    -append(534(wcsrtombs), [CWE-391])
+
+    +esym(534,wcsrtombs_s) /* ignoring return value of function */
+    -append(534(wcsrtombs_s), [CWE-391])
+
+    +esym(534,wcsstr) /* ignoring return value of function */
+    -append(534(wcsstr), [CWE-391])
+
+    +esym(534,wcstod) /* ignoring return value of function */
+    -append(534(wcstod), [CWE-391])
+
+    +esym(534,wcstof) /* ignoring return value of function */
+    -append(534(wcstof), [CWE-391])
+
+    +esym(534,wcstoimax) /* ignoring return value of function */
+    -append(534(wcstoimax), [CWE-391])
+
+    +esym(534,wcstok) /* ignoring return value of function */
+    -append(534(wcstok), [CWE-391])
+
+    +esym(534,wcstok_s) /* ignoring return value of function */
+    -append(534(wcstok_s), [CWE-391])
+
+    +esym(534,wcstol) /* ignoring return value of function */
+    -append(534(wcstol), [CWE-391])
+
+    +esym(534,wcstold) /* ignoring return value of function */
+    -append(534(wcstold), [CWE-391])
+
+    +esym(534,wcstoll) /* ignoring return value of function */
+    -append(534(wcstoll), [CWE-391])
+
+    +esym(534,wcstombs) /* ignoring return value of function */
+    -append(534(wcstombs), [CWE-391])
+
+    +esym(534,wcstombs_s) /* ignoring return value of function */
+    -append(534(wcstombs_s), [CWE-391])
+
+    +esym(534,wcstoumax) /* ignoring return value of function */
+    -append(534(wcstoumax), [CWE-391])
+
+    +esym(534,wcstoul) /* ignoring return value of function */
+    -append(534(wcstoul), [CWE-391])
+
+    +esym(534,wcstoull) /* ignoring return value of function */
+    -append(534(wcstoull), [CWE-391])
+
+    +esym(534,wcsxfrm) /* ignoring return value of function */
+    -append(534(wcsxfrm), [CWE-391])
+
+    +esym(534,wctob) /* ignoring return value of function */
+    -append(534(wctob), [CWE-391])
+
+    +esym(534,wctrans) /* ignoring return value of function */
+    -append(534(wctrans), [CWE-391])
+
+    +esym(534,wctype) /* ignoring return value of function */
+    -append(534(wctype), [CWE-391])
+
+    +esym(534,wmemchr) /* ignoring return value of function */
+    -append(534(wmemchr), [CWE-391])
+
+    +esym(534,wprintf_s) /* ignoring return value of function */
+    -append(534(wprintf_s), [CWE-391])
+
+    +esym(534,wscanf) /* ignoring return value of function */
+    -append(534(wscanf), [CWE-391])
+
+    +esym(534,wscanf_s) /* ignoring return value of function */
+    -append(534(wscanf_s), [CWE-391])
+
+    -deprecate(scanf_code, D, [CWE-391])
+
+    -deprecate(scanf_code, E, [CWE-391])
+
+    -deprecate(scanf_code, X, [CWE-391])
+
+    -deprecate(scanf_code, a, [CWE-391])
+
+    -deprecate(scanf_code, d, [CWE-391])
+
+    -deprecate(scanf_code, e, [CWE-391])
+
+    -deprecate(scanf_code, f, [CWE-391])
+
+    -deprecate(scanf_code, g, [CWE-391])
+
+    -deprecate(scanf_code, i, [CWE-391])
+
+    -deprecate(scanf_code, o, [CWE-391])
+
+    -deprecate(scanf_code, u, [CWE-391])
+
+    -deprecate(scanf_code, x, [CWE-391])
+
+    -deprecate(function, atof, [CWE-391])
+
+    -deprecate(function, atoi, [CWE-391])
+
+    -deprecate(function, atol, [CWE-391])
+
+    -deprecate(function, atoll, [CWE-391])
+
+    -deprecate(function, atoq, [CWE-391])
+
+    +e2423 /* apparent domain error for function */
+    +elib(2423)
+    -append(2423, [CWE-391])
+
+    +esym(534,posix_memalign) /* ignoring return value of function */
+    -append(534(posix_memalign), [CWE-391])
+
+    +e413 /* likely use of null pointer */
+    +elib(413)
+    -append(413, [CWE-391])
+
+    +e613 /* potential use of null pointer */
+    +elib(613)
+    -append(613, [CWE-391])
+
+/* CWE-396 */
+/* Declaration of Catch for Generic Exception */
+
+    +e1766 /* catch(...) encountered without preceding catch clause */
+    +elib(1766)
+    -append(1766, [CWE-396])
+
+    +e1966 /* catch(...) encountered after catch clause */
+    +elib(1966)
+    -append(1966, [CWE-396])
+
+/* CWE-397 */
+/* Declaration of Throws for Generic Exception */
+    /* Not currently supported */
+
+/* CWE-398 */
+/* Indicator of Poor Code Quality */
+
+    +e568 /* nonnegative quantity is never less than zero */
+    +elib(568)
+    -append(568, [CWE-398])
+
+    +e620 /* suspicious constant (L or one?) */
+    +elib(620)
+    -append(620, [CWE-398])
+
+    +e687 /* body of if/for/while/do is an unparenthesized comma operator */
+    +elib(687)
+    -append(687, [CWE-398])
+
+    +e691 /* suspicious use of backslash */
+    +elib(691)
+    -append(691, [CWE-398])
+
+    +e692 /* decimal character follows octal escape sequence */
+    +elib(692)
+    -append(692, [CWE-398])
+
+    +e721 /* if statement has empty body */
+    +elib(721)
+    -append(721, [CWE-398])
+
+    +e722 /* statement has empty body */
+    +elib(722)
+    -append(722, [CWE-398])
+
+    +e775 /* nonnegative quantity cannot be less than zero */
+    +elib(775)
+    -append(775, [CWE-398])
+
+    +e777 /* testing floating point values for equality */
+    +elib(777)
+    -append(777, [CWE-398])
+
+    +e840 /* NUL character in string literal */
+    +elib(840)
+    -append(840, [CWE-398])
+
+    +e9063 /* no comment or action in the 'else' that terminates 'if ... else if' chain */
+    +elib(9063)
+    -append(9063, [CWE-398])
+
+    +e9138 /* null statement not on line by itself */
+    +elib(9138)
+    -append(9138, [CWE-398])
+
+    // Exactly what defines "poor" code quality is somewhat subjective and
+    // many of the issues that would be widely considered to represent poor
+    // code quality are diagnosed by messages employed for other weaknesses.
+    // Below are several messages not employed elsewhere in this file that
+    // represent suspicious situations warranting further investigation in
+    // the spirit of the concerns associated with this weakness.
+
+/* CWE-400 */
+/* Uncontrolled Resource Consumption */
+    /* Not currently supported */
+
+/* CWE-401 */
+/* Missing Release of Memory after Effective Lifetime */
+
+    +e429 /* custodial pointer likely not freed nor returned */
+    +elib(429)
+    -append(429, [CWE-401])
+
+/* CWE-403 */
+/* Exposure of File Descriptor to Unintended Control Sphere ('File Descriptor Leak') */
+
+    /* POSIX functions */
+
+    -deprecate(function, execl, [CWE-403])
+
+    -deprecate(function, execle, [CWE-403])
+
+    -deprecate(function, execlp, [CWE-403])
+
+    -deprecate(function, execv, [CWE-403])
+
+    -deprecate(function, execve, [CWE-403])
+
+    -deprecate(function, execvp, [CWE-403])
+
+    -deprecate(function, fexecve, [CWE-403])
+
+    /* Windows functions */
+
+    -deprecate(function, CreateProcess, [CWE-403])
+
+    -deprecate(function, _execl, [CWE-403])
+
+    -deprecate(function, _execv, [CWE-403])
+
+    -deprecate(function, _execle, [CWE-403])
+
+    -deprecate(function, _execve, [CWE-403])
+
+    -deprecate(function, _execlp, [CWE-403])
+
+    -deprecate(function, _execvp, [CWE-403])
+
+    -deprecate(function, _execlpe, [CWE-403])
+
+    -deprecate(function, _execvpe, [CWE-403])
+
+    -deprecate(function, _wexecl, [CWE-403])
+
+    -deprecate(function, _wexecv, [CWE-403])
+
+    -deprecate(function, _wexecle, [CWE-403])
+
+    -deprecate(function, _wexecve, [CWE-403])
+
+    -deprecate(function, _wexeclp, [CWE-403])
+
+    -deprecate(function, _wexecvp, [CWE-403])
+
+    -deprecate(function, _wexeclpe, [CWE-403])
+
+    -deprecate(function, _wexecvpe, [CWE-403])
+
+/* CWE-404 */
+/* Improper Resource Shutdown or Release */
+
+    +e424 /* inappropriate deallocation */
+    +elib(424)
+    -append(424, [CWE-404])
+
+    +e429 /* custodial pointer likely not freed nor returned */
+    +elib(429)
+    -append(429, [CWE-404])
+
+    +e673 /* possibly inappropriate deallocation */
+    +elib(673)
+    -append(673, [CWE-404])
+
+/* CWE-415 */
+/* Double Free */
+
+    +e449 /* memory was likely previously deallocated */
+    +elib(449)
+    -append(449, [CWE-415])
+
+    +e2434 /* memory was potentially deallocated */
+    +elib(2434)
+    -append(2434, [CWE-415])
+
+    +e429 /* custodial pointer likely not freed nor returned */
+    +elib(429)
+    -append(429, [CWE-415])
+
+/* CWE-416 */
+/* Use After Free */
+
+    +e449 /* memory was likely previously deallocated */
+    +elib(449)
+    -append(449, [CWE-416])
+
+    +e2434 /* memory was potentially deallocated */
+    +elib(2434)
+    -append(2434, [CWE-416])
+
+/* CWE-426 */
+/* Untrusted Search Path */
+    /* Not currently supported */
+
+/* CWE-434 */
+/* Unrestricted Upload of File with Dangerous Type */
+    /* Not currently supported */
+
+/* CWE-456 */
+/* Missing Initialization of a Variable */
+
+    +e644 /* potentially uninitialized */
+    +elib(644)
+    -append(644, [CWE-456])
+
+    +e738 /* address of static local symbol not explicitly initialized before passed to a function */
+    +elib(738)
+    -append(738, [CWE-456])
+
+    +e1401 /* non-static data member not initialized by constructor */
+    +elib(1401)
+    -append(1401, [CWE-456])
+
+    +e1539 /* member not assigned by assignment operator */
+    +elib(1539)
+    -append(1539, [CWE-456])
+
+    // See also message 901 (variable not initialized by definition)
+    // See also message 1541 (non-static data member possibly not initialized by constructor)
+
+/* CWE-457 */
+/* Use of Uninitialized Variable */
+
+    +e530 /* likely uninitialized */
+    +elib(530)
+    -append(530, [CWE-457])
+
+    +e603 /* possibly passing pointer to const uninitialized memory */
+    +elib(603)
+    -append(603, [CWE-457])
+
+    +e644 /* potentially uninitialized */
+    +elib(644)
+    -append(644, [CWE-457])
+
+    +e901 /* variable not initialized by definition */
+    +elib(901)
+    -append(901, [CWE-457])
+
+    +e1416 /* reference is not yet bound to a value when used here */
+    +elib(1416)
+    -append(1416, [CWE-457])
+
+/* CWE-459 */
+/* Incomplete Cleanup */
+
+    +e429 /* custodial pointer likely not freed nor returned */
+    +elib(429)
+    -append(429, [CWE-459])
+
+/* CWE-460 */
+/* Improper Cleanup on Thrown Exception */
+    /* Not currently supported */
+
+/* CWE-462 */
+/* Duplicate Key in Associative List (Alist) */
+
+    -deprecate(basetype, std::multimap, [CWE-462])
+
+    -deprecate(basetype, std::multiset, [CWE-462])
+
+    -deprecate(basetype, std::unordered_multimap, [CWE-462])
+
+    -deprecate(basetype, std::unordered_multiset, [CWE-462])
+
+/* CWE-463 */
+/* Deletion of Data Structure Sentinel */
+
+    +e496 /* format string is not null terminated */
+    +elib(496)
+    -append(496, [CWE-463])
+
+    +e693 /* hexadecimal escape sequence actually introduces NUL character */
+    +elib(693)
+    -append(693, [CWE-463])
+
+    +e840 /* NUL character in string literal */
+    +elib(840)
+    -append(840, [CWE-463])
+
+/* CWE-464 */
+/* Addition of Data Structure Sentinel */
+
+    +e495 /* format string body contains NUL character */
+    +elib(495)
+    -append(495, [CWE-464])
+
+    +e784 /* NUL character truncated from string */
+    +elib(784)
+    -append(784, [CWE-464])
+
+/* CWE-466 */
+/* Return of Pointer Value Outside of Expected Range */
+    /* Not currently supported */
+
+/* CWE-467 */
+/* Use of sizeof() on a Pointer Type */
+
+    +e682 /* sizeof applied to parameter whose type is a sized array will yield size of 'integer' instead of 'integer' */
+    +elib(682)
+    -append(682, [CWE-467])
+
+    +e882 /* sizeof applied to parameter of function declared an incomplete array type */
+    +elib(882)
+    -append(882, [CWE-467])
+
+    +e433 /* allocated area not large enough for pointer */
+    +elib(433)
+    -append(433, [CWE-467])
+
+    +e826 /* suspicious pointer-to-pointer conversion (area too small) */
+    +elib(826)
+    -append(826, [CWE-467])
+
+/* CWE-468 */
+/* Incorrect Pointer Scaling */
+
+    +e416 /* likely creating out-of-bounds pointer */
+    +elib(416)
+    -append(416, [CWE-468])
+
+/* CWE-469 */
+/* Use of Pointer Subtraction to Determine Size */
+    /* Not currently supported */
+
+/* CWE-474 */
+/* Use of Function with Inconsistent Implementations */
+    /* Not currently supported */
+
+/* CWE-476 */
+/* NULL Pointer Dereference */
+
+    +e413 /* likely use of null pointer */
+    +elib(413)
+    -append(413, [CWE-476])
+
+    +e418 /* null argument outside domain of function */
+    +elib(418)
+    -append(418, [CWE-476])
+
+    +e444 /* null test of incremented/decremented iteration counter */
+    +elib(444)
+    -append(444, [CWE-476])
+
+    +e613 /* potential use of null pointer */
+    +elib(613)
+    -append(613, [CWE-476])
+
+    +e668 /* possible null argument outside domain of function */
+    +elib(668)
+    -append(668, [CWE-476])
+
+/* CWE-477 */
+/* Use of Obsolete Function */
+
+    // The -deprecate option can be used to mark functions as obsolete after
+    // which their use will be reported by message 586.
+
+    /* POSIX functions */
+
+    -deprecate(function, bcopy, [CWE-477])
+
+    -deprecate(function, ecvt_r, [CWE-477])
+
+    -deprecate(function, fcvt_r, [CWE-477])
+
+    -deprecate(function, fstatfs, [CWE-477])
+
+    -deprecate(function, get_kernel_syms, [CWE-477])
+
+    -deprecate(function, gethostbyaddr, [CWE-477])
+
+    -deprecate(function, gethostbyaddr_r, [CWE-477])
+
+    -deprecate(function, gethostbyname, [CWE-477])
+
+    -deprecate(function, gethostbyname2, [CWE-477])
+
+    -deprecate(function, gethostbyname2_r, [CWE-477])
+
+    -deprecate(function, gethostbyname_r, [CWE-477])
+
+    -deprecate(function, gethostent_r, [CWE-477])
+
+    -deprecate(function, getpass, [CWE-477])
+
+    -deprecate(function, getpw, [CWE-477])
+
+    -deprecate(function, gsignal, [CWE-477])
+
+    -deprecate(function, herror, [CWE-477])
+
+    -deprecate(function, hstrerror, [CWE-477])
+
+    -deprecate(function, pthread_attr_getstackaddr, [CWE-477])
+
+    -deprecate(function, pthread_attr_setstackaddr, [CWE-477])
+
+    -deprecate(function, pthread_yield, [CWE-477])
+
+    -deprecate(function, qecvt, [CWE-477])
+
+    -deprecate(function, qecvt_r, [CWE-477])
+
+    -deprecate(function, qfcvt, [CWE-477])
+
+    -deprecate(function, qfcvt_r, [CWE-477])
+
+    -deprecate(function, qgcvt, [CWE-477])
+
+    -deprecate(function, readdir_r, [CWE-477])
+
+    -deprecate(function, remap_file_pages, [CWE-477])
+
+    -deprecate(function, scalb, [CWE-477])
+
+    -deprecate(function, scalbf, [CWE-477])
+
+    -deprecate(function, scalbl, [CWE-477])
+
+    -deprecate(function, ssignal, [CWE-477])
+
+    -deprecate(function, statfs, [CWE-477])
+
+    -deprecate(function, stime, [CWE-477])
+
+    -deprecate(function, syscall, [CWE-477])
+
+    -deprecate(function, sysfs, [CWE-477])
+
+    -deprecate(function, uselib, [CWE-477])
+
+/* CWE-478 */
+/* Missing Default Case in Multiple Condition Expression */
+
+    +e744 /* switch statement has no default */
+    +elib(744)
+    -append(744, [CWE-478])
+
+/* CWE-479 */
+/* Signal Handler Use of a Non-reentrant Function */
+
+    +e2670 /* call to async-signal-unsafe function */
+    +elib(2670)
+    -append(2670, [CWE-479])
+
+    +e2761 /* call to non-async-signal-safe function */
+    +elib(2761)
+    -append(2761, [CWE-479])
+
+    +e2762 /* call to signal registration function */
+    +elib(2762)
+    -append(2762, [CWE-479])
+
+    +e2763 /* call to signal registration function */
+    +elib(2763)
+    -append(2763, [CWE-479])
+
+/* CWE-480 */
+/* Use of Incorrect Operator */
+
+    +e720 /* boolean test of assignment */
+    +elib(720)
+    -append(720, [CWE-480])
+
+    +e514 /* boolean argument to bitwise operator */
+    +elib(514)
+    -append(514, [CWE-480])
+
+    +estring(522,==) /* highest operation lacks side effects */
+    -append(522(==), [CWE-480])
+
+/* CWE-481 */
+/* Assigning instead of Comparing */
+
+    +e720 /* boolean test of assignment */
+    +elib(720)
+    -append(720, [CWE-481])
+
+/* CWE-482 */
+/* Comparing instead of Assigning */
+
+    +estring(522,==) /* highest operation lacks side effects */
+    -append(522(==), [CWE-482])
+
+/* CWE-483 */
+/* Incorrect Block Delimitation */
+
+    +e525 /* unexpected negative indentation */
+    +elib(525)
+    -append(525, [CWE-483])
+
+    +e539 /* unexpected positive indentation */
+    +elib(539)
+    -append(539, [CWE-483])
+
+    +e725 /* unexpected lack of indentation */
+    +elib(725)
+    -append(725, [CWE-483])
+
+    // See also message 721 (if statement has empty body)
+    // See also message 722 (statement has empty body)
+    // See also message 9012 (body should be a compound statement)
+
+/* CWE-484 */
+/* Omitted Break Statement in Switch */
+
+    +e616 /* control falls through to next case without comment */
+    +elib(616)
+    -append(616, [CWE-484])
+
+    +e825 /* control falls through to next case without -fallthrough comment */
+    +elib(825)
+    -append(825, [CWE-484])
+
+/* CWE-493 */
+/* Critical Public Variable Without Final Modifier */
+    /* Not statically checkable */
+
+/* CWE-495 */
+/* Private Data Structure Returned From A Public Method */
+
+    +e1535 /* member function exposes lower access pointer member */
+    +elib(1535)
+    -append(1535, [CWE-495])
+
+    +e1536 /* member function exposes lower access member */
+    +elib(1536)
+    -append(1536, [CWE-495])
+
+    +e1537 /* const member function exposes pointer member as pointer to non-const */
+    +elib(1537)
+    -append(1537, [CWE-495])
+
+/* CWE-496 */
+/* Public Data Assigned to Private Array-Typed Field */
+    /* Not currently supported */
+
+/* CWE-498 */
+/* Cloneable Class Containing Sensitive Information */
+    /* Not statically checkable */
+
+/* CWE-500 */
+/* Public Static Field Not Marked Final */
+    /* Not currently supported */
+
+/* CWE-502 */
+/* Deserialization of Untrusted Data */
+    /* Not currently supported */
+
+/* CWE-522 */
+/* Insufficiently Protected Credentials */
+    /* Not currently supported */
+
+/* CWE-528 */
+/* Exposure of Core Dump File to an Unauthorized Control Sphere */
+    /* Not currently supported */
+
+/* CWE-543 */
+/* Use of Singleton Pattern Without Synchronization in a Multithreaded Context */
+    /* Not currently supported */
+
+/* CWE-544 */
+/* Missing Standardized Error Handling Mechanism */
+    /* Not statically checkable */
+
+/* CWE-547 */
+/* Use of Hard-coded, Security-relevant Constants */
+    /* Not currently supported */
+
+/* CWE-552 */
+/* Files or Directories Accessible to External Parties */
+    /* Not currently supported */
+
+/* CWE-558 */
+/* Use of getlogin() in Multithreaded Application */
+
+    -deprecate(function, getlogin, [CWE-558])
+
+/* CWE-560 */
+/* Use of umask() with chmod-style Argument */
+    /* Not currently supported */
+
+/* CWE-561 */
+/* Dead Code */
+
+    +e506 /* constant value used in Boolean context */
+    +elib(506)
+    -append(506, [CWE-561])
+
+    +e522 /* highest operation lacks side effects */
+    +elib(522)
+    -append(522, [CWE-561])
+
+    +e523 /* expression statement lacks side effects */
+    +elib(523)
+    -append(523, [CWE-561])
+
+    +e527 /* statement is unreachable */
+    +elib(527)
+    -append(527, [CWE-561])
+
+    +e827 /* loop is unreachable */
+    +elib(827)
+    -append(827, [CWE-561])
+
+    +e774 /* condition for control statement always evaluates to true/false */
+    +elib(774)
+    -append(774, [CWE-561])
+
+    +e438 /* last value not used */
+    +elib(438)
+    -append(438, [CWE-561])
+
+    +e838 /* previous value not used */
+    +elib(838)
+    -append(838, [CWE-561])
+
+    +e768 /* global structure member not referenced */
+    +elib(768)
+    -append(768, [CWE-561])
+
+    +e769 /* global enumeration constant not referenced */
+    +elib(769)
+    -append(769, [CWE-561])
+
+    +e714 /* external symbol defined but not referenced */
+    +elib(714)
+    -append(714, [CWE-561])
+
+    +e715 /* named parameter not referenced */
+    +elib(715)
+    -append(715, [CWE-561])
+
+    +e719 /* unused format string arguments */
+    +elib(719)
+    -append(719, [CWE-561])
+
+    +e749 /* local enumeration constant not referenced */
+    +elib(749)
+    -append(749, [CWE-561])
+
+    +e750 /* local macro not referenced */
+    +elib(750)
+    -append(750, [CWE-561])
+
+    +e751 /* local typedef not referenced */
+    +elib(751)
+    -append(751, [CWE-561])
+
+    +e752 /* local declarator not referenced */
+    +elib(752)
+    -append(752, [CWE-561])
+
+    +e753 /* local symbol not referenced */
+    +elib(753)
+    -append(753, [CWE-561])
+
+    +e754 /* local member not referenced */
+    +elib(754)
+    -append(754, [CWE-561])
+
+    +e755 /* global macro not referenced */
+    +elib(755)
+    -append(755, [CWE-561])
+
+    +e756 /* global typedef not referenced */
+    +elib(756)
+    -append(756, [CWE-561])
+
+    +e757 /* global declarator not referenced */
+    +elib(757)
+    -append(757, [CWE-561])
+
+    +e758 /* global symbol not referenced */
+    +elib(758)
+    -append(758, [CWE-561])
+
+    +e528 /* static symbol not referenced */
+    +elib(528)
+    -append(528, [CWE-561])
+
+    +e529 /* local variable not subsequently referenced */
+    +elib(529)
+    -append(529, [CWE-561])
+
+    +e563 /* label not referenced */
+    +elib(563)
+    -append(563, [CWE-561])
+
+    +e474 /* no case or default for constant switch condition */
+    +elib(474)
+    -append(474, [CWE-561])
+
+    +e612 /* declaration does not declare anything */
+    +elib(612)
+    -append(612, [CWE-561])
+
+    +e1972 /* empty declaration */
+    +elib(1972)
+    -append(1972, [CWE-561])
+
+    +e505 /* redundant left argument to comma */
+    +elib(505)
+    -append(505, [CWE-561])
+
+    +e681 /* loop is likely not entered */
+    +elib(681)
+    -append(681, [CWE-561])
+
+/* CWE-562 */
+/* Return of Stack Variable Address */
+
+    +e732 /* loss of sign */
+    +elib(732)
+    -append(732, [CWE-562])
+
+    +e604 /* returning address of auto variable */
+    +elib(604)
+    -append(604, [CWE-562])
+
+    +e674 /* returning address of auto variable through pointer */
+    +elib(674)
+    -append(674, [CWE-562])
+
+    +e733 /* likely assigning address of local to outer scope pointer */
+    +elib(733)
+    -append(733, [CWE-562])
+
+    +e789 /* assigning address of auto variable to static */
+    +elib(789)
+    -append(789, [CWE-562])
+
+    -sem(putenv,no_ptr_to_auto(1))
+    +e2601 /* passing address of auto variable */
+    +elib(2601)
+    -append(2601(putenv), [CWE-562])
+
+    -sem(putenv,no_ptr_to_auto(1))
+    +esym(426, putenv)
+    -append(426(putenv), [CWE-562])
+
+    // See also message 1780 (returning address of reference to a const parameter)
+    // See also message 1940 (address of non-const reference parameter transferred outside of function)
+
+/* CWE-563 */
+/* Assignment to Variable without Use */
+
+    +e438 /* last value not used */
+    +elib(438)
+    -append(438, [CWE-563])
+
+    +e838 /* last value not used */
+    +elib(838)
+    -append(838, [CWE-563])
+
+/* CWE-570 */
+/* Expression is Always False */
+
+    +e685 /* relational operator always evaluates to true/false */
+    +elib(685)
+    -append(685(false), [CWE-570])
+
+    +e774 /* boolean condition always evaluates to true/false */
+    +elib(774)
+    -append(774(false), [CWE-570])
+
+    +e944 /* left/right operand always evaluates to true/false */
+    +elib(944)
+    -append(944(false), [CWE-570])
+
+    +e948 /* operator always evaluates to true/false */
+    +elib(948)
+    -append(948(false), [CWE-570])
+
+/* CWE-571 */
+/* Expression is Always True */
+
+    +e685 /* relational operator always evaluates to true/false */
+    +elib(685)
+    -append(685(true), [CWE-571])
+
+    +e774 /* boolean condition always evaluates to true/false */
+    +elib(774)
+    -append(774(true), [CWE-571])
+
+    +e944 /* left/right operand always evaluates to true/false */
+    +elib(944)
+    -append(944(true), [CWE-571])
+
+    +e948 /* operator always evaluates to true/false */
+    +elib(948)
+    -append(948(true), [CWE-571])
+
+/* CWE-587 */
+/* Assignment of a Fixed Address to a Pointer */
+
+    +e4287 /* cast from pointer to smaller type loses information */
+    +elib(4287)
+    -append(4287, [CWE-587])
+
+    +e9010 /* conversion from integer type to pointer type */
+    +elib(9010)
+    -append(9010, [CWE-587])
+
+/* CWE-590 */
+/* Free of Memory not on the Heap */
+
+    +e424 /* inappropriate deallocation */
+    +elib(424)
+    -append(424, [CWE-590])
+
+    +e673 /* possibly inappropriate deallocation */
+    +elib(673)
+    -append(673, [CWE-590])
+
+/* CWE-591 */
+/* Sensitive Data Storage in Improperly Locked Memory */
+    /* Not currently supported */
+
+/* CWE-597 */
+/* Use of Wrong Operator in String Comparison */
+
+    +e779 /* string constant in comparison operator */
+    +elib(779)
+    -append(779, [CWE-597])
+
+/* CWE-606 */
+/* Unchecked Input for Loop Condition */
+    /* Not currently supported */
+
+/* CWE-611 */
+/* Improper Restriction of XML External Entity Reference */
+    /* Not currently supported */
+
+/* CWE-628 */
+/* Function Call with Incorrectly Specified Arguments */
+
+    +e558 /* too few data arguments for format string */
+    +elib(558)
+    -append(558, [CWE-628])
+
+    +e719 /* data argument not used by format string */
+    +elib(719)
+    -append(719, [CWE-628])
+
+/* CWE-662 */
+/* Improper Synchronization */
+
+    -deprecate(function, signal, [CWE-662])
+
+    +e2765 /* reference to variable which is neither atomic nor volatile */
+    +elib(2765)
+    -append(2765, [CWE-662])
+
+/* CWE-664 */
+/* Improper Control of a Resource Through its Lifetime */
+
+    +e2478 /* read after write without flush or reposition */
+    +elib(2478)
+    -append(2478, [CWE-664])
+
+    +e2479 /* write after read without reposition */
+    +elib(2479)
+    -append(2479, [CWE-664])
+
+/* CWE-665 */
+/* Improper Initialization */
+
+    +e576 /* excess elements in array initializer */
+    +elib(576)
+    -append(576, [CWE-665])
+
+/* CWE-666 */
+/* Operation on Resource in Wrong Phase of Lifetime */
+
+    +e2471 /* operation on closed stream */
+    +elib(2471)
+    -append(2471, [CWE-666])
+
+    +e449 /* memory was likely previously deallocated */
+    +elib(449)
+    -append(449, [CWE-666])
+
+    +e2434 /* memory was potentially deallocated */
+    +elib(2434)
+    -append(2434, [CWE-666])
+
+/* CWE-667 */
+/* Improper Locking */
+
+    +e457 /* variable is read/written in function1 which is unprotected with the read/write in function2 */
+    +elib(457)
+    -append(457, [CWE-667])
+
+    +e459 /* function whose address was taken has an unprotected read/write access of variable */
+    +elib(459)
+    -append(459, [CWE-667])
+
+    +e460 /* thread unsafe function is called while mutually unprotected in function1 and function2 */
+    +elib(460)
+    -append(460, [CWE-667])
+
+    +e461 /* functions func1 and func2 of group are called mutually unprotected */
+    +elib(461)
+    -append(461, [CWE-667])
+
+    +e2511 /* try_lock return value was discarded */
+    +elib(2511)
+    -append(2511, [CWE-667])
+
+/* CWE-672 */
+/* Operation on a Resource after Expiration or Release */
+
+    +e2471 /* operation on closed stream */
+    +elib(2471)
+    -append(2471, [CWE-672])
+
+    +e449 /* memory was likely previously deallocated */
+    +elib(449)
+    -append(449, [CWE-672])
+
+    +e2434 /* memory was potentially deallocated */
+    +elib(2434)
+    -append(2434, [CWE-672])
+
+/* CWE-675 */
+/* Multiple Operations on Resource in Single-Operation Context */
+    /* Not currently supported */
+
+/* CWE-676 */
+/* Use of Potentially Dangerous Function */
+
+    /* ANSI functions and macros */
+
+    -deprecate(function, asctime, [CWE-676])
+
+    -deprecate(function, c16rtomb, [CWE-676])
+
+    -deprecate(function, c32rtomb, [CWE-676])
+
+    -deprecate(function, ctime, [CWE-676])
+
+    -deprecate(function, getenv, [CWE-676])
+
+    -deprecate(function, getenv_s, [CWE-676])
+
+    -deprecate(function, gmtime, [CWE-676])
+
+    -deprecate(function, localtime, [CWE-676])
+
+    -deprecate(function, mbrtoc16, [CWE-676])
+
+    -deprecate(function, mbrtoc32, [CWE-676])
+
+    -deprecate(function, rand, [CWE-676])
+
+    -deprecate(function, setlocale, [CWE-676])
+
+    -deprecate(function, srand, [CWE-676])
+
+    -deprecate(function, strerror, [CWE-676])
+
+    -deprecate(function, strtok, [CWE-676])
+
+    -deprecate(function, tmpnam, [CWE-676])
+
+    /* POSIX functions and macros */
+
+    -deprecate(function, basename, [CWE-676])
+
+    -deprecate(function, catgets, [CWE-676])
+
+    -deprecate(function, crypt, [CWE-676])
+
+    -deprecate(function, dbm_clearerr, [CWE-676])
+
+    -deprecate(function, dbm_close, [CWE-676])
+
+    -deprecate(function, dbm_delete, [CWE-676])
+
+    -deprecate(function, dbm_error, [CWE-676])
+
+    -deprecate(function, dbm_fetch, [CWE-676])
+
+    -deprecate(function, dbm_firstkey, [CWE-676])
+
+    -deprecate(function, dbm_nextkey, [CWE-676])
+
+    -deprecate(function, dbm_open, [CWE-676])
+
+    -deprecate(function, dbm_store, [CWE-676])
+
+    -deprecate(function, dirname, [CWE-676])
+
+    -deprecate(function, dlerror, [CWE-676])
+
+    -deprecate(function, drand48, [CWE-676])
+
+    -deprecate(function, encrypt, [CWE-676])
+
+    -deprecate(function, endgrent, [CWE-676])
+
+    -deprecate(function, endpwent, [CWE-676])
+
+    -deprecate(function, endutxent, [CWE-676])
+
+    -deprecate(function, ftw, [CWE-676])
+
+    -deprecate(function, getdate, [CWE-676])
+
+    -deprecate(function, getgrent, [CWE-676])
+
+    -deprecate(function, getgrgid, [CWE-676])
+
+    -deprecate(function, getgrnam, [CWE-676])
+
+    -deprecate(function, gethostent, [CWE-676])
+
+    -deprecate(function, getlogin, [CWE-676])
+
+    -deprecate(function, getnetbyaddr, [CWE-676])
+
+    -deprecate(function, getnetbyname, [CWE-676])
+
+    -deprecate(function, getnetent, [CWE-676])
+
+    -deprecate(function, getopt, [CWE-676])
+
+    -deprecate(function, getprotobyname, [CWE-676])
+
+    -deprecate(function, getprotobynumber, [CWE-676])
+
+    -deprecate(function, getprotoent, [CWE-676])
+
+    -deprecate(function, getpwent, [CWE-676])
+
+    -deprecate(function, getpwnam, [CWE-676])
+
+    -deprecate(function, getpwuid, [CWE-676])
+
+    -deprecate(function, getservbyname, [CWE-676])
+
+    -deprecate(function, getservbyport, [CWE-676])
+
+    -deprecate(function, getservent, [CWE-676])
+
+    -deprecate(function, getutxent, [CWE-676])
+
+    -deprecate(function, getutxid, [CWE-676])
+
+    -deprecate(function, getutxline, [CWE-676])
+
+    -deprecate(function, hcreate, [CWE-676])
+
+    -deprecate(function, hdestroy, [CWE-676])
+
+    -deprecate(function, hsearch, [CWE-676])
+
+    -deprecate(function, inet_ntoa, [CWE-676])
+
+    -deprecate(function, l64a, [CWE-676])
+
+    -deprecate(function, lgamma, [CWE-676])
+
+    -deprecate(function, lgammaf, [CWE-676])
+
+    -deprecate(function, lgammal, [CWE-676])
+
+    -deprecate(function, localeconv, [CWE-676])
+
+    -deprecate(function, lrand48, [CWE-676])
+
+    -deprecate(function, mblen, [CWE-676])
+
+    -deprecate(function, mbtowc, [CWE-676])
+
+    -deprecate(function, mrand48, [CWE-676])
+
+    -deprecate(function, nftw, [CWE-676])
+
+    -deprecate(function, nl_langinfo, [CWE-676])
+
+    -deprecate(function, ptsname(), [CWE-676])
+
+    -deprecate(function, system, [CWE-676])
+
+    -deprecate(function, atof, [CWE-676])
+
+    -deprecate(function, atoi, [CWE-676])
+
+    -deprecate(function, atol, [CWE-676])
+
+    -deprecate(function, atoll, [CWE-676])
+
+    -deprecate(function, rewind, [CWE-676])
+
+    -deprecate(function, setbuf, [CWE-676])
+
+    -deprecate(scanf_code, D, [CWE-676])
+
+    -deprecate(scanf_code, E, [CWE-676])
+
+    -deprecate(scanf_code, X, [CWE-676])
+
+    -deprecate(scanf_code, a, [CWE-676])
+
+    -deprecate(scanf_code, d, [CWE-676])
+
+    -deprecate(scanf_code, e, [CWE-676])
+
+    -deprecate(scanf_code, f, [CWE-676])
+
+    -deprecate(scanf_code, g, [CWE-676])
+
+    -deprecate(scanf_code, i, [CWE-676])
+
+    -deprecate(scanf_code, o, [CWE-676])
+
+    -deprecate(scanf_code, u, [CWE-676])
+
+    -deprecate(scanf_code, x, [CWE-676])
+
+    -deprecate(function, atoq, [CWE-676])
+
+    +e421 /* caution -- function is considered dangerous (reported for gets) */
+    +elib(421)
+    -append(421, [CWE-676])
+
+    +e498 /* unbounded scanf conversion specifier may result in buffer overflow */
+    +elib(498)
+    -append(498, [CWE-676])
+
+/* CWE-680 */
+/* Integer Overflow to Buffer Overflow */
+
+    +e433 /* allocated area not large enough for pointer */
+    +elib(433)
+    -append(433, [CWE-680])
+
+    +e826 /* suspicious pointer-to-pointer conversion (area too small) */
+    +elib(826)
+    -append(826, [CWE-680])
+
+/* CWE-681 */
+/* Incorrect Conversion between Numeric Types */
+
+    +e732 /* loss of sign */
+    +elib(732)
+    -append(732, [CWE-681])
+
+    +e735 /* implicit conversion */
+    +elib(735)
+    -append(735, [CWE-681])
+
+    +e736 /* loss of precision */
+    +elib(736)
+    -append(736, [CWE-681])
+
+    /* implicit arithmetic conversion */
+    +egrep(915,"int' to 'float")                /* Assume more bits in an int than mantissa of a float */
+    +egrep(915,"long' to 'float")               /* Assume more bits in a (long) long than mantissaof a float */
+    +egrep(915,"long long' to 'double")         /* Assume more bits in along long than mantissa ofa double */
+    +egrep(915,"long long' to 'long double")    /* Assume more bits in along long than mantissa ofa long double */
+    -append(915, [CWE-681])
+
+    /* explicit cast */
+    +egrep(922,"int' to 'float")                /* Assume more bits in an int than mantissa of a float */
+    +egrep(922,"long' to 'float")               /* Assume more bits in a (long) long than mantissaof a float */
+    +egrep(922,"long long' to 'double")         /* Assume more bits in along long than mantissa ofa double */
+    +egrep(922,"long long' to 'long double")    /* Assume more bits in along long than mantissa ofa long double */
+    +egrep(922,"double' to 'float")
+    +egrep(922,"long double' to 'double")
+    -append(922, [CWE-681])
+
+    +e9118 /* implicit conversion from floating point to integer type */
+    +elib(9118)
+    -append(9118, [CWE-681])
+
+    +e9227 /* floating expression cannot be implicitly converted because it is not a wider floating type */
+    +elib(9227)
+    -append(9227, [CWE-681])
+
+    +e776 /* possible truncation of addition */
+    +elib(776)
+    -append(776, [CWE-681])
+
+    +e790 /* possibly truncated operation promoted to type */
+    +elib(790)
+    -append(790, [CWE-681])
+
+    // See also message 942 (possibly truncated operation promoted to type)
+
+/* CWE-682 */
+/* Incorrect Calculation */
+
+    +e2423 /* apparent domain error for function */
+    +elib(2423)
+    -append(2423, [CWE-682])
+
+    +e9112 /* plain character expression used with non-permitted operator */
+    +elib(9112)
+    -append(9112, [CWE-682])
+
+    +e9233 /* bitwise operator may not be applied to operand with signed underlying type */
+    +elib(9233)
+    -append(9233, [CWE-682])
+
+/* CWE-684 */
+/* Incorrect Provision of Specified Functionality */
+    /* Not currently supported */
+
+/* CWE-685 */
+/* Function Call With Incorrect Number of Arguments */
+
+    +e492 /* incomplete format specifier */
+    +elib(492)
+    -append(492, [CWE-685])
+
+    +e493 /* position arguments in format strings start counting at 1 (not 0) */
+    +elib(493)
+    -append(493, [CWE-685])
+
+    +e494 /* data argument position exceeds the number of data arguments */
+    +elib(494)
+    -append(494, [CWE-685])
+
+    +e499 /* using length modifier 'string' with conversion specifier 'string' is not supported by ISO C */
+    +elib(499)
+    -append(499, [CWE-685])
+
+    +e557 /* invalid conversion specifier */
+    +elib(557)
+    -append(557, [CWE-685])
+
+    +e558 /* too few data arguments for format string */
+    +elib(558)
+    -append(558, [CWE-685])
+
+    +e559 /* format specifies type which is inconsistent with argument */
+    +elib(559)
+    -append(559, [CWE-685])
+
+    +e566 /* inconsistent or redundant length modifier or flag 'string' used with 'string' conversion specifier */
+    +elib(566)
+    -append(566, [CWE-685])
+
+    +e705 /* format specifies type which is nominally inconsistent with argument */
+    +elib(705)
+    -append(705, [CWE-685])
+
+    +e706 /* format specifies type whose pointee type is nominally inconsistent with argument */
+    +elib(706)
+    -append(706, [CWE-685])
+
+    +e719 /* data argument  not used by format string */
+    +elib(719)
+    -append(719, [CWE-685])
+
+    +e816 /* non-ISO format specification */
+    +elib(816)
+    -append(816, [CWE-685])
+
+    +e855 /* positional arguments are a non-ISO extension */
+    +elib(855)
+    -append(855, [CWE-685])
+
+    +e2401 /* cannot mix positional and non-positional arguments in format string */
+    +elib(2401)
+    -append(2401, [CWE-685])
+
+    +e2402 /* specified field is missing a matching 'int' argument */
+    +elib(2402)
+    -append(2402, [CWE-685])
+
+    +e2403 /* field should have type 'type', but argument has type 'type' */
+    +elib(2403)
+    -append(2403, [CWE-685])
+
+    +e2404 /* invalid position specified for field width or precision */
+    +elib(2404)
+    -append(2404, [CWE-685])
+
+    +e2405 /* field width or precision used with conversion specifier is undefined */
+    +elib(2405)
+    -append(2405, [CWE-685])
+
+    +e2406 /* no closing ']' for '%[' in scanf format string */
+    +elib(2406)
+    -append(2406, [CWE-685])
+
+    +e2407 /* zero field width in scanf format string is unused */
+    +elib(2407)
+    -append(2407, [CWE-685])
+
+    +e118 /* too few arguments for prototype */
+    +elib(118)
+    -append(118, [CWE-685])
+
+    +e119 /* too many arguments for prototype */
+    +elib(119)
+    -append(119, [CWE-685])
+
+    +e746 /* call to function not made in the presence of a prototype */
+    +elib(746)
+    -append(746, [CWE-685])
+
+/* CWE-686 */
+/* Function Call With Incorrect Argument Type */
+
+    -sem(putenv,no_ptr_to_auto(1))
+    +esym(426, putenv)
+    -append(426(putenv), [CWE-686])
+
+    +e492 /* incomplete format specifier */
+    +elib(492)
+    -append(492, [CWE-686])
+
+    +e493 /* position arguments in format strings start counting at 1 (not 0) */
+    +elib(493)
+    -append(493, [CWE-686])
+
+    +e494 /* data argument position exceeds the number of data arguments */
+    +elib(494)
+    -append(494, [CWE-686])
+
+    +e499 /* using length modifier 'string' with conversion specifier 'string' is not supported by ISO C */
+    +elib(499)
+    -append(499, [CWE-686])
+
+    +e557 /* invalid conversion specifier */
+    +elib(557)
+    -append(557, [CWE-686])
+
+    +e558 /* too few data arguments for format string */
+    +elib(558)
+    -append(558, [CWE-686])
+
+    +e559 /* format specifies type which is inconsistent with argument */
+    +elib(559)
+    -append(559, [CWE-686])
+
+    +e566 /* inconsistent or redundant length modifier or flag 'string' used with 'string' conversion specifier */
+    +elib(566)
+    -append(566, [CWE-686])
+
+    +e705 /* format specifies type which is nominally inconsistent with argument */
+    +elib(705)
+    -append(705, [CWE-686])
+
+    +e706 /* format specifies type whose pointee type is nominally inconsistent with argument */
+    +elib(706)
+    -append(706, [CWE-686])
+
+    +e719 /* data argument  not used by format string */
+    +elib(719)
+    -append(719, [CWE-686])
+
+    +e816 /* non-ISO format specification */
+    +elib(816)
+    -append(816, [CWE-686])
+
+    +e855 /* positional arguments are a non-ISO extension */
+    +elib(855)
+    -append(855, [CWE-686])
+
+    +e2401 /* cannot mix positional and non-positional arguments in format string */
+    +elib(2401)
+    -append(2401, [CWE-686])
+
+    +e2402 /* specified field is missing a matching 'int' argument */
+    +elib(2402)
+    -append(2402, [CWE-686])
+
+    +e2403 /* field should have type 'type', but argument has type 'type' */
+    +elib(2403)
+    -append(2403, [CWE-686])
+
+    +e2404 /* invalid position specified for field width or precision */
+    +elib(2404)
+    -append(2404, [CWE-686])
+
+    +e2405 /* field width or precision used with conversion specifier is undefined */
+    +elib(2405)
+    -append(2405, [CWE-686])
+
+    +e2406 /* no closing ']' for '%[' in scanf format string */
+    +elib(2406)
+    -append(2406, [CWE-686])
+
+    +e2407 /* zero field width in scanf format string is unused */
+    +elib(2407)
+    -append(2407, [CWE-686])
+
+    -sem(putenv,no_ptr_to_auto(1))
+    +e2601 /* passing address of auto variable */
+    +elib(2601)
+    -append(2601(putenv), [CWE-686])
+
+/* CWE-687 */
+/* Function Call With Incorrectly Specified Argument Value */
+
+    +e422 /* passing to function a negative value */
+    +elib(422)
+    -append(422, [CWE-687])
+
+    +e426 /* call to function violates semantic */
+    +elib(426)
+    -append(426, [CWE-687])
+
+    +e432 /* suspicious argument to dynamic allocation function */
+    +elib(432)
+    -append(432, [CWE-687])
+
+    +e464 /* buffer arguments in call to function overlap */
+    +elib(464)
+    -append(464, [CWE-687])
+
+    +e671 /* possibly passing to function a negative value */
+    +elib(671)
+    -append(671, [CWE-687])
+
+    +e1415 /* pointer to non-POD type passed to function */
+    +elib(1415)
+    -append(1415, [CWE-687])
+
+    +e2423 /* apparent domain error for function */
+    +elib(2423)
+    -append(2423, [CWE-687])
+
+    +e2623 /* possible domain error for function */
+    +elib(2623)
+    -append(2623, [CWE-687])
+
+    // User-defined function semantics may be employed to specify
+    // requirements associated with the arguments passed and calls
+    // with arguments that violate the specified semantics will be
+    // reported with message 426.  See the documentation of the
+    // -sem option for details.
+
+/* CWE-688 */
+/* Function Call With Incorrect Variable or Reference as Argument */
+    /* Not currently supported */
+
+/* CWE-689 */
+/* Permission Race Condition During Resource Copy */
+    /* Not currently supported */
+
+/* CWE-690 */
+/* Unchecked Return Value to NULL Pointer Dereference */
+
+    +e413 /* likely use of null pointer */
+    +elib(413)
+    -append(413, [CWE-690])
+
+    +e418 /* null argument outside domain of function */
+    +elib(418)
+    -append(418, [CWE-690])
+
+    +e444 /* null test of incremented/decremented iteration counter */
+    +elib(444)
+    -append(444, [CWE-690])
+
+    +e613 /* potential use of null pointer */
+    +elib(613)
+    -append(613, [CWE-690])
+
+    +e668 /* possible null argument outside domain of function */
+    +elib(668)
+    -append(668, [CWE-690])
+
+/* CWE-696 */
+/* Incorrect Behavior Order */
+    /* Not currently supported */
+
+/* CWE-697 */
+/* Incorrect Comparison */
+    /* Not currently supported */
+
+/* CWE-704 */
+/* Incorrect Type Conversion or Cast */
+
+    +e9005 /* cast drops const qualifier */
+    +elib(9005)
+    -append(9005, [CWE-704])
+
+    +e4287 /* cast from pointer to smaller type loses information */
+    +elib(4287)
+    -append(4287, [CWE-704])
+
+    +etype(571,*char) /* cast results in sign extension */
+    +elib(571)
+    -append(571, [CWE-704])
+
+    +e732 /* loss of sign */
+    +elib(732)
+    -append(732, [CWE-704])
+
+/* CWE-705 */
+/* Incorrect Control Flow Scoping */
+
+    -deprecate(function, abort, [CWE-705])
+
+    -deprecate(function, _Exit, [CWE-705])
+
+/* CWE-732 */
+/* Incorrect Permission Assignment for Critical Resource */
+    /* Not currently supported */
+
+/* CWE-733 */
+/* Compiler Optimization Removal or Modification of Security-critical Code */
+    /* Not currently supported */
+
+/* CWE-754 */
+/* Improper Check for Unusual or Exceptional Conditions */
+    /* Not currently supported */
+
+/* CWE-758 */
+/* Reliance on Undefined, Unspecified, or Implementation-Defined Behavior */
+
+    +e9035 /* variable length array declared */
+    +elib(9035)
+    -append(9035, [CWE-758])
+
+    -deprecate(scanf_code, D, [CWE-758])
+
+    -deprecate(scanf_code, E, [CWE-758])
+
+    -deprecate(scanf_code, X, [CWE-758])
+
+    -deprecate(scanf_code, a, [CWE-758])
+
+    -deprecate(scanf_code, d, [CWE-758])
+
+    -deprecate(scanf_code, e, [CWE-758])
+
+    -deprecate(scanf_code, f, [CWE-758])
+
+    -deprecate(scanf_code, g, [CWE-758])
+
+    -deprecate(scanf_code, i, [CWE-758])
+
+    -deprecate(scanf_code, o, [CWE-758])
+
+    -deprecate(scanf_code, u, [CWE-758])
+
+    -deprecate(scanf_code, x, [CWE-758])
+
+    -deprecate(function, atof, [CWE-758])
+
+    -deprecate(function, atoi, [CWE-758])
+
+    -deprecate(function, atol, [CWE-758])
+
+    -deprecate(function, atoll, [CWE-758])
+
+    -deprecate(function, atoq, [CWE-758])
+
+    +e564 /* variable depends on order of evaluation */
+    +elib(564)
+    -append(564, [CWE-758])
+
+    +e530 /* likely uninitialized */
+    +elib(530)
+    -append(530, [CWE-758])
+
+    +e603 /* possibly passing pointer to const uninitialized memory */
+    +elib(603)
+    -append(603, [CWE-758])
+
+    +e644 /* potentially uninitialized */
+    +elib(644)
+    -append(644, [CWE-758])
+
+    +e901 /* variable not initialized by definition */
+    +elib(901)
+    -append(901, [CWE-758])
+
+    +e2471 /* operation on closed stream */
+    +elib(2471)
+    -append(2471, [CWE-758])
+
+    +e4287 /* cast from pointer to smaller type loses information */
+    +elib(4287)
+    -append(4287, [CWE-758])
+
+    +e449 /* memory was likely previously deallocated */
+    +elib(449)
+    -append(449, [CWE-758])
+
+    +e2434 /* memory was potentially deallocated */
+    +elib(2434)
+    -append(2434, [CWE-758])
+
+    +e533 /* function should return a value */
+    +elib(533)
+    -append(533, [CWE-758])
+
+/* CWE-762 */
+/* Mismatched Memory Management Routines */
+
+    +e424 /* inappropriate deallocation */
+    +elib(424)
+    -append(424, [CWE-762])
+
+    +e673 /* may not be appropriate for deallocating */
+    +elib(673)
+    -append(673, [CWE-762])
+
+/* CWE-766 */
+/* Critical Data Element Declared Public */
+    /* Not currently supported */
+
+/* CWE-767 */
+/* Access to Critical Private Variable via Public Method */
+
+    +e1535 /* member function exposes lower access pointer member */
+    +elib(1535)
+    -append(1535, [CWE-767])
+
+    +e1536 /* member function exposes lower access member */
+    +elib(1536)
+    -append(1536, [CWE-767])
+
+/* CWE-768 */
+/* Incorrect Short Circuit Evaluation */
+
+    +e9007 /* side effects on right hand of logical operator */
+    +elib(9007)
+    -append(9007, [CWE-768])
+
+/* CWE-771 */
+/* Missing Reference to Active Allocated Resource */
+
+    +e429 /* custodial pointer likely not freed nor returned */
+    +elib(429)
+    -append(429, [CWE-771])
+
+/* CWE-772 */
+/* Missing Release of Resource after Effective Lifetime */
+
+    +e429 /* custodial pointer likely not freed nor returned */
+    +elib(429)
+    -append(429, [CWE-772])
+
+    +e423 /* assignment to custodial pointer likely creates memory leak */
+    +elib(423)
+    -append(423, [CWE-772])
+
+    +e593 /* custodial pointer possibly not freed/closed nor returned */
+    +elib(593)
+    -append(593, [CWE-772])
+
+    +e672 /* assignment to custodial pointer possibly creates memory leak */
+    +elib(672)
+    -append(672, [CWE-772])
+
+/* CWE-773 */
+/* Missing Reference to Active File Descriptor or Handle */
+
+    +e429 /* custodial pointer likely not freed/closed nor returned */
+    +elib(429)
+    -append(429, [CWE-773])
+
+/* CWE-775 */
+/* Missing Release of File Descriptor or Handle after Effective Lifetime */
+
+    +e429 /* custodial pointer likely not freed/closed nor returned */
+    +elib(429)
+    -append(429, [CWE-775])
+
+/* CWE-781 */
+/* Improper Address Validation in IOCTL with METHOD_NEITHER I/O Control Code */
+    /* Not currently supported */
+
+/* CWE-782 */
+/* Exposed IOCTL with Insufficient Access Control */
+    /* Not currently supported */
+
+/* CWE-783 */
+/* Operator Precedence Logic Error */
+
+    +e720 /* boolean test of assignment */
+    +elib(720)
+    -append(720, [CWE-783])
+
+    +estring(9050,*) /* dependence placed on operator precedence */
+    -estring(9050,+)
+    -estring(9050,`*)
+    -estring(9050,-)
+    -estring(9050,/)
+    -append(9050, [CWE-783])
+
+    +e9113 /* dependence placed on C++ operator precedence */
+    +elib(9113)
+    -append(9113, [CWE-783])
+
+    // See also message 564 (variable depends on order of evaluation)
+
+/* CWE-785 */
+/* Use of Path Manipulation Function without Maximum-sized Buffer */
+
+    /* Require MAX_PATH is defined (and not 0) */
+
+    -sem(PathAddBackslashA, 1p >= MAX_PATH && MAX_PATH != 0)
+    +esym(426, PathAddBackslashA)
+    -append(426(PathAddBackslashA), [CWE-785])
+
+    -sem(PathAddBackslashW, 1p >= MAX_PATH && MAX_PATH != 0)
+    +esym(426, PathAddBackslashW)
+    -append(426(PathAddBackslashW), [CWE-785])
+
+    -sem(PathAddExtensionA, 1p >= MAX_PATH && MAX_PATH != 0)
+    +esym(426, PathAddExtensionA)
+    -append(426(PathAddExtensionA), [CWE-785])
+
+    -sem(PathAddExtensionW, 1p >= MAX_PATH && MAX_PATH != 0)
+    +esym(426, PathAddExtensionW)
+    -append(426(PathAddExtensionW), [CWE-785])
+
+    -sem(PathAppendA, 1p >= MAX_PATH && MAX_PATH != 0)
+    +esym(426, PathAppendA)
+    -append(426(PathAppendA), [CWE-785])
+
+    -sem(PathAppendW, 1p >= MAX_PATH && MAX_PATH != 0)
+    +esym(426, PathAppendW)
+    -append(426(PathAppendW), [CWE-785])
+
+    -sem(PathCanonicalizeA, 1p >= MAX_PATH && MAX_PATH != 0)
+    +esym(426, PathCanonicalizeA)
+    -append(426(PathCanonicalizeA), [CWE-785])
+
+    -sem(PathCanonicalizeW, 1p >= MAX_PATH && MAX_PATH != 0)
+    +esym(426, PathCanonicalizeW)
+    -append(426(PathCanonicalizeW), [CWE-785])
+
+    -sem(PathCombineA, 1p >= MAX_PATH && MAX_PATH != 0)
+    +esym(426, PathCombineA)
+    -append(426(PathCombineA), [CWE-785])
+
+    -sem(PathCombineW, 1p >= MAX_PATH && MAX_PATH != 0)
+    +esym(426, PathCombineW)
+    -append(426(PathCombineW), [CWE-785])
+
+    -sem(PathCommonPrefixA, 3p >= MAX_PATH && MAX_PATH != 0)
+    +esym(426, PathCommonPrefixA)
+    -append(426(PathCommonPrefixA), [CWE-785])
+
+    -sem(PathCommonPrefixW, 3p >= MAX_PATH && MAX_PATH != 0)
+    +esym(426, PathCommonPrefixW)
+    -append(426(PathCommonPrefixW), [CWE-785])
+
+    -sem(PathCreateFromUrlA, 2p >= MAX_PATH && MAX_PATH != 0)
+    +esym(426, PathCreateFromUrlA)
+    -append(426(PathCreateFromUrlA), [CWE-785])
+
+    -sem(PathCreateFromUrlW, 2p >= MAX_PATH && MAX_PATH != 0)
+    +esym(426, PathCreateFromUrlW)
+    -append(426(PathCreateFromUrlW), [CWE-785])
+
+    -sem(PathFindOnPathA, 1p >= MAX_PATH && MAX_PATH != 0)
+    +esym(426, PathFindOnPathA)
+    -append(426(PathFindOnPathA), [CWE-785])
+
+    -sem(PathFindOnPathW, 1p >= MAX_PATH && MAX_PATH != 0)
+    +esym(426, PathFindOnPathW)
+    -append(426(PathFindOnPathW), [CWE-785])
+
+    -sem(PathMakePrettyA, 1p >= MAX_PATH && MAX_PATH != 0)
+    +esym(426, PathMakePrettyA)
+    -append(426(PathMakePrettyA), [CWE-785])
+
+    -sem(PathMakePrettyW, 1p >= MAX_PATH && MAX_PATH != 0)
+    +esym(426, PathMakePrettyW)
+    -append(426(PathMakePrettyW), [CWE-785])
+
+    -sem(PathParseIconLocationA, 1p >= MAX_PATH && MAX_PATH != 0)
+    +esym(426, PathParseIconLocationA)
+    -append(426(PathParseIconLocationA), [CWE-785])
+
+    -sem(PathParseIconLocationW, 1p >= MAX_PATH && MAX_PATH != 0)
+    +esym(426, PathParseIconLocationW)
+    -append(426(PathParseIconLocationW), [CWE-785])
+
+    -sem(PathQuoteSpacesA, 1p >= MAX_PATH && MAX_PATH != 0)
+    +esym(426, PathQuoteSpacesA)
+    -append(426(PathQuoteSpacesA), [CWE-785])
+
+    -sem(PathQuoteSpacesW, 1p >= MAX_PATH && MAX_PATH != 0)
+    +esym(426, PathQuoteSpacesW)
+    -append(426(PathQuoteSpacesW), [CWE-785])
+
+    -sem(PathRelativePathToA, 1p >= MAX_PATH && MAX_PATH != 0)
+    +esym(426, PathRelativePathToA)
+    -append(426(PathRelativePathToA), [CWE-785])
+
+    -sem(PathRelativePathToW, 1p >= MAX_PATH && MAX_PATH != 0)
+    +esym(426, PathRelativePathToW)
+    -append(426(PathRelativePathToW), [CWE-785])
+
+    -sem(PathRenameExtensionA, 1p >= MAX_PATH && MAX_PATH != 0)
+    +esym(426, PathRenameExtensionA)
+    -append(426(PathRenameExtensionA), [CWE-785])
+
+    -sem(PathRenameExtensionW, 1p >= MAX_PATH && MAX_PATH != 0)
+    +esym(426, PathRenameExtensionW)
+    -append(426(PathRenameExtensionW), [CWE-785])
+
+    -sem(PathUnExpandEnvStringsA, 2p >= MAX_PATH && MAX_PATH != 0)
+    +esym(426, PathUnExpandEnvStringsA)
+    -append(426(PathUnExpandEnvStringsA), [CWE-785])
+
+    -sem(PathUnExpandEnvStringsW, 2p >= MAX_PATH && MAX_PATH != 0)
+    +esym(426, PathUnExpandEnvStringsW)
+    -append(426(PathUnExpandEnvStringsW), [CWE-785])
+
+    -sem(realpath, 2p >= PATH_MAX)
+    +esym(426, realpath)
+    -append(426(realpath), [CWE-785])
+
+/* CWE-786 */
+/* Access of Memory Location Before Start of Buffer */
+
+    +e413 /* likely use of null pointer */
+    +elib(413)
+    -append(413, [CWE-786])
+
+    +e415 /* likely out of bounds pointer access */
+    +elib(415)
+    -append(415, [CWE-786])
+
+    +e416 /* likely creating out-of-bounds pointer */
+    +elib(416)
+    -append(416, [CWE-786])
+
+    +e613 /* potential use of null pointer */
+    +elib(613)
+    -append(613, [CWE-786])
+
+    +e661 /* potential out of bounds pointer access */
+    +elib(661)
+    -append(661, [CWE-786])
+
+    +e662 /* possibly creating out-of-bounds pointer */
+    +elib(662)
+    -append(662, [CWE-786])
+
+    +e676 /* possibly indexing before the beginning of an allocation */
+    +elib(676)
+    -append(676, [CWE-786])
+
+/* CWE-787 */
+/* Out-of-bounds Write */
+
+    +e413 /* likely use of null pointer */
+    +elib(413)
+    -append(413, [CWE-787])
+
+    +e415 /* likely out of bounds pointer access */
+    +elib(415)
+    -append(415, [CWE-787])
+
+    +e416 /* likely creating out-of-bounds pointer */
+    +elib(416)
+    -append(416, [CWE-787])
+
+    +e613 /* potential use of null pointer */
+    +elib(613)
+    -append(613, [CWE-787])
+
+    +e661 /* potential out of bounds pointer access */
+    +elib(661)
+    -append(661, [CWE-787])
+
+    +e662 /* possibly creating out-of-bounds pointer */
+    +elib(662)
+    -append(662, [CWE-787])
+
+    +e676 /* possibly indexing before the beginning of an allocation */
+    +elib(676)
+    -append(676, [CWE-787])
+
+/* CWE-789 */
+/* Memory Allocation with Excessive Size Value */
+
+    +e433 /* allocated area not large enough for pointer */
+    +elib(433)
+    -append(433, [CWE-789])
+
+    +e826 /* suspicious pointer-to-pointer conversion (area too small) */
+    +elib(826)
+    -append(826, [CWE-789])
+
+/* CWE-798 */
+/* Use of Hard-coded Credentials */
+
+    // Reports when a literal is provided as an argument to a function parameter with the "noliteral"
+    // argument Semantic; several Windows API functions are marked as such and the -sem option can
+    // apply it to other functions as appropriate
+
+    -sem(LogonUserA, noliteral(3))
+    +esym(2460,LogonUserA)
+    -append(2460(LogonUserA), [CWE-798])
+
+    -sem(LogonUserExA, noliteral(3))
+    +esym(2460,LogonUserExA)
+    -append(2460(LogonUserExA), [CWE-798])
+
+    -sem(LogonUserW, noliteral(3))
+    +esym(2460,LogonUserW)
+    -append(2460(LogonUserW), [CWE-798])
+
+    -sem(LogonUserExW, noliteral(3))
+    +esym(2460,LogonUserExW)
+    -append(2460(LogonUserExW), [CWE-798])
+
+    -sem(CreateProcessWithLogonW, noliteral(3))
+    +esym(2460,CreateProcessWithLogonW)
+    -append(2460(CreateProcessWithLogonW), [CWE-798])
+
+/* CWE-805 */
+/* Buffer Access with Incorrect Length Value */
+
+    +e419 /* apparent data overrun */
+    +elib(419)
+    -append(419, [CWE-805])
+
+    +e420 /* apparent access beyond array */
+    +elib(420)
+    -append(420, [CWE-805])
+
+/* CWE-806 */
+/* Buffer Access Using Size of Source Buffer */
+    /* Not currently supported */
+
+/* CWE-825 */
+/* Expired Pointer Dereference */
+
+    +e449 /* memory was likely previously deallocated */
+    +elib(449)
+    -append(449, [CWE-825])
+
+    +e2434 /* memory was potentially deallocated */
+    +elib(2434)
+    -append(2434, [CWE-825])
+
+/* CWE-832 */
+/* Unlock of a Resource that is not Locked */
+
+    +e455 /* mutex/locker unlocked without being locked */
+    +elib(455)
+    -append(455, [CWE-832])
+
+    +e2493 /* locker is not locked */
+    +elib(2493)
+    -append(2493, [CWE-832])
+
+/* CWE-833 */
+/* Deadlock */
+
+    +e2410 /* re-entrant initializer for static local variable causes undefined behavior */
+    +elib(2410)
+    -append(2410, [CWE-833])
+
+    +e2457 /* non-recursive mutex locked recursively in function */
+    +elib(2457)
+    -append(2457, [CWE-833])
+
+    +e2462 /* mutexes have lock order mismatch */
+    +elib(2462)
+    -append(2462, [CWE-833])
+
+    +e2488 /* mutex passed more than once */
+    +elib(2488)
+    -append(2488, [CWE-833])
+
+    +e2489 /* exclusively locked mutex is being shared locked/unlocked */
+    +elib(2489)
+    -append(2489, [CWE-833])
+
+/* CWE-839 */
+/* Numeric Range Comparison Without Minimum Check */
+
+    +e676 /* possibly indexing before the beginning of an allocation */
+    +elib(676)
+    -append(676, [CWE-839])
+
+/* CWE-843 */
+/* Access of Resource Using Incompatible Type ('Type Confusion') */
+
+    +e559 /* format specifies type which is inconsistent with argument */
+    +elib(559)
+    -append(559, [CWE-843])
+
+    +e705 /* format specifies type which is nominally inconsistent with argument */
+    +elib(705)
+    -append(705, [CWE-843])
+
+    +e706 /* format specifies type whose pointee type is nominally inconsistent with argument */
+    +elib(706)
+    -append(706, [CWE-843])
+
+    +e857 /* incompatible source/destination types for memcpy/memmove/memcmp */
+    +elib(857)
+    -append(857, [CWE-843])
+
+    +e3403 /* use of std::move on value of forwarding reference */
+    +elib(3403)
+    -append(3403, [CWE-843])
+
+/* CWE-862 */
+/* Missing Authorization */
+    /* Not statically checkable */
+
+/* CWE-863 */
+/* Incorrect Authorization */
+    /* Not statically checkable */
+
+/* CWE-908 */
+/* Use of Uninitialized Resource */
+
+    +e530 /* likely uninitialized */
+    +elib(530)
+    -append(530, [CWE-908])
+
+    +e603 /* possibly passing pointer to const uninitialized memory */
+    +elib(603)
+    -append(603, [CWE-908])
+
+    +e644 /* potentially uninitialized */
+    +elib(644)
+    -append(644, [CWE-908])
+
+    +e901 /* variable not initialized by definition */
+    +elib(901)
+    -append(901, [CWE-908])
+
+/* CWE-910 */
+/* Use of Expired File Descriptor */
+
+    +e2471 /* operation on closed stream */
+    +elib(2471)
+    -append(2471, [CWE-910])
+
+    +e2476 /* attempt to perform read operation on stream not opened for reading */
+    +elib(2476)
+    -append(2476, [CWE-910])
+
+    +e2477 /* attempt to perform write operation on stream not opened for writing */
+    +elib(2477)
+    -append(2477, [CWE-910])
+
+/* CWE-911 */
+/* Improper Update of Reference Count */
+    /* Not currently supported */
+
+/* CWE-918 */
+/* Server-Side Request Forgery (SSRF) */
+    /* Not currently supported */
+
+/* CWE-1325 */
+/* Improperly Controlled Sequential Memory Allocation */
+    /* Not currently supported */
+
+/* CWE-1335 */
+/* Incorrect Bitwise Shift of Integer */
+
+    +e504 /* unusual shift operation */
+    +elib(504)
+    -append(504, [CWE-1335])
+
+    +e572 /* excessive right shift */
+    +elib(572)
+    -append(572, [CWE-1335])
+
+    +e598 /* excessive left shift */
+    +elib(598)
+    -append(598, [CWE-1335])
+
+/* CWE-1341 */
+/* Multiple Releases of Same Resource or Handle */
+
+    +e2471 /* operation on closed stream */
+    +elib(2471)
+    -append(2471, [CWE-1341])
+
+// ---------------------------------------------------------------------------
+
+// Ensure that the deprecate message (586) will be emitted
++e586   /* use of deprecated entity */
++elib(586)

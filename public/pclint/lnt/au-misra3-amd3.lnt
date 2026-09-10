@@ -1,0 +1,214 @@
+// ---------------------------------------------------------------------------
+// Copyright Vector Informatik GmbH 2023. All rights reserved.
+//
+// This file is provided by Vector Informatik GmbH (https://www.vector.com) for
+// use with PC-lint Plus. Redistribution is permitted but any redistribution
+// must preserve this notice and, if the redistributed file has been modified,
+// provide notice that the file has been modified from the original.
+// ---------------------------------------------------------------------------
+
+// au-misra3-amd3.lnt -- Author options - MISRA C 2012
+
+/*
+    This options file can be used to explicitly activate those
+    checks advocated by the Motor Industry Software Reliability
+    Association.
+
+    You can use this file directly when linting your programs as in:
+
+        lint au-misra3-amd3.lnt hello.c
+
+    Note that this file does not enable checking for the base MISRA C 2012
+    guidelines.  Typical use will include au-misra3.lnt, e.g.:
+
+        lint au-misra3.lnt au-misra3-amd3.lnt hello.c
+
+    To include checking of rules introduced in both AMD-1 and AMD-2, use:
+
+        lint au-misra3.lnt au-misra3-amd1.lnt au-misra3-amd2.lnt au-misra3-amd3.lnt hello.c
+
+    Vector Informatik GmbH relies on the document, "MISRA C:2012 Amendment 3
+    Updates for ISO/IEC 9899:2011/2018 Phase 2 - New C11/C18 features"
+    copyright 2023 by HORIBA MIRA Ltd, as the primary source for this
+    file. Vector Informatik GmbH makes no warranty as to the completeness
+    or applicability of this options file and reserves the right to
+    amend or alter the official contents of such at any time.
+
+    "MISRA" is a registered trademark of HORIBA MIRA Ltd, held on
+    behalf of the MISRA Consortium.
+
+ */
+
+/* version check */ -cond('%PCLP_NO_LNT_VERSION_CHECK%' != '1' && (%LINT_MAJOR_VERSION% != 2 || %LINT_MINOR_VERSION% != 2),
+    +fatal_error(This configuration file is intended for PC-lint Plus 2.2.
+                 You are attempting to use it with PC-lint Plus %LINT_MAJOR_VERSION%.%LINT_MINOR_VERSION%.
+                 It is recommended that you use configuration files intended
+                 for PC-lint Plus %LINT_MAJOR_VERSION%.%LINT_MINOR_VERSION%.)
+)
+
+
+/**** Dir 4.5 (Req) ************/
+
+    /* Not currently supported */
+
+/**** Rule 1.5 (Req) ************/
+
+    /* Not currently supported */
+
+/**** Rule 6.3 (Req) ************/
+
+    +e9202       /* bitfield declared as member of union */
+    +elib(9202)
+    -append(9202,[MISRA 2012 Rule 6.3, required])
+
+/**** Rule 7.5 (Mand) ************/
+
+    +e2505       /* argument to integer constant macro should be an unsuffixed integer literal */
+    +elib(2505)
+    -append(2505,[MISRA 2012 Rule 7.5, mandatory])
+
+/**** Rule 8.15 (Req) ************/
+
+    +e2502       /* differing alignment requirements seen */
+    +elib(2502)
+    -append(2502,[MISRA 2012 Rule 8.15, required])
+
+    +e9503       /* equivalent alignment derived differently */
+    +elib(9503)
+    -append(9503,[MISRA 2012 Rule 8.15, required])
+
+/**** Rule 8.16 (Adv) ************/
+
+    +e9203       /* declaration contains an alignment attribute whose expression evaluates to zero */
+    +elib(9203)
+    -append(9203,[MISRA 2012 Rule 8.16, advisory])
+
+/**** Rule 8.17 (Adv) ************/
+
+    +e9205       /* declaration contains multiple alignment attributes */
+    +elib(9205)
+    -append(9205,[MISRA 2012 Rule 8.17, advisory])
+
+/**** Rule 17.9 (Mand) ************/
+
+    /* While MISRA has declared this rule to be "undecidable", the
+     * following options are provided to assist:
+     */
+
+    +e2436       /* function declared 'noreturn' should not return */
+    +elib(2436)
+    -append(2436,[MISRA 2012 Rule 17.9, mandatory])
+
+/**** Rule 17.10 (Req) ************/
+
+    +e841        /* function is declared as noreturn but returns a value */
+    +elib(841)
+    -append(841,[MISRA 2012 Rule 17.10, required])
+
+/**** Rule 17.11 (Adv) ************/
+
+    /* While MISRA has declared this rule to be "undecidable", the
+     * following options are provided to assist:
+     */
+
+    +e2707       /* function could be declared as 'noreturn' */
+    +elib(2707)
+    -append(2707,[MISRA 2012 Rule 17.11, advisory])
+
+/**** Rule 17.12 (Adv) ************/
+
+    +e9147       /* implicit function-to-pointer decay */
+    +elib(9147)
+    -append(9147,[MISRA 2012 Rule 17.12, advisory])
+
+/**** Rule 17.13 (Req) ************/
+
+    +e2417        /* const/volatile on function type */
+    +elib(2417)
+    -append(2417,[MISRA 2012 Rule 17.13, required])
+
+    +e4175        /* _Atomic cannot be applied to function type */
+    +elib(4175)
+    -append(4175,[MISRA 2012 Rule 17.13, required])
+
+    +e5805        /* restrict requires a pointer or reference */
+    +elib(5805)
+    -append(5805,[MISRA 2012 Rule 17.13, required])
+
+/**** Rule 18.9 (Req) ************/
+
+    /* Not currently supported */
+
+/**** Rule 21.22 (Mand) ************/
+
+    +e9504 /* argument supplied to type-generic macro has an inappropriate essential type */
+    +elib(9504)
+    -append(9504,[MISRA 2012 Rule 21.22, mandatory])
+
+/**** Rule 21.23 (Req) ************/
+
+    +e9218 /* arguments to type-generic macro resulting in call to function have different types */
+    +elib(9218)
+    -append(9218,[MISRA 2012 Rule 21.23, required])
+
+/**** Rule 21.24 (Req) ************/
+
+    +e586        /* to activate the deprecation message */
+    +elib(586)
+
+    -deprecate(function,rand,[MISRA 2012 Rule 21.24, required])
+    -deprecate(function,srand,[MISRA 2012 Rule 21.24, required])
+    -deprecate(macro,rand,[MISRA 2012 Rule 21.24, required])
+    -deprecate(macro,srand,[MISRA 2012 Rule 21.24, required])
+
+/**** Rule 23.1 (Adv) ************/
+
+    +e9211       /* generic selection is not expanded from a function-like macro */
+    +elib(9211)
+    -append(9211,[MISRA 2012 Rule 23.1, advisory])
+
+/**** Rule 23.2 (Req) ************/
+
+    +e2419       /* controlling expression contains a side effect */
+    +elib(2419)
+    -append(2419,[MISRA 2012 Rule 23.2, required])
+
+    +e9213       /* controlling expression contains a call to function which will not be called */
+    +elib(9213)
+    -append(9213,[MISRA 2012 Rule 23.2, required])
+
+/**** Rule 23.3 (Adv) ************/
+
+    +e9208 /* generic selection does not contain any non-default associations */
+    +elib(9208)
+    -append(9208,[MISRA 2012 Rule 23.3, advisory])
+
+/**** Rule 23.4 (Req) ************/
+
+    +e2416 /* generic selection association type that will never be eligible for selection */
+    +elib(2416)
+    -append(2416,[MISRA 2012 Rule 23.4, required])
+
+/**** Rule 23.5 (Adv) ************/
+
+    +e9214 /* generic selection selects default because pointer type is not implicitly converted */
+    +elib(9214)
+    -append(9214,[MISRA 2012 Rule 23.5, advisory])
+
+/**** Rule 23.6 (Req) ************/
+
+    +e9216 /* essential type of the controlling expression does not match its standard type */
+    +elib(9216)
+    -append(9216,[MISRA 2012 Rule 23.6, required])
+
+/**** Rule 23.7 (Adv) ************/
+
+    +e9219 /* parameter of generic selection macro is not evaluated exactly once */
+    +elib(9219)
+    -append(9219,[MISRA 2012 Rule 23.7, advisory])
+
+/**** Rule 23.8 (Req) ************/
+
+    +e9210       /* default association does not appear as either the first or the last association of generic selection */
+    +elib(9210)
+    -append(9210,[MISRA 2012 Rule 23.8, required])

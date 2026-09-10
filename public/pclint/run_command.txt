@@ -1,0 +1,12 @@
+Build-step for cppcheck
+-> "C:\Program Files\Cppcheck\cppcheck.exe" --enable=all --std=c99 --xml --xml-version=2 src/ --output-file=cppcheck-result.xml
+
+
+.\pclp64.exe config\co-vs2019.lnt lnt\au-misra3.lnt config\imposter.c "+xml" "+ffn" -width(132) -outfile=lint_result.xml
+
+// Better version
+.\pclp64.exe lnt\au-misra3.lnt lnt\env-xml.lnt config\imposter.c "-os(lint_result.xml)"
+
+
+// Final version
+.\pclp64.exe config\co-vs2019.lnt lnt\au-misra3.lnt lnt/env-xml.lnt -wlib=4 -wlib=1 config\imposter.c > misra_report.xml

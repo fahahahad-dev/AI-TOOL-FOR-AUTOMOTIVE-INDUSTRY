@@ -1,0 +1,190 @@
+// ---------------------------------------------------------------------------
+// Copyright Vector Informatik GmbH 2023. All rights reserved.
+//
+// This file is provided by Vector Informatik GmbH (https://www.vector.com) for
+// use with PC-lint Plus. Redistribution is permitted but any redistribution
+// must preserve this notice and, if the redistributed file has been modified,
+// provide notice that the file has been modified from the original.
+// ---------------------------------------------------------------------------
+
+// au-misra3-amd4.lnt -- Author options - MISRA C 2012
+
+/*
+    This options file can be used to explicitly activate those
+    checks advocated by the Motor Industry Software Reliability
+    Association.
+
+    You can use this file directly when linting your programs as in:
+
+        lint au-misra3-amd4.lnt hello.c
+
+    Note that this file does not enable checking for the base MISRA C 2012
+    guidelines.  Typical use will include au-misra3.lnt, e.g.:
+
+        lint au-misra3.lnt au-misra3-amd4.lnt hello.c
+
+    To include checking of rules introduced in AMD-1, AMD-2, and AMD-3, use:
+
+        lint au-misra3.lnt au-misra3-amd1.lnt au-misra3-amd2.lnt au-misra3-amd3.lnt au-misra3-amd4.lnt hello.c
+
+    Vector Informatik GmbH relies on the document, "MISRA C:2012 Amendment 4
+    Updates for ISO/IEC 9899:2011/2018 Phase 3 — Multi-threading and atomics"
+    copyright 2023 by HORIBA MIRA Ltd, as the primary source for this
+    file. Vector Informatik GmbH makes no warranty as to the completeness
+    or applicability of this options file and reserves the right to
+    amend or alter the official contents of such at any time.
+
+    "MISRA" is a registered trademark of HORIBA MIRA Ltd, held on
+    behalf of the MISRA Consortium.
+
+ */
+
+/* version check */ -cond('%PCLP_NO_LNT_VERSION_CHECK%' != '1' && (%LINT_MAJOR_VERSION% != 2 || %LINT_MINOR_VERSION% != 2),
+    +fatal_error(This configuration file is intended for PC-lint Plus 2.2.
+                 You are attempting to use it with PC-lint Plus %LINT_MAJOR_VERSION%.%LINT_MINOR_VERSION%.
+                 It is recommended that you use configuration files intended
+                 for PC-lint Plus %LINT_MAJOR_VERSION%.%LINT_MINOR_VERSION%.)
+)
+
+
+/**** Dir 5.1 (Req) ************/
+
+    +e457     /* a variable was accessed by two threads in an unsafe way outside of the protection of a mutex */
+    +elib(457)
+    -append(457,[MISRA 2012 Directive 5.1, required])
+
+/**** Dir 5.2 (Req) ************/
+
+    /* Not currently supported */
+
+/**** Dir 5.3 (Req) ************/
+
+    /* Not currently supported */
+
+/**** Rule 2.8 (Adv) ************/
+
+    +e528     /* static symbol 'symbol' not referenced */
+    +elib(528)
+    -append(528,[MISRA 2012 Rule 2.8, advisory])
+
+    +e529     /* local variable 'symbol' declared in 'symbol' not subsequently referenced */
+    +elib(529)
+    -append(529,[MISRA 2012 Rule 2.8, advisory])
+
+    +e714     /* external symbol 'symbol' was defined but not referenced */
+    +elib(714)
+    -append(714,[MISRA 2012 Rule 2.8, advisory])
+
+    +e754     /* local 'string' member 'symbol' not referenced */
+    +elib(754)
+    -append(754,[MISRA 2012 Rule 2.8, advisory])
+
+    +e768     /* global structure member 'symbol' not referenced */
+    +elib(768)
+    -append(768,[MISRA 2012 Rule 2.8, advisory])
+
+
+/**** Rule 7.6 (Req) ************/
+
+    /* Not currently supported */
+
+/**** Rule 9.6 (Req) ************/
+
+    +e2903 /* initializer list has a chained designator and at least one other field without a designator */
+    +elib(2903)
+    -append(2903, [MISRA 2012 Rule 9.6, required])
+
+    +e2904 /* a sub-object was initialized using a braced, positional init list and at least one chained designator */
+    +elib(2904)
+    -append(2904, [MISRA 2012 Rule 9.6, required])
+
+/**** Rule 9.7 (Mand) ************/
+
+    /* Not currently supported */
+
+/**** Rule 11.10 (Req) ************/
+
+    +e4175     /* _Atomic cannot be applied to incomplete type 'void'  */
+    +elib(4175)
+    -append(4175,[MISRA 2012 Rule 11.10, required])
+
+/**** Rule 12.6 (Req) ************/
+
+    +e181     /* direct access of atomic record type */
+    +elib(181)
+    -append(181,[MISRA 2012 Rule 12.6, required])
+
+/**** Rule 18.10 (Mand) ************/
+
+    +e2708     /* pointer to variably-modified array type */
+    +elib(2708)
+    -append(2708,[MISRA 2012 Rule 18.10, mandatory])
+
+/**** Rule 21.25 (Req) ************/
+
+    /* Not currently supported */
+
+/**** Rule 21.26 (Req) ************/
+
+    /* Not currently supported */
+
+/**** Rule 22.11 (Req) ************/
+
+    /* Not currently supported */
+
+/**** Rule 22.12 (Mand) ************/
+
+    /* Not currently supported */
+
+/**** Rule 22.13 (Req) ************/
+
+    +e2751     /* issued for uses of local mutexes, PC-lint Plus currently expects mutexes to have static storage duration */
+    +elib(2751)
+    -append(2751,[MISRA 2012 Rule 22.13, required])
+
+
+/**** Rule 22.14 (Mand) ************/
+
+    /* Not currently supported */
+
+/**** Rule 22.15 (Req) ************/
+
+    /* Not currently supported */
+
+/**** Rule 22.16 (Req) ************/
+
+    /* While MISRA has declared this rule to be "undecidable", the
+     * following options are provided to assist:
+     */
+    
+    +e454     /* mutex 'symbol' locked without being unlocked */
+    +elib(454)
+    -append(454,[MISRA 2012 Rule 22.16, required])
+
+/**** Rule 22.17 (Req) ************/
+
+    /* While MISRA has declared this rule to be "undecidable", the
+     * following options are provided to assist:
+     */
+    
+    +e455     /* mutex 'symbol' unlocked without being locked */
+    +elib(455)
+    -append(455,[MISRA 2012 Rule 22.17, required])
+
+/**** Rule 22.18 (Req) ************/
+
+    /* While MISRA has declared this rule to be "undecidable", the
+     * following options are provided to assist:
+     */
+    
+    +e2531     /* The specified mutex was initialized as a non-recursive mutex but was locked recursively */
+    +elib(2531)
+    -append(2531,[MISRA 2012 Rule 22.18, required])
+
+/**** Rule 22.19 (Req) ************/
+
+    /* Not currently supported */
+
+/**** Rule 22.20 (Mand) ************/
+
+    /* Not currently supported */

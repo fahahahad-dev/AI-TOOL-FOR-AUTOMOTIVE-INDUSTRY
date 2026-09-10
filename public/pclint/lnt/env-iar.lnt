@@ -1,0 +1,7 @@
+// PC-lint Plus Environment Configuration for IAR Workbench
+// Note: Modification of the -format string option below may break message
+//       output in IAR Workbench.
+
+-hsb^3		
+-width(0,8)	
+-format{<SRCREF line=%l file="%f">%f (%l, %C)</SRCREF > %t %n: %m}

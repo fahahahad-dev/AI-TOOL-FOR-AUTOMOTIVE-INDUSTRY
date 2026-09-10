@@ -1,0 +1,135 @@
+/* Compiler configuration for 'vs2019' version '19.29.30159'.
+   Using the options:    
+   C specific options:    
+   C++ specific options:  
+   Generated on 2025-07-31 at 14:06:40 with pclp_config version '2.2.0' and database version '2.2.0'.
+ */
+
+
+// Predefined Compiler Macros and Declarations
++libh(co-vs2019.h)
+-header(co-vs2019.h)
+
+
+// Include Options:
+// Unable to extract include paths.
+// Manually added include paths
+-i"C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include"
+-i"C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt"
+-i"C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared"
+-i"C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um"
+
+
+
+// Base Options:
+
+//     Vs_2013_And_Later_Extensions
++rw(char16_t)
++d_HAS_CHAR16_T_LANGUAGE_SUPPORT=1
++rw(char32_t)
++d"_EMIT_VECTORCALL(...)="
+
+//     Vs_2019_And_Later_Extensions
++rw(char8_t)
+
+//     Vs_2019_Extensions
+-std=c++20  // Enable C++20 support
+-emacro(4392,__MACHINE)
+
+//     Vs_Common_Extensions
+-$  // Enable $ as an identifier character
++fan  // Enable support for anonymous unions
++fdi  // Search including directory
++fsi  // Search include stack for headers
++frc  // Enable MSVC behavior with regards to handling of commas in macro expansions involving __VA_ARGS__
++fbl  // Search dependent base classes for unqualified lookup in a class template
++fei  // Enumerations are always int
++fur  // Allow unions to contain reference members
++frd  // Allow redefinition of default parameters for member functions of a class template
++fum  // A user-declared move operation will only delete the corresponding copy operation
++ffv  // Implicit conversion from function pointers to void pointers
++flp  // Support the C++98 definition of null pointer constant
++fnf  // Fall back on operator new when operator new[] cannot be found
++fes  // Search enclosing scopes for friend tag declarations
++ffw  // A friend declaration may act as a forward declaration
++fma  // Microsoft Asm blocks
++fdt  // Enable delayed template parsing
++fms  // Other Microsoft extensions
+-fon  // Disable alternative C++ tokens for logical operators
++fwc  // internal wchar_t
++fwu  // wchar_t is unsigned
++ppw(using)  // Enable support for the #using directive
++ppw(import)  // Enable support for the #import directive
++rw(___identifier)
++rw(__alignof)
++rw(__asm)
++rw(__builtin_alignof)
++rw(__cdecl)
++rw(__declspec)
++rw(__fastcall)
++rw(__finally)
++rw(__forceinline)
++rw(__gc)
++rw(__if_exists)
++rw(__if_not_exists)
++rw(__inline)
++rw(__int16)
++rw(__int32)
++rw(__int64)
++rw(__int8)
++rw(__interface)
++rw(__is_destructible)
++rw(__is_interface_class)
++rw(__is_nothrow_destructible)
++rw(__is_sealed)
++rw(__leave)
++rw(__multiple_inheritance)
++rw(__nogc)
++rw(__pin)
++rw(__ptr64)
++rw(__ptr32)
++rw(__single_inheritance)
++rw(__sptr)
++rw(__stdcall)
++rw(__super)
++rw(__thiscall)
++rw(__try)
++rw(__try_cast)
++rw(__uptr)
++rw(__unaligned)
++rw(__uuidof)
++rw(__value)
++rw(__vectorcall)
++rw(__virtual_inheritance)
++rw(__w64)
++rw(__wchar_t)
++rw(_asm)
++rw(_alignof)
++rw(_cdecl)
++rw(_declspec)
++rw(_fastcall)
++rw(_inline)
++rw(_int16)
++rw(_int32)
++rw(_int64)
++rw(_int8)
++rw(_stdcall)
++rw(_thiscall)
++rw(_uuidof)
+++doffsetof(s,m)=__builtin_offsetof(s,m)
+++dassert(x)=__lint_assert(!!(x))
+
+//     Vs_Common_Suppressions
+-emacro(505 792 1773,va_start)
+-esym(4242,std::_Const_cast)
+-estring(9022,_identifier)
+-estring(9051 9052,_inline,_declspec,_stdcall)
+-emacro(413, offsetof)
+-e4374  // Visual Studio allows certain calling convention differences in overridden functions
+
+
+// Size Options:
+-si4 -ss2 -sl4 -sll8 -sf4 -sd8 -sld8 -sp4 -sw2
+
+
+// Transformed Compiler Options:

@@ -1,0 +1,60 @@
+C:\Users\User\Desktop\FYP_All\Web\nextjs\public\pclint\config\co-vs2019.lnt  17  
+    warning 686: option '-i"C:\Program Files (x86)\Microsoft Visual 
+    Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include"' is suspicious: 
+    path is not accessible
+-i"C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include"
+^
+C:\Users\User\Desktop\FYP_All\Web\nextjs\public\pclint\config\co-vs2019.lnt  18  
+    warning 686: option '-i"C:\Program Files (x86)\Windows 
+    Kits\10\Include\10.0.19041.0\ucrt"' is suspicious: path is not accessible
+-i"C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt"
+^
+C:\Users\User\Desktop\FYP_All\Web\nextjs\public\pclint\config\co-vs2019.lnt  19  
+    warning 686: option '-i"C:\Program Files (x86)\Windows 
+    Kits\10\Include\10.0.19041.0\shared"' is suspicious: path is not accessible
+-i"C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared"
+^
+C:\Users\User\Desktop\FYP_All\Web\nextjs\public\pclint\config\co-vs2019.lnt  20  
+    warning 686: option '-i"C:\Program Files (x86)\Windows 
+    Kits\10\Include\10.0.19041.0\um"' is suspicious: path is not accessible
+-i"C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um"
+^
+<?xml version="1.0" ?>
+<doc>
+ <message><file>C:\Users\User\Desktop\FYP_All\Web\nextjs\public\temp_linter_files\example.c</file> <line>1</line> <type>error</type> <code>5915</code> <desc>unknown type name &apos;uint8_t&apos;</desc></message>
+
+ <message><file>C:\Users\User\Desktop\FYP_All\Web\nextjs\public\temp_linter_files\example.c</file> <line>1</line> <type>error</type> <code>5915</code> <desc>unknown type name &apos;uint16_t&apos;</desc></message>
+
+ <message><file>C:\Users\User\Desktop\FYP_All\Web\nextjs\public\temp_linter_files\example.c</file> <line>3</line> <type>error</type> <code>40</code> <desc>undeclared identifier &apos;uint8_t&apos; [MISRA 2012 Rule 1.3, required]</desc></message>
+
+ <message><file>C:\Users\User\Desktop\FYP_All\Web\nextjs\public\temp_linter_files\example.c</file> <line>4</line> <type>error</type> <code>40</code> <desc>undeclared identifier &apos;value&apos; [MISRA 2012 Rule 1.3, required]</desc></message>
+
+ <message><file>C:\Users\User\Desktop\FYP_All\Web\nextjs\public\temp_linter_files\example.c</file> <line>5</line> <type>error</type> <code>40</code> <desc>undeclared identifier &apos;value&apos; [MISRA 2012 Rule 1.3, required]</desc></message>
+
+ <message><file>C:\Users\User\Desktop\FYP_All\Web\nextjs\public\temp_linter_files\example.c</file> <line>7</line> <type>error</type> <code>40</code> <desc>undeclared identifier &apos;value&apos; [MISRA 2012 Rule 1.3, required]</desc></message>
+
+ <message><file>C:\Users\User\Desktop\FYP_All\Web\nextjs\public\temp_linter_files\example.c</file> <line>9</line> <type>error</type> <code>40</code> <desc>undeclared identifier &apos;value&apos; [MISRA 2012 Rule 1.3, required]</desc></message>
+
+ <message><file>C:\Users\User\Desktop\FYP_All\Web\nextjs\public\temp_linter_files\example.c</file> <line>12</line> <type>error</type> <code>5915</code> <desc>unknown type name &apos;uint8_t&apos;</desc></message>
+
+ <message><file>C:\Users\User\Desktop\FYP_All\Web\nextjs\public\temp_linter_files\example.c</file> <line>14</line> <type>error</type> <code>40</code> <desc>undeclared identifier &apos;uint8_t&apos; [MISRA 2012 Rule 1.3, required]</desc></message>
+
+ <message><file>C:\Users\User\Desktop\FYP_All\Web\nextjs\public\temp_linter_files\example.c</file> <line>14</line> <type>error</type> <code>40</code> <desc>undeclared identifier &apos;actuatorPtr&apos; [MISRA 2012 Rule 1.3, required]</desc></message>
+
+ <message><file>C:\Users\User\Desktop\FYP_All\Web\nextjs\public\temp_linter_files\example.c</file> <line>15</line> <type>error</type> <code>40</code> <desc>undeclared identifier &apos;actuatorPtr&apos; [MISRA 2012 Rule 1.3, required]</desc></message>
+
+ <message><file>C:\Users\User\Desktop\FYP_All\Web\nextjs\public\temp_linter_files\example.c</file> <line>15</line> <type>error</type> <code>24</code> <desc>expected an expression</desc></message>
+
+ <message><file>C:\Users\User\Desktop\FYP_All\Web\nextjs\public\temp_linter_files\example.c</file> <line>15</line> <type>error</type> <code>40</code> <desc>undeclared identifier &apos;uint8_t&apos; [MISRA 2012 Rule 1.3, required]</desc></message>
+
+ <message><file>C:\Users\User\Desktop\FYP_All\Web\nextjs\public\temp_linter_files\example.c</file> <line>16</line> <type>error</type> <code>40</code> <desc>undeclared identifier &apos;actuatorPtr&apos; [MISRA 2012 Rule 1.3, required]</desc></message>
+
+ <message><file>C:\Users\User\Desktop\FYP_All\Web\nextjs\public\temp_linter_files\example.c</file> <line>19</line> <type>error</type> <code>5915</code> <desc>unknown type name &apos;int16_t&apos;</desc></message>
+
+ <message><file>C:\Users\User\Desktop\FYP_All\Web\nextjs\public\temp_linter_files\example.c</file> <line>19</line> <type>error</type> <code>5915</code> <desc>unknown type name &apos;int16_t&apos;</desc></message>
+
+ <message><file>C:\Users\User\Desktop\FYP_All\Web\nextjs\public\temp_linter_files\example.c</file> <line>21</line> <type>note</type> <code>970</code> <desc>use of modifier or type &apos;int&apos; outside of a typedef [MISRA 2012 Directive 4.6, advisory]</desc></message>
+
+ <message><file>C:\Users\User\Desktop\FYP_All\Web\nextjs\public\temp_linter_files\example.c</file> <line>24</line> <type>info</type> <code>783</code> <desc>line does not end with a newline</desc></message>
+
+</doc>

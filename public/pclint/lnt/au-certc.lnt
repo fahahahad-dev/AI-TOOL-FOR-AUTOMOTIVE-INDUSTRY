@@ -1,0 +1,3474 @@
+// ---------------------------------------------------------------------------
+// Copyright Vector Informatik GmbH 2020. All rights reserved.
+//
+// This file is provided by Vector Informatik GmbH (https://www.vector.com) for
+// use with PC-lint Plus. Redistribution is permitted but any redistribution
+// must preserve this notice and, if the redistributed file has been modified,
+// provide notice that the file has been modified from the original.
+// ---------------------------------------------------------------------------
+// Comments containing CERT (R) C guideline text incorporate portions of
+// the "SEI CERT C Coding Standard Wiki"
+// (https://wiki.sei.cmu.edu/confluence/display/c/SEI+CERT+C+Coding+Standard),
+// Copyright (C) 1995-2016 Carnegie Mellon University, with special permission
+// from its Software Engineering Institute.
+//
+// ANY MATERIAL OF CARNEGIE MELLON UNIVERSITY AND/OR ITS SOFTWARE ENGINEERING
+// INSTITUTE CONTAINED HEREIN IS FURNISHED ON AN "AS-IS" BASIS. CARNEGIE
+// MELLON UNIVERSITY MAKES NO WARRANTIES OF ANY KIND, EITHER EXPRESSED OR
+// IMPLIED, AS TO ANY MATTER INCLUDING, BUT NOT LIMITED TO, WARRANTY OF
+// FITNESS FOR PURPOSE OR MERCHANTABILITY, EXCLUSIVITY, OR RESULTS OBTAINED
+// FROM USE OF THE MATERIAL. CARNEGIE MELLON UNIVERSITY DOES NOT MAKE ANY
+// WARRANTY OF ANY KIND WITH RESPECT TO FREEDOM FROM PATENT, TRADEMARK, OR
+// COPYRIGHT INFRINGEMENT.
+//
+// This configuration file has not been reviewed nor is it endorsed by
+// Carnegie Mellon University or its Software Engineering Institute.
+//
+// CERT is a registered trademark of Carnegie Mellon University.
+//
+// (R) CERT is a registered trademark of Carnegie Mellon University.
+// ---------------------------------------------------------------------------
+
+/* version check */ -cond('%PCLP_NO_LNT_VERSION_CHECK%' != '1' && (%LINT_MAJOR_VERSION% != 2 || %LINT_MINOR_VERSION% != 2),
+    +fatal_error(This configuration file is intended for PC-lint Plus 2.2.
+                 You are attempting to use it with PC-lint Plus %LINT_MAJOR_VERSION%.%LINT_MINOR_VERSION%.
+                 It is recommended that you use configuration files intended
+                 for PC-lint Plus %LINT_MAJOR_VERSION%.%LINT_MINOR_VERSION%.)
+)
+
+
+/* PRE00-C. */
+/* Prefer inline or static functions to function-like macros */
+
+    +e9026  /* function-like macro defined */
+    +elib(9026)
+    -append(9026,[CERT C Recommendation PRE00-C])
+
+/* PRE01-C. */
+/* Use parentheses within macros around parameter names */
+
+    +e9022  /* unparenthesized macro parameter in definition of macro */
+    -estring(9022,"surrounded by commas")
+    -estring(9022,"adjacent to string literal")
+    +elib(9022)
+    -append(9022,[CERT C Recommendation PRE01-C])
+
+/* PRE02-C. */
+/* Macro replacement lists should be parenthesized */
+
+    +e773   /* expression-like macro not parenthesized */
+    +elib(773)
+    -append(773,[CERT C Recommendation PRE02-C])
+
+    +e973   /* unary operator in macro not parenthesized */
+    +elib(973)
+    -append(973,[CERT C Recommendation PRE02-C])
+
+/* PRE03-C. */
+/* Prefer typedefs to defines for encoding non-pointer types */
+
+    /* Not currently supported */
+
+/* PRE04-C. */
+/* Do not reuse a standard header file name */
+
+    /* Not currently supported */
+
+/* PRE05-C. */
+/* Understand macro replacement when concatenating tokens or performing stringification */
+
+    +e9024  /* pasting/stringize operator used in definition of macro */
+    +elib(9024)
+    -append(9024,[CERT C Recommendation PRE05-C])
+
+/* PRE06-C. */
+/* Enclose header files in an include guard */
+
+    +e967   /* header file does not have a standard include guard */
+    +elib(967)
+    -append(967,[CERT C Recommendation PRE06-C])
+
+/* PRE07-C. */
+/* Avoid using repeated question marks */
+
+    +e584   /* trigraph sequence detected */
+    +elib(584)
+    -append(584,[CERT C Recommendation PRE07-C])
+
+    +e854   /* trigraph sequence converted */
+    +elib(854)
+    -append(854,[CERT C Recommendation PRE07-C])
+
+    +e9060  /* trigraph in comment */
+    +elib(9060)
+    -append(9060,[CERT C Recommendation PRE07-C])
+
+/* PRE08-C. */
+/* Guarantee that header file names are unique */
+
+    /* Not currently supported */
+
+/* PRE09-C. */
+/* Do not replace secure functions with deprecated or obsolescent functions */
+
+    /* Not currently supported */
+
+/* PRE10-C. */
+/* Wrap multistatement macros in a do-while loop */
+
+    +e9502  /* multi-statement macro is not enclosed in monocarpic do-while loop */
+    +elib(9502)
+    -append(9502,[CERT C Recommendation PRE10-C])
+
+/* PRE11-C. */
+/* Do not conclude macro definitions with a semicolon */
+
+    +e823   /* definition of macro ends in semi-colon */
+    +elib(823)
+    -append(823,[CERT C Recommendation PRE11-C])
+
+/* PRE12-C. */
+/* Do not define unsafe macros */
+
+    /* Not currently supported */
+
+/* PRE13-C. */
+/* Use the Standard predefined macros to test for versions and features. */
+
+    /* Not currently supported */
+
+/* PRE30-C. */
+/* Do not create a universal character name through concatenation */
+
+    /* Not currently supported */
+
+/* PRE31-C. */
+/* Avoid side effects in arguments to unsafe macros */
+
+    +e666   /* expression with side effects passed to repeated parameter of macro */
+    +elib(666)
+    -append(666,[CERT C Rule PRE31-C])
+
+    +e2666  /* expression with side effects passed to unexpanded parameter of macro */
+    +elib(2666)
+    -append(2666,[CERT C Rule PRE31-C])
+
+/* PRE32-C. */
+/* Do not use preprocessor directives in invocations of function-like macros */
+
+    +e436   /* preprocessor directive in invocation of macro */
+    +elib(436)
+    -append(436,[CERT C Rule PRE32-C])
+
+    +e9501  /* preprocessing directive in call to function */
+    +elib(9501)
+    -append(9501,[CERT C Rule PRE32-C])
+
+/* DCL00-C. */
+/* Const-qualify immutable objects */
+
+    +e953   /* local variable __symbol__ could be const */
+    +elib(953)
+    -append(953,[CERT C Recommendation DCL00-C])
+
+/* DCL01-C. */
+/* Do not reuse variable names in subscopes */
+
+    +e578   /* declaration of __symbol__ hides __string__ */
+    +elib(578)
+    -append(578,[CERT C Recommendation DCL01-C])
+
+/* DCL02-C. */
+/* Use visually distinct identifiers */
+
+    +e9046      /* __symbol__ is typographically ambiguous with respect to
+                   '__string__' when __detail__ */
+    +elib(9046)
+    -append(9046,[CERT C Recommendation DCL02-C])
+
+/* DCL03-C. */
+/* Use a static assertion to test the value of a constant expression */
+
+    /* Not currently supported */
+
+/* DCL04-C. */
+/* Do not declare more than one variable per declaration */
+
+    +e9146      /* multiple declarators in a declaration */
+    +elib(9146)
+    -append(9146,[CERT C Recommendation DCL04-C])
+
+/* DCL05-C. */
+/* Use typedefs of non-pointer types only */
+
+    /* Not currently supported */
+
+/* DCL06-C. */
+/* Use meaningful symbolic constants to represent literal values */
+
+    /* Not currently supported */
+
+/* DCL07-C. */
+/* Include the appropriate type information in function declarators */
+
+    +e718       /* function __symbol__ undeclared, assumed to return int */
+    +elib(718)
+    -append(718,[CERT C Recommendation DCL07-C])
+
+    +e746       /* call to function __symbol__ not made in the presence of
+                   a prototype */
+    +elib(746)
+    -append(746,[CERT C Recommendation DCL07-C])
+
+    +e936       /* old-style function definition for function __symbol__ */
+    +elib(936)
+    -append(936,[CERT C Recommendation DCL07-C])
+
+    +e9074      /* conversion between pointer to function type __type__ and
+                   differing type __type__ */
+    +elib(9074)
+    -append(9074,[CERT C Recommendation DCL07-C])
+
+/* DCL08-C. */
+/* Properly encode relationships in constant definitions */
+
+    /* Not currently supported */
+
+/* DCL09-C. */
+/* Declare functions that return errno with a return type of errno_t */
+
+    /* Not currently supported */
+
+/* DCL10-C. */
+/* Maintain the contract between the writer and caller of variadic functions */
+
+    +e558       /* too few data arguments for format string
+                   (__integer__ missing) */
+    +elib(558)
+    -append(558,[CERT C Recommendation DCL10-C])
+
+    +e719       /* data argument __integer__ not used by format string */
+    +elib(719)
+    -append(719,[CERT C Recommendation DCL10-C])
+
+/* DCL11-C. */
+/* Understand the type issues associated with variadic functions */
+
+    +e175       /* cannot pass __string__ to variadic __string__; expected
+                   type from format string was __type__ */
+    +elib(175)
+    -append(175,[CERT C Recommendation DCL11-C])
+
+    +e559       /* format '__string__' specifies type __type__ which is
+                   inconsistent with argument no. __integer__
+                   of __string__ __type__ */
+    +elib(559)
+    -append(559,[CERT C Recommendation DCL11-C])
+
+    +e2408      /* cannot pass __string__ object of type __type__ to
+                   variadic __string__; expected type from format string
+                   was __type__ */
+    +elib(2408)
+    -append(2408,[CERT C Recommendation DCL11-C])
+
+/* DCL12-C. */
+/* Implement abstract data types using opaque types */
+
+    /* Not currently supported */
+
+/* DCL13-C. */
+/* Declare function parameters that are pointers to values not changed by the function as const */
+
+    +e818       /* parameter __symbol__ of function __symbol__ could be
+                   pointer to const */
+    +elib(818)
+    -append(818,[CERT C Recommendation DCL13-C])
+
+/* DCL15-C. */
+/* Declare file-scope objects or functions that do not need external linkage as static */
+
+    +e765       /* external symbol __symbol__ could be made static */
+    +elib(765)
+    -append(765,[CERT C Recommendation DCL15-C])
+
+/* DCL16-C. */
+/* Use "L," not "l," to indicate a long value */
+
+    +e620       /* suspicious constant (L or one?) */
+    +elib(620)
+    -append(620,[CERT C Recommendation DCL16-C])
+
+/* DCL17-C. */
+/* Beware of miscompiled volatile-qualified variables */
+
+    /* Not currently supported */
+
+/* DCL18-C. */
+/* Do not begin integer constants with 0 when specifying a decimal value */
+
+    +e9001      /* octal constant 'string' used */
+    +elib(9001)
+    -append(9001,[CERT C Recommendation DCL18-C])
+
+/* DCL19-C. */
+/* Minimize the scope of variables and functions */
+
+    +e765       /* external symbol __symbol__ could be made static */
+    +elib(765)
+    -append(765,[CERT C Recommendation DCL19-C])
+
+    +e9003      /* could define global variable __symbol__ within
+                   function __string__ */
+    +elib(9003)
+    -append(9003,[CERT C Recommendation DCL19-C])
+
+/* DCL20-C. */
+/* Explicitly specify void when a function accepts no arguments */
+
+    +e937       /* old-style function declaration for function __symbol__ */
+    +elib(937)
+    -append(937,[CERT C Recommendation DCL20-C])
+
+/* DCL21-C. */
+/* Understand the storage of compound literals */
+
+    /* Not currently supported */
+
+/* DCL22-C. */
+/* Use volatile for data that cannot be cached */
+
+    /* Not currently supported */
+
+/* DCL23-C. */
+/* Guarantee that mutually visible identifiers are unique */
+
+    +e621       /* identifier clash (__string__): __string__ '__string__'
+                   clashes with __string__ '__string__' */
+    +elib(621)
+    -append(621,[CERT C Recommendation DCL23-C])
+
+/* DCL30-C. */
+/* Declare objects with appropriate storage durations */
+
+    +e604   /* returning address of auto variable __symbol__ */
+    +elib(604)
+    -append(604,[CERT C Rule DCL30-C])
+
+    +e674   /* returning address of auto variable __symbol__ through
+               pointer __symbol__ */
+    +elib(674)
+    -append(674,[CERT C Rule DCL30-C])
+
+    +e733   /* likely assigning address of local __symbol__ to outer scope
+               pointer __symbol__ */
+    +elib(733)
+    -append(733,[CERT C Rule DCL30-C])
+
+    +e789   /* assigning address of auto variable __symbol__ to static */
+    +elib(789)
+    -append(789,[CERT C Rule DCL30-C])
+
+/* DCL31-C. */
+/* Declare identifiers before using them */
+
+    +e601   /* expected a type, int assumed */
+    +elib(601)
+    -append(601,[CERT C Rule DCL31-C])
+
+    +e718   /* function __symbol__ undeclared, assumed to return int */
+    +elib(718)
+    -append(718,[CERT C Rule DCL31-C])
+
+    +e746   /* call to function __symbol__ not made in the presence of a
+               prototype */
+    +elib(746)
+    -append(746,[CERT C Rule DCL31-C])
+
+    +e808   /* no explicit type given, int assumed */
+    +elib(808)
+    -append(808,[CERT C Rule DCL31-C])
+
+/* DCL36-C. */
+/* Do not declare an identifier with conflicting linkage classifications */
+
+    +e401   /* symbol __symbol__ not previously declared static */
+    +elib(401)
+    -append(401,[CERT C Rule DCL36-C])
+
+    +e839   /* storage class of symbol __symbol__ assumed static */
+    +elib(839)
+    -append(839,[CERT C Rule DCL36-C])
+
+    +e1051  /* redefinition of __symbol__ as different kind of symbol */
+    +elib(1051)
+    -append(1051,[CERT C Rule DCL36-C])
+
+/* DCL37-C. */
+/* Do not declare or define a reserved identifier */
+
+    +e978   /* the name '__name__' matches a pattern reserved to the
+               compiler __string__ */
+    +elib(978)
+    -append(978,[CERT C Rule DCL37-C])
+
+    +e9071  /* defined macro '__name__' is reserved to the compiler */
+    +elib(9071)
+    -append(9071,[CERT C Rule DCL37-C])
+
+    +e9093  /* the name '__name__' is reserved to the compiler */
+    +elib(9093)
+    -append(9093,[CERT C Rule DCL37-C])
+
+/* DCL38-C. */
+/* Use the correct syntax when declaring a flexible array member */
+
+    +e9040  /* possible struct hack declaration for __detail__ member
+               __symbol__ with __integer__ element(s) */
+    +elib(9040)
+    -append(9040,[CERT C Rule DCL38-C])
+
+/* DCL39-C. */
+/* Avoid information leakage when passing a structure across a trust boundary */
+
+    /* Not currently supported */
+
+/* DCL40-C. */
+/* Do not create incompatible declarations of the same function or object */
+
+    +e18    /* symbol __symbol__ redeclared (__typediff__) */
+    +elib(18)
+    -append(18,[CERT C Rule DCL40-C])
+
+    +e621   /* identifier clash (__string__): __string__ '__string__' clashes
+               with __string__ '__string__' */
+    +elib(621)
+    -append(621,[CERT C Recommendation DCL40-C])
+
+    /* ANSI/ISO minimum translation limit of __integer__ '__string__'
+       exceeded, processing is unaffected */
+    +estring(793, "significant characters")
+    -append(793,[CERT C Rule DCL40-C])
+
+    +e4376  /* conflicting types for '__symbol__' */
+    +elib(4376)
+    -append(4376,[CERT C Rule DCL40-C])
+
+/* DCL41-C. */
+/* Do not declare variables inside a switch statement before the first case label */
+
+    +e527       /* statement is unreachable due to unconditional transfer of
+                   control by '__string__' statement */
+    +elib(527)
+    -append(527,[CERT C Recommendation DCL41-C])
+
+/* EXP00-C. */
+/* Use parentheses for precedence of operation */
+
+    +estring(9050,*)
+    -estring(9050,+)
+    -estring(9050,`*)
+    -estring(9050,-)
+    -estring(9050,/)
+    -append(9050,[CERT C Recommendation EXP00-C])
+
+/* EXP02-C. */
+/* Be aware of the short-circuit behavior of the logical AND and OR operators */
+
+    +e9007 /* side effect on RHS of logical operator */
+    +elib(9007)
+    -append(9007,[CERT C Recommendation EXP02-C])
+
+/* EXP03-C. */
+/* Do not assume the size of a structure is the sum of the sizes of its members */
+
+    /* Not currently supported */
+
+/* EXP05-C. */
+/* Do not cast away a const qualification */
+
+    +e9005 /* cast drops const qualifier */
+    +elib(9005)
+    -estring(9005,volatile)
+    -append(9005,[CERT C Recommendation EXP03-C])
+
+/* EXP07-C. */
+/* Do not diminish the benefits of constants by assuming their values in expressions */
+
+    /* Not currently supported */
+
+/* EXP08-C. */
+/* Ensure pointer arithmetic is used correctly */
+
+    +e416 /* likely creating out-of-bounds pointer */
+    +elib(416)
+    -append(416,[CERT C Recommendation EXP08-C])
+
+/* EXP09-C. */
+/* Use sizeof to determine the size of a type or variable */
+
+    /* Not currently supported */
+
+/* EXP10-C. */
+/* Do not depend on the order of evaluation of subexpressions or the order in which side effects take place */
+
+    +e564 /* variable depends on order of evaluation */
+    +elib(564)
+    -append(564,[CERT C Recommendation EXP10-C])
+
+    +e931 /* both sides have side effects */
+    +elib(931)
+    -append(931,[CERT C Recommendation EXP10-C])
+
+/* EXP11-C. */
+/* Do not make assumptions regarding the layout of structures with bit-fields */
+
+    /* Not currently supported */
+
+/* EXP12-C. */
+/* Do not ignore values returned by functions */
+
+    +e534   /* ignoring return value of function */
+    +elib(534)
+    -append(534,[CERT C Recommendation EXP12-C])
+
+/* EXP13-C. */
+/* Treat relational and equality operators as if they were nonassociative */
+
+    +e503   /* boolean argument to relational */
+    +elib(503)
+    -append(503,[CERT C Recommendation EXP13-C])
+
+    +e731   /* boolean argument(s) to equality-operator */
+    +elib(731)
+    -append(731,[CERT C Recommendation EXP13-C])
+
+/* EXP14-C. */
+/* Beware of integer promotion when performing bitwise operations on integer types smaller than int */
+
+    /* Not currently supported */
+
+/* EXP15-C. */
+/* Do not place a semicolon on the same line as an if, for, or while statement */
+
+    +e721   /* if statement has empty body */
+    +elib(721)
+    -append(721,[CERT C Recommendation EXP15-C])
+
+    +e722   /* for/while statement has empty body */
+    +elib(722)
+    -append(722,[CERT C Recommendation EXP15-C])
+
+/* EXP16-C. */
+/* Do not compare function pointers to constant values */
+
+    +e2440   /* address of a function/array/variable compared to null */
+    +elib(2440)
+    -append(2440,[CERT C Recommendation EXP16-C])
+
+    +e2441   /* address of a function/array/variable used in boolean context */
+    +elib(2441)
+    -append(2441,[CERT C Recommendation EXP16-C])
+
+/* EXP19-C. */
+/* Use braces for the body of an if, for, or while statement */
+
+    +e9012   /* body should be a compound statement */
+    +elib(9012)
+    -append(9012,[CERT C Recommendation EXP19-C])
+
+/* EXP20-C. */
+/* Perform explicit tests to determine success, true and false, and equality */
+
+    +e697 /* boolean value should be equality-compared only with zero */
+    +elib(697)
+    -append(697,[CERT C Recommendation EXP20-C])
+
+/* EXP30-C. */
+/* Do not depend on the order of evaluation for side effects */
+
+    +e564   /* variable depends on order of evaluation */
+    +elib(564)
+    -append(564,[CERT C Rule EXP30-C])
+
+/* EXP32-C. */
+/* Do not access a volatile object through a nonvolatile reference */
+
+    /* Not currently supported */
+
+/* EXP33-C. */
+/* Do not read uninitialized memory */
+
+    +e530 /* likely uninitialized */
+    +elib(530)
+    -append(530,[CERT C Rule EXP33-C])
+
+    +e603 /* possibly passing pointer to const uninitialized memory */
+    +elib(603)
+    -append(603,[CERT C Rule EXP33-C])
+
+    +e644 /* potentially uninitialized */
+    +elib(644)
+    -append(644,[CERT C Rule EXP33-C])
+
+    +e901 /* variable not initialized by definition */
+    +elib(901)
+    -append(901,[CERT C Rule EXP33-C])
+
+/* EXP34-C. */
+/* Do not dereference null pointers */
+
+    +e413 /* likely use of null pointer */
+    +elib(413)
+    -append(413,[CERT C Rule EXP34-C])
+
+    +e418 /* null argument outside domain of function */
+    +elib(418)
+    -append(418,[CERT C Rule EXP34-C])
+
+    +e444 /* null test of incremented/decremented iteration counter */
+    +elib(444)
+    -append(444,[CERT C Rule EXP34-C])
+
+    +e613 /* potential use of null pointer */
+    +elib(613)
+    -append(613,[CERT C Rule EXP34-C])
+
+    +e668 /* possible null argument outside domain of function */
+    +elib(668)
+    -append(668,[CERT C Rule EXP34-C])
+
+/* EXP35-C. */
+/* Do not modify objects with temporary lifetime */
+
+    /* Not currently supported */
+
+/* EXP36-C. */
+/* Do not cast pointers into more strictly aligned pointer types */
+
+    +e2445 /* cast increases required alignment */
+    +elib(2445)
+    -append(2445,[CERT C Rule EXP36-C])
+
+/* EXP37-C. */
+/* Call functions with the correct number and type of arguments */
+
+    /* Not currently supported */
+
+/* EXP39-C. */
+/* Do not access a variable through a pointer of an incompatible type */
+
+    /* Not currently supported */
+
+/* EXP40-C. */
+/* Do not modify constant objects */
+
+    /* Not currently supported */
+
+/* EXP42-C. */
+/* Do not compare padding data */
+
+    +e958
+    +elib(958)
+    -append(958,[CERT C Rule EXP42-C])
+
+    +e959
+    +elib(959)
+    -append(959,[CERT C Rule EXP42-C])
+
+/* EXP43-C. */
+/* Avoid undefined behavior when using restrict-qualified pointers */
+
+    +e586
+    -deprecate(keyword,restrict,[CERT C Rule EXP43-C])
+
+/* EXP44-C. */
+/* Do not rely on side effects in operands to sizeof, _Alignof, or _Generic */
+
+    +e9006 /* 'sizeof' used on expression with side effect */
+    +elib(9006)
+    -append(9006,[CERT C Rule EXP44-C])
+
+/* EXP45-C. */
+/* Do not perform assignments in selection statements */
+
+    +e720 /* boolean test of assignment */
+    +elib(720)
+    -append(720,[CERT C Rule EXP45-C])
+
+/* EXP46-C. */
+/* Do not use a bitwise operator with a Boolean-like operand */
+
+    +e514 /* boolean argument to bitwise operator */
+    +elib(514)
+    -append(514,[CERT C Rule EXP46-C])
+
+/* EXP47-C. */
+/* Do not call va_arg with an argument of the incorrect type */
+
+    +e917
+    +elib(917)
+    -append(917,[CERT C Rule EXP47-C])
+
+/* INT00-C. */
+/* Understand the data model used by your implementation(s) */
+
+    +e559   /* format specifies type which is inconsistent with argument */
+    +elib(559)
+    -append(559,[CERT C Recommendation INT00-C])
+
+    +e705   /* format specifies type which is nominally inconsistent with argument */
+    +elib(705)
+    -append(705,[CERT C Recommendation INT00-C])
+
+    +e706   /* format specifies type whose pointee type is nominally inconsistent with argument */
+    +elib(706)
+    -append(706,[CERT C Recommendation INT00-C])
+
+    +e2403  /* field should have type, but argument has type 'type' */
+    +elib(2403)
+    -append(2403,[CERT C Recommendation INT00-C])
+
+/* INT01-C. */
+/* Use rsize_t or size_t for all integer values representing the size of an object */
+
+    /* Not currently supported */
+
+/* INT02-C. */
+/* Understand integer conversion rules */
+
+    +e501   /* negation of value of unsigned type yields a value of unsigned type */
+    +elib(501)
+    -append(501, [CERT C Recommendation INT02-C])
+
+    +e502   /* applying bitwise not to signed quantity */
+    +elib(502)
+    -append(502, [CERT C Recommendation INT02-C])
+
+    +e569   /* loss of information in implicit conversion */
+    +elib(569)
+    -append(569, [CERT C Recommendation INT02-C])
+
+    +e570   /* negative constant loses sign during implicit conversion */
+    +elib(570)
+    -append(570, [CERT C Recommendation INT02-C])
+
+    +e573   /* signed-unsigned mix with divide */
+    +elib(573)
+    -append(573, [CERT C Recommendation INT02-C])
+
+    +e574   /* signed-unsigned mix with relational */
+    +elib(574)
+    -append(574, [CERT C Recommendation INT02-C])
+
+    +e701   /* signed int shifted left */
+    +elib(701)
+    -append(701, [CERT C Recommendation INT02-C])
+
+    +e702   /* signed int shifted right */
+    +elib(702)
+    -append(702, [CERT C Recommendation INT02-C])
+
+    +e732   /* loss of sign */
+    +elib(732)
+    -append(732, [CERT C Recommendation INT02-C])
+
+    +e734   /* loss of precision */
+    +elib(734)
+    -append(734, [CERT C Recommendation INT02-C])
+
+    +e737   /* loss of sign in promotion */
+    +elib(737)
+    -append(737, [CERT C Recommendation INT02-C])
+
+/* INT04-C. */
+/* Enforce limits on integer values originating from tainted sources */
+
+    /* Not currently supported */
+
+/* INT05-C. */
+/* Do not use input functions to convert character data if they cannot handle all possible inputs */
+
+    +e586   /* use of deprecated entity */
+    +elib(586)
+
+    -deprecate(scanf_code, d, [CERT C Recommendation INT05-C])
+    -deprecate(scanf_code, D, [CERT C Recommendation INT05-C])
+    -deprecate(scanf_code, i, [CERT C Recommendation INT05-C])
+    -deprecate(scanf_code, o, [CERT C Recommendation INT05-C])
+    -deprecate(scanf_code, u, [CERT C Recommendation INT05-C])
+    -deprecate(scanf_code, x, [CERT C Recommendation INT05-C])
+    -deprecate(scanf_code, X, [CERT C Recommendation INT05-C])
+    -deprecate(scanf_code, f, [CERT C Recommendation INT05-C])
+    -deprecate(scanf_code, e, [CERT C Recommendation INT05-C])
+    -deprecate(scanf_code, g, [CERT C Recommendation INT05-C])
+    -deprecate(scanf_code, E, [CERT C Recommendation INT05-C])
+    -deprecate(scanf_code, a, [CERT C Recommendation INT05-C])
+
+    -deprecate(function, atoi, [CERT C Recommendation INT05-C])
+    -deprecate(function, atol, [CERT C Recommendation INT05-C])
+    -deprecate(function, atoll, [CERT C Recommendation INT05-C])
+    -deprecate(function, atoq, [CERT C Recommendation INT05-C])
+    -deprecate(function, atof, [CERT C Recommendation INT05-C])
+
+/* INT07-C. */
+/* Use only explicitly signed or unsigned char type for numeric values */
+
+    +e9112  /* plain character expression used with non-permitted operator */
+    +elib(9112)
+    -append(9112,[CERT C Recommendation INT07-C])
+
+/* INT08-C. */
+/* Verify that all integer values are in range */
+/*  Partially suppported */
+
+    +e648 /* overflow in computing constant */
+    +elib(648)
+    -append(648,[CERT C Recommendation INT08-C])
+
+    +e650 /* constant out of range for operator */
+    +elib(650)
+    -append(650,[CERT C Recommendation INT08-C])
+
+    +e679 /* integer operation may be truncated before being combined with a larger pointer type */
+    +elib(679)
+    -append(679,[CERT C Recommendation INT08-C])
+
+    +e680 /* suspicious truncation in arithmetic expression converted to pointer */
+    +elib(680)
+    -append(680,[CERT C Recommendation INT08-C])
+
+    +e776 /* possible truncation of addition */
+    +elib(776)
+    -append(776,[CERT C Recommendation INT08-C])
+
+    +e952 /* promotion after possible truncation */
+    +elib(952)
+    -append(952,[CERT C Recommendation INT08-C])
+
+    +e2704 /* potentially negating the most negative number */
+    +elib(2704)
+    -append(2704,[CERT C Recommendation INT08-C])
+
+/* INT09-C. */
+/* Ensure enumeration constants map to unique values */
+
+    +e488   /* enumerator reuses constant value previously used implicitly */
+    +elib(488)
+    -append(488,[CERT C Recommendation INT09-C])
+
+    +e9148  /* '=' should initialize either all enum members or only the first */
+    +elib(9148)
+    -append(9148,[CERT C Recommendation INT09-C])
+
+/* INT10-C. */
+/* Do not assume a positive remainder when using the % operator */
+
+    /* Not currently supported */
+
+/* INT12-C. */
+/* Do not make assumptions about the type of a plain int bit-field when used in an expression */
+
+    +e846  /* signedness of bitfield of implementation defined */
+    +elib(846)
+    -append(846,[CERT C Recommendation INT12-C])
+
+/* INT13-C. */
+/* Use bitwise operators only on unsigned operands */
+
+    +e9233  /* bitwise operator may not be applied to operand with signed
+               underlying type */
+    +elib(9233)
+    -append(9233,[CERT C Recommendation INT13-C])
+
+/* INT14-C. */
+/* Avoid performing bitwise and arithmetic operations on the same data */
+
+    /* Not currently supported */
+
+/* INT15-C. */
+/* Use intmax_t or uintmax_t for formatted IO on programmer-defined integer types */
+
+    /* Not currently supported */
+
+/* INT16-C. */
+/* Do not make assumptions about representation of signed integers */
+
+    /* Partially supported */
+
+    +e502 /* applying bitwise not to signed quantity */
+    +elib(502)
+    -append(502,[CERT C Recommendation INT16-C])
+
+    +e9088 /* named signed single-bit bitfield */
+    +elib(9088)
+    -append(9088,[CERT C Recommendation INT16-C])
+
+    +e2704 /* potentially negating the most negative number */
+    +elib(2704)
+    -append(2704,[CERT C Recommendation INT16-C])
+
+/* INT17-C. */
+/* Define integer constants in an implementation-independent manner */
+
+    /* Not currently supported */
+
+/* INT18-C. */
+/* Evaluate integer expressions in a larger size before comparing or assigning to that size */
+
+    /* Not currently supported */
+
+/* INT30-C. */
+/* Ensure that unsigned integer operations do not wrap */
+
+    /* Not currently supported */
+
+/* INT31-C. */
+/* Ensure that integer conversions do not result in lost or misinterpreted data */
+
+    /* Not currently supported */
+
+/* INT32-C. */
+/* Ensure that operations on signed integers do not result in overflow */
+
+    /* Not currently supported */
+
+/* INT33-C. */
+/* Ensure that division and remainder operations do not result in divide-by-zero errors */
+
+    /* Not currently supported */
+
+/* INT34-C. */
+/* Do not shift an expression by a negative number of bits or by greater than or equal to the number of bits that exist in the operand. */
+
+    /* Not currently supported */
+
+/* INT35-C. */
+/* Use correct integer precisions */
+
+    /* Not currently supported */
+
+/* INT36-C. */
+/* Converting a pointer to integer or integer to pointer */
+
+    +e4287
+    +elib(4287)
+    -append(4287,[CERT C Rule INT36-C])
+
+/* FLP00-C. */
+/* Understand the limitations of floating-point numbers */
+
+    +e777   /* testing floating point values for equality */
+    +elib(777)
+    -append(777,[CERT C Recommendation FLP00-C])
+
+    +e9252  /* testing floating point for equality using exact value */
+    +elib(9252)
+    -append(9252,[CERT C Recommendation FLP00-C])
+
+/* FLP01-C. */
+/* Take care in rearranging floating-point expressions */
+
+    /* Not currently supported */
+
+/* FLP02-C. */
+/* Avoid using floating-point numbers when precise computation is needed */
+
+    +e777   /* testing floating point values for equality */
+    +elib(777)
+    -append(777,[CERT C Recommendation FLP02-C])
+
+    +e9252  /* testing floating point for equality using exact value */
+    +elib(9252)
+    -append(9252,[CERT C Recommendation FLP02-C])
+
+/* FLP03-C. */
+/* Detect and handle floating-point errors */
+
+    +e736   /* loss of precision (__context__) from __number__ bits to
+               __number__ bits */
+    +elib(736)
+    -append(736,[CERT C Recommendation FLP03-C])
+
+    +e9120  /* implicit conversion of floating point to smaller type */
+    +elib(9120)
+    -append(9120,[CERT C Recommendation FLP03-C])
+
+    +e9227  /* floating expression of underlying type __underlying-type__
+               cannot be implicitly converted to type __type__ because it is
+               not a wider floating type */
+    +elib(9227)
+    -append(9227,[CERT C Recommendation FLP03-C])
+
+/* FLP04-C. */
+/* Check floating-point inputs for exceptional values */
+
+    /* Not currently supported */
+
+/* FLP05-C. */
+/* Do not use denormalized numbers */
+
+    /* Not currently supported */
+
+/* FLP06-C. */
+/* Convert integers to floating point for floating-point operations */
+
+    +e653   /* result of integer division being converted to __type__ */
+    +elib(653)
+    -append(653,[CERT C Recommendation FLP06-C])
+
+    +e790   /* possibly truncated __string__ promoted to __type__ */
+    +elib(790)
+    -append(790,[CERT C Recommendation FLP06-C])
+
+    +e942   /* possibly truncated __string__ promoted to __type__ */
+    +elib(942)
+    -append(942,[CERT C Recommendation FLP06-C])
+
+/* FLP07-C. */
+/* Cast the return value of a function that returns a floating-point type */
+
+    /* Not currently supported */
+
+/* FLP30-C. */
+/* Do not use floating-point variables as loop counters */
+
+    +e9009  /* possible use of floating point loop counter */
+    +elib(9009)
+    -append(9009,[CERT C Rule FLP30-C])
+
+/* FLP32-C. */
+/* Prevent or detect domain and range errors in math functions */
+
+    +e2423
+    +elib(2423)
+    -append(2423,[CERT C Rule FLP32-C])
+
+/* FLP34-C. */
+/* Ensure that floating-point conversions are within range of the new type */
+
+    +e735   /* implicit conversion (__context__) from __type__ to __type__ */
+    +elib(735)
+    -append(735,[CERT C Rule FLP34-C])
+
+    +e736   /* loss of precision (__context__) from __number__ bits to
+               __number__ bits */
+    +elib(736)
+    -append(736,[CERT C Rule FLP34-C])
+
+    /* implicit arithmetic conversion (__context__) from __type__ to __type__ */
+    +egrep(915, "int' to 'float")               /* Assume more bits in an int
+                                                   than mantissa of a float */
+    +egrep(915, "long' to 'float")              /* Assume more bits in a
+                                                   (long) long than mantissa
+                                                   of a float */
+    +egrep(915, "long long' to 'double")        /* Assume more bits in a
+                                                   long long than mantissa of
+                                                   a double */
+    +egrep(915, "long long' to 'long double")   /* Assume more bits in a
+                                                   long long than mantissa of
+                                                   a long double */
+    -append(915,[CERT C Rule FLP34-C])
+
+    /* explicit cast from __type__ to __type__ */
+    +egrep(922, "int' to 'float")               /* Assume more bits in an int
+                                                   than mantissa of a float */
+    +egrep(922, "long' to 'float")              /* Assume more bits in a
+                                                   (long) long than mantissa
+                                                   of a float */
+    +egrep(922, "long long' to 'double")        /* Assume more bits in a
+                                                   long long than mantissa of
+                                                   a double */
+    +egrep(922, "long long' to 'long double")   /* Assume more bits in a
+                                                   long long than mantissa of
+                                                   a long double */
+    +egrep(922, "double' to 'float")
+    +egrep(922, "long double' to 'double")
+    -append(922,[CERT C Rule FLP34-C])
+
+    +e9118  /* implicit conversion from floating point to integer type */
+    +elib(9118)
+    -append(9118,[CERT C Rule FLP34-C])
+
+    +e9227  /* floating expression of underlying type __underlying-type__
+               cannot be implicitly converted to type __type__ because it is
+               not a wider floating type */
+    +elib(9227)
+    -append(9227,[CERT C Rule FLP34-C])
+
+/* FLP36-C. */
+/* Preserve precision when converting integral values to floating-point type */
+
+    /* implicit arithmetic conversion (__context__) from __type__ to __type__ */
+    +egrep(915, "int' to 'float")               /* Assume more bits in an int
+                                                   than mantissa of a float */
+    +egrep(915, "long' to 'float")              /* Assume more bits in a (long)
+                                                   long than mantissa of a float */
+    +egrep(915, "long long' to 'double")        /* Assume more bits in a
+                                                   long long than mantissa of
+                                                   a double */
+    +egrep(915, "long long' to 'long double")   /* Assume more bits in a
+                                                   long long than mantissa of
+                                                   a long double */
+    -append(915,[CERT C Rule FLP36-C])
+
+    /* explicit cast from __type__ to __type__ */
+    +egrep(922, "int' to 'float")               /* Assume more bits in an int
+                                                   than mantissa of a float */
+    +egrep(922, "long' to 'float")              /* Assume more bits in a
+                                                   (long) long than mantissa
+                                                   of a float */
+    +egrep(922, "long long' to 'double")        /* Assume more bits in a
+                                                   long long than mantissa a
+                                                   of double */
+    +egrep(922, "long long' to 'long double")   /* Assume more bits in a
+                                                   long long than mantissa of
+                                                   a long double */
+    -append(922,[CERT C Rule FLP36-C])
+
+/* FLP37-C. */
+/* Do not use object representations to compare floating-point values */
+
+    +e2498
+    +elib(2498)
+    -append(2498,[CERT C Rule FLP37-C])
+
+    +e2499
+    +elib(2499)
+    -append(2499,[CERT C Rule FLP37-C])
+
+/* ARR00-C. */
+/* Understand how arrays work */
+
+    +e409 /* integer base for subscript operator */
+    +elib(409)
+    -append(409,[CERT C Rule ARR00-C])
+
+    +e429   /* custodial pointer not freed nor returned */
+    +elib(429)
+    -append(429,[CERT C Rule ARR00-C])
+
+    +e413   /* likely use of null pointer */
+    +elib(413)
+    -append(413,[CERT C Rule ARR00-C])
+
+    +e613   /* potential use of null pointer */
+    +elib(613)
+    -append(613,[CERT C Rule ARR00-C])
+
+/* ARR01-C. */
+/* Do not apply the sizeof operator to a pointer when taking the size of an array */
+
+    +e682   /* sizeof applied to parameter whose type is a sized array will
+               yield size of 'integer' instead of 'integer' */
+    +elib(682)
+    -append(682,[CERT C Recommendation ARR01-C])
+
+    +e882   /* sizeof applied to parameter of function declared an incomplete
+               array type */
+    +elib(882)
+    -append(882,[CERT C Recommendation ARR01-C])
+
+/* ARR02-C. */
+/* Explicitly specify array bounds, even if implicitly defined by an initializer */
+
+    +e576   /* excess elements in array initializer */
+    +elib(576)
+    -append(576,[CERT C Recommendation ARR02-C])
+
+/* ARR30-C. */
+/* Do not form or use out-of-bounds pointers or array subscripts */
+
+    +e413   /* likely use of null pointer */
+    +elib(413)
+    -append(413,[CERT C Rule ARR30-C])
+
+    +e415   /* likely out of bounds pointer access */
+    +elib(415)
+    -append(415,[CERT C Rule ARR30-C])
+
+    +e416   /* likely creating out-of-bounds pointer */
+    +elib(416)
+    -append(416,[CERT C Rule ARR30-C])
+
+    +e613   /* potential use of null pointer */
+    +elib(613)
+    -append(613,[CERT C Rule ARR30-C])
+
+    +e661   /* potential out of bounds pointer access */
+    +elib(661)
+    -append(661,[CERT C Rule ARR30-C])
+
+    +e662   /* possibly creating out-of-bounds pointer */
+    +elib(662)
+    -append(662,[CERT C Rule ARR30-C])
+
+    +e676   /* possibly indexing before the beginning of an allocation */
+    +elib(676)
+    -append(676,[CERT C Rule ARR30-C])
+
+/* ARR32-C. */
+/* Ensure size arguments for variable length arrays are in a valid range */
+
+    +e9035  /* variable length array declared */
+    +elib(9035)
+    -append(9035,[CERT C Rule ARR32-C])
+
+/* ARR36-C. */
+/* Do not subtract or compare two pointers that do not refer to the same array */
+
+    /* Not currently supported */
+
+/* ARR37-C. */
+/* Do not add or subtract an integer to a pointer to a non-array object */
+
+    +e2662  /* pointer arithmetic on pointer that may not refer to an array */
+    +elib(2662)
+    -append(2662,[CERT C Rule ARR32-C])
+
+/* ARR38-C. */
+/* Guarantee that library functions do not form invalid pointers */
+
+    +e419   /* apparent data overrun */
+    +elib(419)
+    -append(419,[CERT C Rule ARR38-C])
+
+    +e420   /* apparent access beyond array */
+    +elib(420)
+    -append(420,[CERT C Rule ARR38-C])
+
+/* ARR39-C. */
+/* Do not add or subtract a scaled integer to a pointer */
+
+    /* Not currently supported */
+
+/* STR00-C. */
+/* Represent characters using an appropriate type */
+
+    /* Not currently supported */
+
+/* STR01-C. */
+/* Adopt and implement a consistent plan for managing strings */
+
+    /* Not currently supported */
+
+/* STR02-C. */
+/* Sanitize data passed to complex subsystems */
+
+    /* Not currently supported */
+
+/* STR03-C. */
+/* Do not inadvertently truncate a string */
+
+    /* Not currently supported */
+
+/* STR04-C. */
+/* Use plain char for characters in the basic character set */
+
+    /* Not currently supported */
+
+/* STR05-C. */
+/* Use pointers to const when referring to string literals */
+
+    +fsc    /* strings are const in C */
+    +e1776  /* converting string literal to 'type' is not const safe */
+    +elib(1776)
+    -append(1776,[CERT C Recommendation STR05-C])
+
+/* STR06-C. */
+/* Do not assume that strtok() leaves the parse string unchanged */
+
+    /* Not currently supported */
+
+/* STR07-C. */
+/* Use the bounds-checking interfaces for string manipulation */
+
+    +e586   /* use of deprecated entity */
+    +elib(586)
+
+    -deprecate(function, memcpy, [CERT C Recommendation STR07-C])
+    -deprecate(function, memmove, [CERT C Recommendation STR07-C])
+    -deprecate(function, strcpy, [CERT C Recommendation STR07-C])
+    -deprecate(function, strncpy, [CERT C Recommendation STR07-C])
+    -deprecate(function, strcat, [CERT C Recommendation STR07-C])
+    -deprecate(function, strncat, [CERT C Recommendation STR07-C])
+    -deprecate(function, strtok, [CERT C Recommendation STR07-C])
+    -deprecate(function, memset, [CERT C Recommendation STR07-C])
+    -deprecate(function, strerror, [CERT C Recommendation STR07-C])
+    -deprecate(function, strnlen, [CERT C Recommendation STR07-C])
+
+/* STR08-C is deprecated */
+/* Use managed strings for development of new string manipulation code */
+/* This guideline has been deprecated and superceded by STR07-C */
+
+    /* Not currently supported */
+
+/* STR09-C. */
+/* Don't assume numeric values for expressions with type plain character */
+
+    +e9209  /* plain character data used with prohibited operator */
+    +elib(9209)
+    -append(9209,[CERT C Recommendation STR09-C])
+
+/* STR10-C. */
+/* Do not concatenate different type of string literals */
+
+    +e707  /* mixing narrow and wide string literals in concatenation */
+    +elib(707)
+    -append(707,[CERT C Recommendation STR10-C])
+
+/* STR11-C. */
+/* Do not specify the bound of a character array initialized with a string literal */
+
+    +e784  /* nul character truncated from string */
+    +elib(784)
+    -append(784,[CERT C Recommendation STR11-C])
+
+/* STR30-C. */
+/* Do not attempt to modify string literals */
+
+    +e489   /* attempting to modify the contents of a string literal */
+    +elib(489)
+    -append(489,[CERT C Rule STR30-C])
+
+    +fsc    /* strings are const in C */
+    +e1776  /* converting string literal to 'type' is not const safe */
+    +elib(1776)
+    -append(1776,[CERT C Rule STR30-C])
+
+/* STR31-C. */
+/* Guarantee that storage for strings has sufficient space for character data and the null terminator */
+
+    +e421   /* caution -- function is considered dangerous (reported for gets) */
+    +elib(421)
+    -append(421,[CERT C Rule STR31-C])
+
+    +e498   /* unbounded scanf conversion specifier may result in buffer overflow */
+    +elib(498)
+    -append(498,[CERT C Rule STR31-C])
+
+/* STR32-C. */
+/* Do not pass a non-null-terminated character sequence to a library function that expects a string */
+
+    /* Not currently supported */
+
+/* STR34-C. */
+/* Cast characters to unsigned char before converting to larger integer sizes */
+
+    +etype(571, *char)  /* cast results in sign extension */
+    +elib(571)
+    -append(571,[CERT C Rule STR34-C])
+
+/* STR37-C. */
+/* Arguments to character-handling functions must be representable as an unsigned char */
+
+    /* Not currently supported */
+
+/* STR38-C. */
+/* Do not confuse narrow and wide character strings and functions */
+
+    +e2454   /* incompatible pointer types */
+    +elib(2454)
+    -append(2454(const char *),[CERT C Rule STR38-C])
+    -append(2454(const wchar_t *),[CERT C Rule STR38-C])
+    -append(2454(char *),[CERT C Rule STR38-C])
+    -append(2454(wchar_t *),[CERT C Rule STR38-C])
+
+    +e2480
+    +elib(2480)
+    -append(2480,[CERT C Rule STR38-C])
+
+    +e2481
+    +elib(2481)
+    -append(2481,[CERT C Rule STR38-C])
+
+/* MEM00-C. */
+/* Allocate and free memory in the same module, at the same level of abstraction */
+
+    +e449   /* memory was likely previously deallocated */
+    +elib(449)
+    -append(449,[CERT C Recommendation MEM00-C])
+
+    +e2434  /* memory was potentially deallocated */
+    +elib(2434)
+    -append(2434,[CERT C Recommendation MEM00-C])
+
+/* MEM01-C. */
+/* Store a new value in pointers immediately after free() */
+
+    /* Not currently supported */
+
+/* MEM02-C. */
+/* Immediately cast the result of a memory allocation function call into a pointer to the allocated type */
+
+    +e908   /* implicit conversion from 'void *' to type __type__ */
+    +elib(908)
+    -append(908,[CERT C Recommendation MEM02-C])
+
+/* MEM03-C. */
+/* Clear sensitive information stored in reusable resources */
+
+    /* Not currently supported */
+
+/* MEM04-C. */
+/* Beware of zero-length allocations */
+
+    /* Not currently supported */
+
+/* MEM05-C. */
+/* Avoid large stack allocations */
+
+    +e9035   /* variable length array __symbol__ of type __type__ declared */
+    +elib(9035)
+    -append(9035,[CERT C Recommendation MEM05-C])
+
+    +e9070  /* function '__name__' is recursive */
+    +elib(9070)
+    -append(9070,[CERT C Recommendation MEM05-C])
+
+/* MEM06-C. */
+/* Ensure that sensitive data is not written out to disk */
+
+    /* Not currently supported */
+
+/* MEM07-C. */
+/* Ensure that the arguments to calloc(), when multiplied, do not wrap */
+
+    /* Not currently supported */
+
+/* MEM10-C. */
+/* Define and use a pointer validation function */
+
+    /* Not currently supported */
+
+/* MEM11-C. */
+/* Do not assume infinite heap space */
+
+    +e413   /* likely use of null pointer __symbol__ */
+    +elib(413)
+    -append(413,[CERT C Recommendation MEM11-C])
+
+    +e613   /* potential use of null pointer __symbol__ */
+    +elib(613)
+    -append(613,[CERT C Recommendation MEM11-C])
+
+/* MEM12-C. */
+/* Consider using a goto chain when leaving a function on error when using and releasing resources */
+
+    +e429   /* custodial pointer __symbol__ likely not freed nor returned */
+    +elib(429)
+    -append(429,[CERT C Recommendation MEM12-C])
+
+/* MEM30-C. */
+/* Do not access freed memory */
+
+    +e449   /* memory was likely previously deallocated */
+    +elib(449)
+    -append(449,[CERT C Rule MEM30-C])
+
+    +e2434  /* memory was potentially deallocated */
+    +elib(2434)
+    -append(2434,[CERT C Rule MEM30-C])
+
+/* MEM31-C. */
+/* Free dynamically allocated memory when no longer needed */
+
+    +e429   /* custodial pointer __symbol__ likely not freed nor returned */
+    +elib(429)
+    -append(429,[CERT C Rule MEM31-C])
+
+/* MEM33-C. */
+/* Allocate and copy structures containing a flexible array member dynamically */
+
+    /* Not currently supported */
+
+/* MEM34-C. */
+/* Only free memory allocated dynamically */
+
+    +e424   /* __string__ is not appropriate for deallocating __string__ */
+    +elib(424)
+    -append(424,[CERT C Rule MEM34-C])
+
+    +e673   /* __string__ may not be appropriate for deallocating __string__ */
+    +elib(673)
+    -append(673,[CERT C Rule MEM34-C])
+
+/* MEM35-C. */
+/* Allocate sufficient memory for an object */
+
+    +e433   /* allocated area not large enough for pointer (__integer__ vs
+               __string__) */
+    +elib(433)
+    -append(433,[CERT C Rule MEM35-C])
+
+    +e826   /* suspicious pointer-to-pointer conversion (area too small) */
+    +elib(826)
+    -append(826,[CERT C Rule MEM35-C])
+
+/* MEM36-C. */
+/* Do not modify the alignment of objects by calling realloc() */
+
+    /* Not currently supported */
+
+/* FIO01-C. */
+/* Be careful using functions that use file names for identification */
+
+    /* Not currently supported */
+
+/* FIO02-C. */
+/* Canonicalize path names originating from tainted sources */
+
+    /* Not currently supported */
+
+/* FIO03-C. */
+/* Do not make assumptions about fopen() and file creation */
+
+    /* Not currently supported */
+
+/* FIO05-C. */
+/* Identify files using multiple file attributes */
+
+    /* Not currently supported */
+
+/* FIO06-C. */
+/* Create files with appropriate access permissions */
+
+    /* Not currently supported */
+
+/* FIO08-C. */
+/* Take care when calling remove() on an open file */
+
+    /* Not currently supported */
+
+/* FIO09-C. */
+/* Be careful with binary data when transferring data across systems */
+
+    /* Not currently supported */
+
+/* FIO10-C. */
+/* Take care when using the rename() function */
+
+    /* Not currently supported */
+
+/* FIO11-C. */
+/* Take care when specifying the mode parameter of fopen() */
+    
+    +e2472  /* non-standard file open mode */
+    +elib(2472)
+    -append(2472,[CERT C Recommendation FIO11-C])
+
+    +e2473  /* illegal file open mode */
+    +elib(2473)
+    -append(2473,[CERT C Recommendation FIO11-C])
+
+/* FIO13-C. */
+/* Never push back anything other than one read character */
+
+    +e2470  /* multiple consecutive calls to ungetc */
+    +elib(2470)
+    -append(2470,[CERT C Recommendation FIO13-C])
+
+/* FIO14-C. */
+/* Understand the difference between text mode and binary mode with file streams */
+
+    /* Not currently supported */
+
+/* FIO15-C. */
+/* Ensure that file operations are performed in a secure directory */
+
+    /* Not currently supported */
+
+/* FIO17-C. */
+/* Do not rely on an ending null character when using fread() */
+
+    /* Not currently supported */
+
+/* FIO18-C. */
+/* Never expect fwrite() to terminate the writing process at a null character */
+
+    /* Not currently supported */
+
+/* FIO19-C. */
+/* Do not use fseek() and ftell() to compute the size of a regular file */
+
+    /* Not currently supported */
+
+/* FIO20-C. */
+/* Avoid unintentional truncation when using fgets() or fgetws() */
+
+    /* Not currently supported */
+
+/* FIO21-C. */
+/* Do not create temporary files in shared directories */
+
+    /* Not currently supported */
+
+/* FIO22-C. */
+/* Close files before spawning processes */
+
+    /* Not currently supported */
+
+/* FIO23-C. */
+/* Do not exit with unflushed data in stdout or stderr */
+
+    /* Not currently supported */
+
+/* FIO24-C. */
+/* Do not open a file that is already open */
+
+    /* Not currently supported */
+
+/* FIO30-C. */
+/* Exclude user input from format strings */
+
+    +e592   /* non-literal format specifier used without arguments */
+    +elib(592)
+    -append(592,[CERT C Rule FIO30-C])
+
+/* FIO32-C. */
+/* Do not perform operations on devices that are only appropriate for files */
+
+    /* Not currently supported */
+
+/* FIO34-C. */
+/* Distinguish between characters read from a file and EOF or WEOF */
+
+    /* Not currently supported */
+
+/* FIO37-C. */
+/* Do not assume that fgets() or fgetws() returns a nonempty string when successful */
+
+    /* Not currently supported */
+
+/* FIO38-C. */
+/* Do not copy a FILE object */
+
+    +e9047  /* FILE pointer dereferenced */
+    +elib(9047)
+    -append(9047,[CERT C Rule FIO38-C])
+
+/* FIO39-C. */
+/* Do not alternately input and output from a stream without an intervening flush or positioning call */
+
+    +e2478  /* read after write without flush or reposition */
+    +elib(2478)
+    -append(2478,[CERT C Rule FIO39-C])
+
+    +e2479  /* write after read without reposition */
+    +elib(2479)
+    -append(2479,[CERT C Rule FIO39-C])
+
+/* FIO40-C. */
+/* Reset strings on fgets() or fgetws() failure */
+
+    /* Not currently supported */
+
+/* FIO41-C. */
+/* Do not call getc(), putc(), getwc(), or putwc() with a stream argument that has side effects */
+
+    /* Not currently supported */
+
+/* FIO42-C. */
+/* Close files when they are no longer needed */
+
+    +e429
+    +elib(429)
+    -append(429,[CERT C Rule FIO42-C])
+
+/* FIO44-C. */
+/* Only use values for fsetpos() that are returned from fgetpos() */
+
+    /* Not currently supported */
+
+/* FIO45-C. */
+/* Avoid TOCTOU race conditions while accessing files */
+
+    /* Not currently supported */
+
+/* FIO46-C. */
+/* Do not access a closed file */
+
+    +e2471  /* operation on closed stream */
+    +elib(2471)
+    -append(2471,[CERT C Rule FIO46-C])
+
+/* FIO47-C. */
+/* Use valid format strings */
+
+    +e492   /* incomplete format specifier */
+    +elib(492)
+    -append(492,[CERT C Rule FIO47-C])
+
+    +e493   /* position arguments in format strings start counting at 1 (not 0) */
+    +elib(493)
+    -append(493,[CERT C Rule FIO47-C])
+
+    +e494   /* data argument position exceeds the number of data arguments */
+    +elib(494)
+    -append(494,[CERT C Rule FIO47-C])
+
+    +e499   /* using length modifier 'string' with conversion specifier 'string'
+               is not supported by ISO C */
+    +elib(499)
+    -append(499,[CERT C Rule FIO47-C])
+
+    +e557   /* invalid conversion specifier */
+    +elib(557)
+    -append(557,[CERT C Rule FIO47-C])
+
+    +e558   /* too few data arguments for format string */
+    +elib(558)
+    -append(558,[CERT C Rule FIO47-C])
+
+    +e559   /* format specifies type which is inconsistent with argument */
+    +elib(559)
+    -append(559,[CERT C Rule FIO47-C])
+
+    +e566   /* inconsistent or redundant length modifier or flag 'string' used
+               with 'string' conversion specifier */
+    +elib(566)
+    -append(566,[CERT C Rule FIO47-C])
+
+    +e705   /* format specifies type which is nominally inconsistent with argument */
+    +elib(705)
+    -append(705,[CERT C Rule FIO47-C])
+
+    +e706   /* format specifies type whose pointee type is nominally
+               inconsistent with argument */
+    +elib(706)
+    -append(706,[CERT C Rule FIO47-C])
+
+    +e719   /* data argument  not used by format string */
+    +elib(719)
+    -append(719,[CERT C Rule FIO47-C])
+
+    +e816   /* non-ISO format specification */
+    +elib(816)
+    -append(816,[CERT C Rule FIO47-C])
+
+    +e855   /* positional arguments are a non-ISO extension */
+    +elib(855)
+    -append(855,[CERT C Rule FIO47-C])
+
+    +e2401  /* cannot mix positional and non-positional arguments in format string */
+    +elib(2401)
+    -append(2401,[CERT C Rule FIO47-C])
+
+    +e2402  /* specified field is missing a matching 'int' argument */
+    +elib(2402)
+    -append(2402,[CERT C Rule FIO47-C])
+
+    +e2403  /* field should have type 'type', but argument has type 'type' */
+    +elib(2403)
+    -append(2403,[CERT C Rule FIO47-C])
+
+    +e2404  /* invalid position specified for field width or precision */
+    +elib(2404)
+    -append(2404,[CERT C Rule FIO47-C])
+
+    +e2405  /* field width or precision used with conversion specifier is undefined */
+    +elib(2405)
+    -append(2405,[CERT C Rule FIO47-C])
+
+    +e2406  /* no closing ']' for '%[' in scanf format string */
+    +elib(2406)
+    -append(2406,[CERT C Rule FIO47-C])
+
+    +e2407  /* zero field width in scanf format string is unused */
+    +elib(2407)
+    -append(2407,[CERT C Rule FIO47-C])
+
+/* ENV01-C. */
+/* Do not make assumptions about the size of an environment variable */
+
+    /* Assume an environment variable can be up to 4K in size */
+    -sem(my_getenv, @p == 0 || (@p > 0 && @p <= 4096))
+    +esym(669, getenv)
+    -append(669,[CERT C Recommendation ENV01-C])
+
+/* ENV02-C. */
+/* Beware of multiple environment variables with the same effective name */
+
+    /* Not currently supported */
+
+/* ENV03-C. */
+/* Sanitize the environment when invoking external programs */
+
+    /* Not currently supported */
+
+/* ENV30-C. */
+/* Do not modify the object referenced by the return value of certain functions */
+
+    /* Not currently supported */
+
+/* ENV31-C. */
+/* Do not rely on an environment pointer following an operation that may invalidate it */
+
+    /* Not currently supported */
+
+/* ENV32-C. */
+/* All exit handlers must return normally */
+
+    /* Not currently supported */
+
+/* ENV33-C. */
+/* Do not call system() */
+
+    +e586
+    +elib(586)
+    -deprecate(function, system, [CERT C Rule ENV33-C])
+
+/* ENV34-C. */
+/* Do not store pointers returned by certain functions */
+
+    /* Not currently supported */
+
+/* SIG00-C. */
+/* Mask signals handled by noninterruptible signal handlers */
+/* SIG01-C. */
+/* Understand implementation-specific details regarding signal handler persistence */
+/* SIG02-C. */
+/* Avoid using signals to implement normal functionality */
+
+    +e586
+    +elib(586)
+    -deprecate(function,signal,[CERT C Recommendation SIG00-C])
+    -deprecate(function,signal,[CERT C Recommendation SIG01-C])
+    -deprecate(function,signal,[CERT C Recommendation SIG02-C])
+
+/* SIG30-C. */
+/* Call only asynchronous-safe functions within signal handlers */
+
+    +e2670
+    +elib(2670)
+    -append(2670,[CERT C Recommendation SIG30-C])
+
+    +e2761
+    +elib(2761)
+    -append(2761,[CERT C Recommendation SIG30-C])
+
+/* SIG31-C. */
+/* Do not access shared objects in signal handlers */
+
+    +e2765
+    +elib(2765)
+    -append(2765,[CERT C Recommendation SIG31-C])
+
+/* SIG34-C. */
+/* Do not call signal() from within interruptible signal handlers */
+
+    +e2762
+    +elib(2762)
+    -append(2762,[CERT C Recommendation SIG34-C])
+
+    +e2763
+    +elib(2763)
+    -append(2763,[CERT C Recommendation SIG34-C])
+
+/* SIG35-C. */
+/* Do not return from a computational exception signal handler */
+
+    +e2671
+    +elib(2671)
+    -append(2671,[CERT C Recommendation SIG35-C])
+
+    +e2764
+    +elib(2764)
+    -append(2764,[CERT C Recommendation SIG35-C])
+
+/* ERR00-C. */
+/* Adopt and implement a consistent and comprehensive error-handling policy */
+
+    /* This guideline is not statically enforceable. */
+
+/* ERR01-C. */
+/* Use ferror() rather than errno to check for FILE stream errors */
+
+    /* Not currently supported */
+
+/* ERR02-C. */
+/* Avoid in-band error indicators */
+
+    /* This guideline is not statically enforceable. */
+
+/* ERR03-C. */
+/* Use runtime-constraint handlers when calling the bounds-checking interfaces */
+
+    /* Not currently supported */
+
+/* ERR04-C. */
+/* Choose an appropriate termination strategy */
+
+    +e586   /* use of deprecated entity */
+    +elib(586)
+
+    -deprecate(function, abort, [CERT C Recommendation ERR04-C])
+    -deprecate(function, _Exit, [CERT C Recommendation ERR04-C])
+
+/* ERR05-C. */
+/* Application-independent code should provide error detection without dictating error handling */
+
+    /* Not currently supported */
+
+/* ERR06-C. */
+/* Understand the termination behavior of assert() and abort() */
+
+    +e586   /* use of deprecated entity */
+    +elib(586)
+
+    -deprecate(function, abort, [CERT C Recommendation ERR06-C])
+
+/* ERR07-C. */
+/* Prefer functions that support error checking over equivalent functions that don't */
+
+    +e586   /* use of deprecated entity */
+    +elib(586)
+
+    -deprecate(function, atof, [CERT C Recommendation ERR07-C])
+    -deprecate(function, atoi, [CERT C Recommendation ERR07-C])
+    -deprecate(function, atol, [CERT C Recommendation ERR07-C])
+    -deprecate(function, atoll, [CERT C Recommendation ERR07-C])
+    -deprecate(function, rewind, [CERT C Recommendation ERR07-C])
+    -deprecate(function, setbuf, [CERT C Recommendation ERR07-C])
+    -deprecate(function, ctime, [CERT C Recommendation ERR07-C])
+
+/* ERR08-C has not yet been released */
+/* Restore prior data state when recovering from a failed operation */
+
+/* ERR30-C. */
+/* Set errno to zero before calling a library function known to set errno, and check errno only after the function returns a value indicating failure */
+
+    /* Not currently supported */
+
+/* ERR32-C. */
+/* Do not rely on indeterminate values of errno */
+
+    /* Not currently supported */
+
+/* ERR33-C. */
+/* Detect and handle standard library errors */
+
+    +esym(534,aligned_alloc)
+    -append(534(aligned_alloc),[CERT C Rule ERR33-C])
+
+    +esym(534,asctime_s)
+    -append(534(asctime_s),[CERT C Rule ERR33-C])
+
+    +esym(534,at_quick_exit)
+    -append(534(at_quick_exit),[CERT C Rule ERR33-C])
+
+    +esym(534,atexit)
+    -append(534(atexit),[CERT C Rule ERR33-C])
+
+    +esym(534,bsearch)
+    -append(534(bsearch),[CERT C Rule ERR33-C])
+
+    +esym(534,bsearch_s)
+    -append(534(bsearch_s),[CERT C Rule ERR33-C])
+
+    +esym(534,btowc)
+    -append(534(btowc),[CERT C Rule ERR33-C])
+
+    +esym(534,c16rtomb)
+    -append(534(c16rtomb),[CERT C Rule ERR33-C])
+
+    +esym(534,c32rtomb)
+    -append(534(c32rtomb),[CERT C Rule ERR33-C])
+
+    +esym(534,calloc)
+    -append(534(calloc),[CERT C Rule ERR33-C])
+
+    +esym(534,clock)
+    -append(534(clock),[CERT C Rule ERR33-C])
+
+    +esym(534,cnd_broadcast)
+    -append(534(cnd_broadcast),[CERT C Rule ERR33-C])
+
+    +esym(534,cnd_init)
+    -append(534(cnd_init),[CERT C Rule ERR33-C])
+
+    +esym(534,cnd_signal)
+    -append(534(cnd_signal),[CERT C Rule ERR33-C])
+
+    +esym(534,cnd_timedwait)
+    -append(534(cnd_timedwait),[CERT C Rule ERR33-C])
+
+    +esym(534,cnd_wait)
+    -append(534(cnd_wait),[CERT C Rule ERR33-C])
+
+    +esym(534,ctime_s)
+    -append(534(ctime_s),[CERT C Rule ERR33-C])
+
+    +esym(534,fclose)
+    -append(534(fclose),[CERT C Rule ERR33-C])
+
+    +esym(534,fflush)
+    -append(534(fflush),[CERT C Rule ERR33-C])
+
+    +esym(534,fgetc)
+    -append(534(fgetc),[CERT C Rule ERR33-C])
+
+    +esym(534,fgetpos)
+    -append(534(fgetpos),[CERT C Rule ERR33-C])
+
+    +esym(534,fgets)
+    -append(534(fgets),[CERT C Rule ERR33-C])
+
+    +esym(534,fgetwc)
+    -append(534(fgetwc),[CERT C Rule ERR33-C])
+
+    +esym(534,fopen)
+    -append(534(fopen),[CERT C Rule ERR33-C])
+
+    +esym(534,fopen_s)
+    -append(534(fopen_s),[CERT C Rule ERR33-C])
+
+    +esym(534,fprintf)
+    -append(534(fprintf),[CERT C Rule ERR33-C])
+
+    +esym(534,fprintf_s)
+    -append(534(fprintf_s),[CERT C Rule ERR33-C])
+
+    +esym(534,fputc)
+    -append(534(fputc),[CERT C Rule ERR33-C])
+
+    +esym(534,fputs)
+    -append(534(fputs),[CERT C Rule ERR33-C])
+
+    +esym(534,fputws)
+    -append(534(fputws),[CERT C Rule ERR33-C])
+
+    +esym(534,fread)
+    -append(534(fread),[CERT C Rule ERR33-C])
+
+    +esym(534,freopen)
+    -append(534(freopen),[CERT C Rule ERR33-C])
+
+    +esym(534,freopen_s)
+    -append(534(freopen_s),[CERT C Rule ERR33-C])
+
+    +esym(534,fscanf)
+    -append(534(fscanf),[CERT C Rule ERR33-C])
+
+    +esym(534,fscanf_s)
+    -append(534(fscanf_s),[CERT C Rule ERR33-C])
+
+    +esym(534,fseek)
+    -append(534(fseek),[CERT C Rule ERR33-C])
+
+    +esym(534,fsetpos)
+    -append(534(fsetpos),[CERT C Rule ERR33-C])
+
+    +esym(534,ftell)
+    -append(534(ftell),[CERT C Rule ERR33-C])
+
+    +esym(534,fwprintf)
+    -append(534(fwprintf),[CERT C Rule ERR33-C])
+
+    +esym(534,fwprintf_s)
+    -append(534(fwprintf_s),[CERT C Rule ERR33-C])
+
+    +esym(534,fwrite)
+    -append(534(fwrite),[CERT C Rule ERR33-C])
+
+    +esym(534,fwscanf)
+    -append(534(fwscanf),[CERT C Rule ERR33-C])
+
+    +esym(534,fwscanf_s)
+    -append(534(fwscanf_s),[CERT C Rule ERR33-C])
+
+    +esym(534,getc)
+    -append(534(getc),[CERT C Rule ERR33-C])
+
+    +esym(534,getchar)
+    -append(534(getchar),[CERT C Rule ERR33-C])
+
+    +esym(534,getenv)
+    -append(534(getenv),[CERT C Rule ERR33-C])
+
+    +esym(534,getenv_s)
+    -append(534(getenv_s),[CERT C Rule ERR33-C])
+
+    +esym(534,gets_s)
+    -append(534(gets_s),[CERT C Rule ERR33-C])
+
+    +esym(534,getwc)
+    -append(534(getwc),[CERT C Rule ERR33-C])
+
+    +esym(534,getwchar)
+    -append(534(getwchar),[CERT C Rule ERR33-C])
+
+    +esym(534,gmtime)
+    -append(534(gmtime),[CERT C Rule ERR33-C])
+
+    +esym(534,gmtime_s)
+    -append(534(gmtime_s),[CERT C Rule ERR33-C])
+
+    +esym(534,localtime)
+    -append(534(localtime),[CERT C Rule ERR33-C])
+
+    +esym(534,localtime_s)
+    -append(534(localtime_s),[CERT C Rule ERR33-C])
+
+    +esym(534,malloc)
+    -append(534(malloc),[CERT C Rule ERR33-C])
+
+    +esym(534,mbrtoc16)
+    -append(534(mbrtoc16),[CERT C Rule ERR33-C])
+
+    +esym(534,mbrtoc32)
+    -append(534(mbrtoc32),[CERT C Rule ERR33-C])
+
+    +esym(534,mbsrtowcs)
+    -append(534(mbsrtowcs),[CERT C Rule ERR33-C])
+
+    +esym(534,mbsrtowcs_s)
+    -append(534(mbsrtowcs_s),[CERT C Rule ERR33-C])
+
+    +esym(534,mbstowcs)
+    -append(534(mbstowcs),[CERT C Rule ERR33-C])
+
+    +esym(534,mbstowcs_s)
+    -append(534(mbstowcs_s),[CERT C Rule ERR33-C])
+
+    +esym(534,memchr)
+    -append(534(memchr),[CERT C Rule ERR33-C])
+
+    +esym(534,mktime)
+    -append(534(mktime),[CERT C Rule ERR33-C])
+
+    +esym(534,mtx_init)
+    -append(534(mtx_init),[CERT C Rule ERR33-C])
+
+    +esym(534,mtx_lock)
+    -append(534(mtx_lock),[CERT C Rule ERR33-C])
+
+    +esym(534,mtx_timedlock)
+    -append(534(mtx_timedlock),[CERT C Rule ERR33-C])
+
+    +esym(534,mtx_trylock)
+    -append(534(mtx_trylock),[CERT C Rule ERR33-C])
+
+    +esym(534,mtx_unlock)
+    -append(534(mtx_unlock),[CERT C Rule ERR33-C])
+
+    +esym(534,printf_s)
+    -append(534(printf_s),[CERT C Rule ERR33-C])
+
+    +esym(534,putc)
+    -append(534(putc),[CERT C Rule ERR33-C])
+
+    +esym(534,putwc)
+    -append(534(putwc),[CERT C Rule ERR33-C])
+
+    +esym(534,raise)
+    -append(534(raise),[CERT C Rule ERR33-C])
+
+    +esym(534,realloc)
+    -append(534(realloc),[CERT C Rule ERR33-C])
+
+    +esym(534,remove)
+    -append(534(remove),[CERT C Rule ERR33-C])
+
+    +esym(534,rename)
+    -append(534(rename),[CERT C Rule ERR33-C])
+
+    +esym(534,setlocale)
+    -append(534(setlocale),[CERT C Rule ERR33-C])
+
+    +esym(534,setvbuf)
+    -append(534(setvbuf),[CERT C Rule ERR33-C])
+
+    +esym(534,scanf)
+    -append(534(scanf),[CERT C Rule ERR33-C])
+
+    +esym(534,scanf_s)
+    -append(534(scanf_s),[CERT C Rule ERR33-C])
+
+    +esym(534,signal)
+    -append(534(signal),[CERT C Rule ERR33-C])
+
+    +esym(534,snprintf)
+    -append(534(snprintf),[CERT C Rule ERR33-C])
+
+    +esym(534,snprintf_s)
+    -append(534(snprintf_s),[CERT C Rule ERR33-C])
+
+    +esym(534,sprintf)
+    -append(534(sprintf),[CERT C Rule ERR33-C])
+
+    +esym(534,sprintf_s)
+    -append(534(sprintf_s),[CERT C Rule ERR33-C])
+
+    +esym(534,sscanf)
+    -append(534(sscanf),[CERT C Rule ERR33-C])
+
+    +esym(534,sscanf_s)
+    -append(534(sscanf_s),[CERT C Rule ERR33-C])
+
+    +esym(534,strchr)
+    -append(534(strchr),[CERT C Rule ERR33-C])
+
+    +esym(534,strerror_s)
+    -append(534(strerror_s),[CERT C Rule ERR33-C])
+
+    +esym(534,strftime)
+    -append(534(strftime),[CERT C Rule ERR33-C])
+
+    +esym(534,strpbrk)
+    -append(534(strpbrk),[CERT C Rule ERR33-C])
+
+    +esym(534,strrchr)
+    -append(534(strrchr),[CERT C Rule ERR33-C])
+
+    +esym(534,strstr)
+    -append(534(strstr),[CERT C Rule ERR33-C])
+
+    +esym(534,strtod)
+    -append(534(strtod),[CERT C Rule ERR33-C])
+
+    +esym(534,strtof)
+    -append(534(strtof),[CERT C Rule ERR33-C])
+
+    +esym(534,strtoimax)
+    -append(534(strtoimax),[CERT C Rule ERR33-C])
+
+    +esym(534,strtok)
+    -append(534(strtok),[CERT C Rule ERR33-C])
+
+    +esym(534,strtok_s)
+    -append(534(strtok_s),[CERT C Rule ERR33-C])
+
+    +esym(534,strtol)
+    -append(534(strtol),[CERT C Rule ERR33-C])
+
+    +esym(534,strtold)
+    -append(534(strtold),[CERT C Rule ERR33-C])
+
+    +esym(534,strtoll)
+    -append(534(strtoll),[CERT C Rule ERR33-C])
+
+    +esym(534,strtoumax)
+    -append(534(strtoumax),[CERT C Rule ERR33-C])
+
+    +esym(534,strtoul)
+    -append(534(strtoul),[CERT C Rule ERR33-C])
+
+    +esym(534,strtoull)
+    -append(534(strtoull),[CERT C Rule ERR33-C])
+
+    +esym(534,strxfrm)
+    -append(534(strxfrm),[CERT C Rule ERR33-C])
+
+    +esym(534,swprintf)
+    -append(534(swprintf),[CERT C Rule ERR33-C])
+
+    +esym(534,swprintf_s)
+    -append(534(swprintf_s),[CERT C Rule ERR33-C])
+
+    +esym(534,swscanf)
+    -append(534(swscanf),[CERT C Rule ERR33-C])
+
+    +esym(534,swscanf_s)
+    -append(534(swscanf_s),[CERT C Rule ERR33-C])
+
+    +esym(534,thrd_create)
+    -append(534(thrd_create),[CERT C Rule ERR33-C])
+
+    +esym(534,thrd_detach)
+    -append(534(thrd_detach),[CERT C Rule ERR33-C])
+
+    +esym(534,thrd_join)
+    -append(534(thrd_join),[CERT C Rule ERR33-C])
+
+    +esym(534,thrd_sleep)
+    -append(534(thrd_sleep),[CERT C Rule ERR33-C])
+
+    +esym(534,time)
+    -append(534(time),[CERT C Rule ERR33-C])
+
+    +esym(534,timespec_get)
+    -append(534(timespec_get),[CERT C Rule ERR33-C])
+
+    +esym(534,tmpfile)
+    -append(534(tmpfile),[CERT C Rule ERR33-C])
+
+    +esym(534,tmpfile_s)
+    -append(534(tmpfile_s),[CERT C Rule ERR33-C])
+
+    +esym(534,tmpnam)
+    -append(534(tmpnam),[CERT C Rule ERR33-C])
+
+    +esym(534,tmpnam_s)
+    -append(534(tmpnam_s),[CERT C Rule ERR33-C])
+
+    +esym(534,tss_create)
+    -append(534(tss_create),[CERT C Rule ERR33-C])
+
+    +esym(534,tss_get)
+    -append(534(tss_get),[CERT C Rule ERR33-C])
+
+    +esym(534,tss_set)
+    -append(534(tss_set),[CERT C Rule ERR33-C])
+
+    +esym(534,ungetc)
+    -append(534(ungetc),[CERT C Rule ERR33-C])
+
+    +esym(534,ungetwc)
+    -append(534(ungetwc),[CERT C Rule ERR33-C])
+
+    +esym(534,vfprintf)
+    -append(534(vfprintf),[CERT C Rule ERR33-C])
+
+    +esym(534,vfprintf_s)
+    -append(534(vfprintf_s),[CERT C Rule ERR33-C])
+
+    +esym(534,vfscanf)
+    -append(534(vfscanf),[CERT C Rule ERR33-C])
+
+    +esym(534,vfscanf_s)
+    -append(534(vfscanf_s),[CERT C Rule ERR33-C])
+
+    +esym(534,vfwprintf)
+    -append(534(vfwprintf),[CERT C Rule ERR33-C])
+
+    +esym(534,vfwprintf_s)
+    -append(534(vfwprintf_s),[CERT C Rule ERR33-C])
+
+    +esym(534,vfwscanf)
+    -append(534(vfwscanf),[CERT C Rule ERR33-C])
+
+    +esym(534,vfwscanf_s)
+    -append(534(vfwscanf_s),[CERT C Rule ERR33-C])
+
+    +esym(534,vprintf_s)
+    -append(534(vprintf_s),[CERT C Rule ERR33-C])
+
+    +esym(534,vscanf)
+    -append(534(vscanf),[CERT C Rule ERR33-C])
+
+    +esym(534,vscanf_s)
+    -append(534(vscanf_s),[CERT C Rule ERR33-C])
+
+    +esym(534,vsnprintf)
+    -append(534(vsnprintf),[CERT C Rule ERR33-C])
+
+    +esym(534,vsnprintf_s)
+    -append(534(vsnprintf_s),[CERT C Rule ERR33-C])
+
+    +esym(534,vsprintf)
+    -append(534(vsprintf),[CERT C Rule ERR33-C])
+
+    +esym(534,vsprintf_s)
+    -append(534(vsprintf_s),[CERT C Rule ERR33-C])
+
+    +esym(534,vsscanf)
+    -append(534(vsscanf),[CERT C Rule ERR33-C])
+
+    +esym(534,vsscanf_s)
+    -append(534(vsscanf_s),[CERT C Rule ERR33-C])
+
+    +esym(534,vswprintf)
+    -append(534(vswprintf),[CERT C Rule ERR33-C])
+
+    +esym(534,vswprintf_s)
+    -append(534(vswprintf_s),[CERT C Rule ERR33-C])
+
+    +esym(534,vswscanf)
+    -append(534(vswscanf),[CERT C Rule ERR33-C])
+
+    +esym(534,vswscanf_s)
+    -append(534(vswscanf_s),[CERT C Rule ERR33-C])
+
+    +esym(534,vwprintf_s)
+    -append(534(vwprintf_s),[CERT C Rule ERR33-C])
+
+    +esym(534,vwscanf)
+    -append(534(vwscanf),[CERT C Rule ERR33-C])
+
+    +esym(534,vwscanf_s)
+    -append(534(vwscanf_s),[CERT C Rule ERR33-C])
+
+    +esym(534,wcrtomb)
+    -append(534(wcrtomb),[CERT C Rule ERR33-C])
+
+    +esym(534,wcschr)
+    -append(534(wcschr),[CERT C Rule ERR33-C])
+
+    +esym(534,wcsftime)
+    -append(534(wcsftime),[CERT C Rule ERR33-C])
+
+    +esym(534,wcspbrk)
+    -append(534(wcspbrk),[CERT C Rule ERR33-C])
+
+    +esym(534,wcsrchr)
+    -append(534(wcsrchr),[CERT C Rule ERR33-C])
+
+    +esym(534,wcsrtombs)
+    -append(534(wcsrtombs),[CERT C Rule ERR33-C])
+
+    +esym(534,wcsrtombs_s)
+    -append(534(wcsrtombs_s),[CERT C Rule ERR33-C])
+
+    +esym(534,wcsstr)
+    -append(534(wcsstr),[CERT C Rule ERR33-C])
+
+    +esym(534,wcstod)
+    -append(534(wcstod),[CERT C Rule ERR33-C])
+
+    +esym(534,wcstof)
+    -append(534(wcstof),[CERT C Rule ERR33-C])
+
+    +esym(534,wcstoimax)
+    -append(534(wcstoimax),[CERT C Rule ERR33-C])
+
+    +esym(534,wcstok)
+    -append(534(wcstok),[CERT C Rule ERR33-C])
+
+    +esym(534,wcstok_s)
+    -append(534(wcstok_s),[CERT C Rule ERR33-C])
+
+    +esym(534,wcstol)
+    -append(534(wcstol),[CERT C Rule ERR33-C])
+
+    +esym(534,wcstold)
+    -append(534(wcstold),[CERT C Rule ERR33-C])
+
+    +esym(534,wcstoll)
+    -append(534(wcstoll),[CERT C Rule ERR33-C])
+
+    +esym(534,wcstombs)
+    -append(534(wcstombs),[CERT C Rule ERR33-C])
+
+    +esym(534,wcstombs_s)
+    -append(534(wcstombs_s),[CERT C Rule ERR33-C])
+
+    +esym(534,wcstoumax)
+    -append(534(wcstoumax),[CERT C Rule ERR33-C])
+
+    +esym(534,wcstoul)
+    -append(534(wcstoul),[CERT C Rule ERR33-C])
+
+    +esym(534,wcstoull)
+    -append(534(wcstoull),[CERT C Rule ERR33-C])
+
+    +esym(534,wcsxfrm)
+    -append(534(wcsxfrm),[CERT C Rule ERR33-C])
+
+    +esym(534,wctob)
+    -append(534(wctob),[CERT C Rule ERR33-C])
+
+    +esym(534,wctrans)
+    -append(534(wctrans),[CERT C Rule ERR33-C])
+
+    +esym(534,wctype)
+    -append(534(wctype),[CERT C Rule ERR33-C])
+
+    +esym(534,wmemchr)
+    -append(534(wmemchr),[CERT C Rule ERR33-C])
+
+    +esym(534,wprintf_s)
+    -append(534(wprintf_s),[CERT C Rule ERR33-C])
+
+    +esym(534,wscanf)
+    -append(534(wscanf),[CERT C Rule ERR33-C])
+
+    +esym(534,wscanf_s)
+    -append(534(wscanf_s),[CERT C Rule ERR33-C])
+
+/* ERR34-C. */
+/* Detect errors when converting a string to a number */
+    
+    +e586   /* use of deprecated entity */
+    +elib(586)
+
+    -deprecate(scanf_code, d, [CERT C Rule ERR34-C])
+    -deprecate(scanf_code, D, [CERT C Rule ERR34-C])
+    -deprecate(scanf_code, i, [CERT C Rule ERR34-C])
+    -deprecate(scanf_code, o, [CERT C Rule ERR34-C])
+    -deprecate(scanf_code, u, [CERT C Rule ERR34-C])
+    -deprecate(scanf_code, x, [CERT C Rule ERR34-C])
+    -deprecate(scanf_code, X, [CERT C Rule ERR34-C])
+    -deprecate(scanf_code, f, [CERT C Rule ERR34-C])
+    -deprecate(scanf_code, e, [CERT C Rule ERR34-C])
+    -deprecate(scanf_code, g, [CERT C Rule ERR34-C])
+    -deprecate(scanf_code, E, [CERT C Rule ERR34-C])
+    -deprecate(scanf_code, a, [CERT C Rule ERR34-C])
+
+    -deprecate(function, atoi, [CERT C Rule ERR34-C])
+    -deprecate(function, atol, [CERT C Rule ERR34-C])
+    -deprecate(function, atoll, [CERT C Rule ERR34-C])
+    -deprecate(function, atoq, [CERT C Rule ERR34-C])
+    -deprecate(function, atof, [CERT C Rule ERR34-C])
+
+/* API00-C. */
+/* Functions should validate their parameters */
+
+    +fpn /* pointer parameter could be null */
+
+    +e413 /* likely use of null pointer */
+    +elib(413)
+    -append(413,[CERT C Recommendation API00-C])
+
+    +e613 /* potential use of null pointer */
+    +elib(613)
+    -append(613,[CERT C Recommendation API00-C])
+
+    +e668 /* possibly passing null pointer to function */
+    +elib(668)
+    -append(668,[CERT C Recommendation API00-C])
+
+/* API01-C. */
+/* Avoid laying out strings in memory directly before sensitive data */
+
+    /* Not currently supported */
+
+/* API02-C. */
+/* Functions that read or write to or from an array should take an argument to specify the source or target size */
+
+    /* Not currently supported */
+
+/* API03-C. */
+/* Create consistent interfaces and capabilities across related functions */
+
+    /* Not currently supported */
+
+/* API04-C. */
+/* Provide a consistent and usable error-checking mechanism */
+
+    /* Not currently supported */
+
+/* API05-C. */
+/* Use conformant array parameters */
+
+    /* Not currently supported */
+
+/* API07-C. */
+/* Enforce type safety */
+
+    /* Not currently supported */
+
+/* API08-C. */
+/* Avoid parameter names in a function prototype */
+
+    /* Not currently supported */
+
+/* API09-C. */
+/* Compatible values should have the same type */
+
+    +e737   /* loss of sign in promotion from __type__ to __type__ */
+    +elib(737)
+    -append(737,[CERT C Recommendation API09-C])
+
+/* API10-C. */
+/* APIs should have security options enabled by default */
+
+    /* Not currently supported */
+
+/* MSC00-C. */
+/* Compile cleanly at high warning levels */
+
+    /* Not currently supported */
+
+/* MSC01-C. */
+/* Strive for logical completeness */
+
+    +e9013 /* no 'else' at end of 'if' 'else if' */
+    +elib(9013)
+    -append(9013,[CERT C Recommendation MSC01-C])
+
+    +e474 /* no switch case matches constant */
+    +elib(474)
+    -append(474,[CERT C Recommendation MSC01-C])
+
+    +e744 /* switch statement has no default */
+    +elib(744)
+    -append(744,[CERT C Recommendation MSC01-C])
+
+    +e787 /* enum constant __symbol__ not used within switch */
+    +elib(787)
+    -append(787,[CERT C Recommendation MSC01-C])
+
+/* MSC04-C. */
+/* Use comments consistently and in a readable fashion */
+
+    +e9059 /* C comment contains C++ comment */
+    +elib(9059)
+    -append(9059,[CERT C Recommendation MSC04-C])
+
+    +e9060 /* trigraph in comment */
+    +elib(9060)
+    -append(9060,[CERT C Recommendation MSC04-C])
+
+    +e9066 /* C++ comment contains C comment */
+    +elib(9066)
+    -append(9066,[CERT C Recommendation MSC04-C])
+
+    +e9259 /* C comment may contain URL or C++ comment */
+    +elib(9259)
+    -append(9259,[CERT C Recommendation MSC04-C])
+
+    +e427 /* C++ comment continued with backslash */
+    +elib(427)
+    -append(427,[CERT C Recommendation MSC04-C])
+
+    +e602 /* start of C-style comment within C-style comment */
+    +elib(602)
+    -append(602,[CERT C Recommendation MSC04-C])
+
+    +e689 /* apparent end of C-style comment ignored outside of C-style comment */
+    +elib(689)
+    -append(689,[CERT C Recommendation MSC04-C])
+
+    +e853 /* entering nested comment */
+    +elib(853)
+    -append(853,[CERT C Recommendation MSC04-C])
+
+    +e1 /* unclosed comment */
+    +elib(1)
+    -append(1,[CERT C Recommendation MSC04-C])
+
+/* MSC05-C. */
+/* Do not manipulate time_t typed values directly */
+
+    /* Not currently supported */
+
+/* MSC06-C. */
+/* Beware of compiler optimizations */
+
+    +e586
+    -deprecate(function,ZeroMemory,[CERT C Recommendation MSC06-C])
+
+/* MSC07-C is deprecated */
+/* Detect and remove dead code */
+
+    /* This rule has been deprecated by CERT and is supported by MSC12-C. */
+
+/* MSC09-C. */
+/* Character encoding: Use subset of ASCII for safety */
+
+    /* Not currently supported */
+
+/* MSC10-C. */
+/* Character encoding: UTF8-related issues */
+
+    /* Not currently supported */
+
+/* MSC11-C. */
+/* Incorporate diagnostic tests using assertions */
+
+    /* Not currently supported */
+
+/* MSC12-C. */
+/* Detect and remove code that has no effect or is never executed */
+
+    +e522 /* highest operation lacks side effects */
+    +elib(522)
+    -append(522,[CERT C Recommendation MSC12-C])
+
+    +e523 /* expression statement lacks side effects */
+    +elib(523)
+    -append(523,[CERT C Recommendation MSC12-C])
+
+    +e527 /* statement is unreachable */
+    +elib(527)
+    -append(527,[CERT C Recommendation MSC12-C])
+
+    +e827 /* loop is unreachable */
+    +elib(827)
+    -append(827,[CERT C Recommendation MSC12-C])
+
+    +e774 /* condition for control statement always evaluates to true/false */
+    +elib(774)
+    -append(774,[CERT C Recommendation MSC12-C])
+
+    +e438 /* last value not used */
+    +elib(438)
+    -append(438,[CERT C Recommendation MSC12-C])
+
+    +e838 /* previous value not used */
+    +elib(838)
+    -append(838,[CERT C Recommendation MSC12-C])
+
+    +e768 /* global structure member not referenced */
+    +elib(768)
+    -append(768,[CERT C Recommendation MSC12-C])
+
+    +e769 /* global enumeration constant not referenced */
+    +elib(769)
+    -append(769,[CERT C Recommendation MSC12-C])
+
+    +e714 /* external symbol defined but not referenced */
+    +elib(714)
+    -append(714,[CERT C Recommendation MSC12-C])
+
+    +e715 /* named parameter not referenced */
+    +elib(715)
+    -append(715,[CERT C Recommendation MSC12-C])
+
+    +e719 /* unused format string arguments */
+    +elib(719)
+    -append(719,[CERT C Recommendation MSC12-C])
+
+    +e749 /* local enumeration constant not referenced */
+    +elib(749)
+    -append(749,[CERT C Recommendation MSC12-C])
+
+    +e750 /* local macro not referenced */
+    +elib(750)
+    -append(750,[CERT C Recommendation MSC12-C])
+
+    +e751 /* local typedef not referenced */
+    +elib(751)
+    -append(751,[CERT C Recommendation MSC12-C])
+
+    +e752 /* local declarator not referenced */
+    +elib(752)
+    -append(752,[CERT C Recommendation MSC12-C])
+
+    +e753 /* local symbol not referenced */
+    +elib(753)
+    -append(753,[CERT C Recommendation MSC12-C])
+
+    +e754 /* local member not referenced */
+    +elib(754)
+    -append(754,[CERT C Recommendation MSC12-C])
+
+    +e755 /* global macro not referenced */
+    +elib(755)
+    -append(755,[CERT C Recommendation MSC12-C])
+
+    +e756 /* global typedef not referenced */
+    +elib(756)
+    -append(756,[CERT C Recommendation MSC12-C])
+
+    +e757 /* global declarator not referenced */
+    +elib(757)
+    -append(757,[CERT C Recommendation MSC12-C])
+
+    +e758 /* global symbol not referenced */
+    +elib(758)
+    -append(758,[CERT C Recommendation MSC12-C])
+
+    +e528 /* static symbol not referenced */
+    +elib(528)
+    -append(528,[CERT C Recommendation MSC12-C])
+
+    +e529 /* local variable not subsequently referenced */
+    +elib(529)
+    -append(529,[CERT C Recommendation MSC12-C])
+
+    +e563 /* label not referenced */
+    +elib(563)
+    -append(563,[CERT C Recommendation MSC12-C])
+
+    +e474 /* no case or default for constant switch condition */
+    +elib(474)
+    -append(474,[CERT C Recommendation MSC12-C])
+
+    +e612 /* declaration does not declare anything */
+    +elib(612)
+    -append(612,[CERT C Recommendation MSC12-C])
+
+    +e1972 /* empty declaration */
+    +elib(1972)
+    -append(1972,[CERT C Recommendation MSC12-C])
+
+    +e505 /* redundant left argument to comma */
+    +elib(505)
+    -append(505, CERT C Recommendation MSC12-C])
+
+/* MSC13-C. */
+/* Detect and remove unused values */
+
+    +fiw // initialization is a write
+    -fiz // initialization by zero is not a write
+
+    +e438 /* last value not used */
+    +elib(438)
+    -append(438,[CERT C Recommendation MSC13-C])
+
+    +e838 /* previous value not used */
+    +elib(838)
+    -append(838,[CERT C Recommendation MSC13-C])
+
+    +e529 /* local variable not subsequently referenced */
+    +elib(529)
+    -append(529,[CERT C Recommendation MSC13-C])
+
+    +e715 /* named parameter not referenced */
+    +elib(715)
+    -append(715,[CERT C Recommendation MSC13-C])
+
+    +e505 /* redundant left argument to comma */
+    +elib(505)
+    -append(505, [CERT C Recommendation MSC13-C])
+
+/* MSC14-C. */
+/* Do not introduce unnecessary platform dependencies */
+
+    /* Not currently supported */
+
+/* MSC15-C. */
+/* Do not depend on undefined behavior */
+
+    /* Not currently supported */
+
+/* MSC17-C. */
+/* Finish every set of statements associated with a case label with a break statement */
+
+    /* Fully supported */
+
+    +e616 /* control falls through to next case without comment */
+    +elib(616)
+    -append(616, [CERT C Recommendation MSC17-C])
+
+    +e825 /* control falls through to next case without -fallthrough comment */
+    +elib(825)
+    -append(825, [CERT C Recommendation MSC17-C])
+
+/* MSC18-C. */
+/* Be careful while handling sensitive data, such as passwords, in program code */
+
+    +e586
+    +elib(586)
+
+    -deprecate(function,getpass,[CERT C Recommendation MSC18-C])
+    -deprecate(function,getpassphrase,[CERT C Recommendation MSC18-C])
+
+    -deprecate(function,ZeroMemory,[CERT C Recommendation MSC18-C])
+
+    -deprecate(function,LogonUserA,[CERT C Recommendation MSC18-C])
+    -deprecate(function,LogonUserExA,[CERT C Recommendation MSC18-C])
+    -deprecate(function,LogonUserW,[CERT C Recommendation MSC18-C])
+    -deprecate(function,LogonUserExW,[CERT C Recommendation MSC18-C])
+
+/* MSC19-C. */
+/* For functions that return an array, prefer returning an empty array over a null value */
+
+    +e613 /* potential use of null pointer */
+    +elib(613)
+    -append(613, [CERT C Recommendation MSC19-C])
+
+    +e661 /* potential out of bounds access */
+    +elib(661)
+    -append(661, [CERT C Recommendation MSC19-C])
+
+    +e662 /* possible creation of out of bounds pointer */
+    +elib(662)
+    -append(662, [CERT C Recommendation MSC19-C])
+
+    +e668 /* possibly passing NULL to function */
+    +elib(668)
+    -append(668, [CERT C Recommendation MSC19-C])
+
+    +e669 /* possible data overrun */
+    +elib(669)
+    -append(669, [CERT C Recommendation MSC19-C])
+
+    +e670 /* possible access beyond array */
+    +elib(670)
+    -append(670, [CERT C Recommendation MSC19-C])
+
+    +e413 /* likely use of NULL pointer */
+    +elib(413)
+    -append(413, [CERT C Recommendation MSC19-C])
+
+    +e418 /* passing NULL to function */
+    +elib(418)
+    -append(418, [CERT C Recommendation MSC19-C])
+
+    +e419 /* data overrun */
+    +elib(419)
+    -append(419, [CERT C Recommendation MSC19-C])
+
+    +e420 /* access beyond array */
+    +elib(420)
+    -append(420, [CERT C Recommendation MSC19-C])
+
+    +e473 /* argument for parameter declared with sized array type too small or NULL */
+    +elib(473)
+    -append(473, [CERT C Recommendation MSC19-C])
+
+/* MSC20-C. */
+/* Do not use a switch statement to transfer control into a complex block */
+
+    +e646 /* case or default within loop */
+    +elib(646)
+    -append(646, [CERT C Recommendation MSC20-C])
+
+    +e9055 /* most closely enclosing compound statement of case or default is not switch */
+    +elib(9055)
+    -append(9055, [CERT C Recommendation MSC20-C])
+
+/* MSC21-C. */
+/* Use robust loop termination conditions */
+/* Improved support: PCLP-2734 */
+
+    +e440 /* for condition inconsistent with modification */
+    +elib(440)
+    -append(440, [CERT C Recommendation MSC21-C])
+
+    +e442 /* for condition and increment directions inconsistent */
+    +elib(442)
+    -append(442, [CERT C Recommendation MSC21-C])
+
+    +e443 /* for initialization inconsistent with modification */
+    +elib(443)
+    -append(443, [CERT C Recommendation MSC21-C])
+
+    +e444 /* for condition tests incremented/decremented pointer for NULL */
+    +elib(444)
+    -append(444, [CERT C Recommendation MSC21-C])
+
+    +e445 /* re-use of loop variable */
+    +elib(445)
+    -append(445, [CERT C Recommendation MSC21-C])
+
+    +e2650 /* constant out of range for greater than or less than component of compound comparison */
+    +elib(2650)
+    -append(2650, [CERT C Recommendation MSC21-C])
+
+/* MSC22-C. */
+/* Use the setjmp(), longjmp() facility securely */
+
+    /* Not currently supported */
+    
+/* MSC23-C. */
+/* Beware of vendor-specific library and language differences */
+
+    /* Not currently supported */
+
+/* MSC24-C. */
+/* Do not use deprecated or obsolescent functions */
+
+    +e586   /* use of deprecated entity */
+    +elib(586)
+
+    -deprecate(function,gets,"this function is obsolete, dangerous, and has been removed from the C standard [CERT C Recommendation MSC24-C]")
+    -deprecate(function,asctime,"this function is not re-entrant, asctime_s is recommended [CERT C Recommendation MSC24-C]")
+    -deprecate(function,atof,"this function does not detect errors, strtod is recommended [CERT C Recommendation MSC24-C]")
+    -deprecate(function,atoi,"this function does not detect errors, strtol is recommended [CERT C Recommendation MSC24-C]")
+    -deprecate(function,atol,"this function does not detect errors, strtol is recommended [CERT C Recommendation MSC24-C]")
+    -deprecate(function,atoll,"this function does not detect errors, strtoll is recommended [CERT C Recommendation MSC24-C]")
+    -deprecate(function,ctime,"this function is not re-entrant, ctime_s is recommended [CERT C Recommendation MSC24-C]")
+    -deprecate(function,fopen,"this function opens files in non-exclusive mode, fopen_s is recommended [CERT C Recommendation MSC24-C]")
+    -deprecate(function,freopen,"this function opens files in non-exclusive mode, freopen_s is recommended [CERT C Recommendation MSC24-C]")
+    -deprecate(function,rewind,"this function does not detect errors, fseek is recommended [CERT C Recommendation MSC24-C]")
+    -deprecate(function,setbuf,"this function does not detect errors, setvbuf is recommended [CERT C Recommendation MSC24-C]")
+
+    -deprecate(function,bsearch,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,fprintf,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,fscanf,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,fwprintf,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,fwscanf,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,getenv,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,gmtime,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,localtime,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,mbsrtowcs,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,mbstowcs,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,memcpy,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,memmove,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,printf,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,qsort,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,setbuf,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,snprintf,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,sprintf,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,sscanf,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,strcat,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,strcpy,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,strerror,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,strncat,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,strncpy,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,strtok,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,swprintf,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,swscanf,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,vfprintf,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,vfscanf,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,vfwprintf,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,vfwscanf,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,vprintf,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,vscanf,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,vsnprintf,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,vsprintf,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,vsscanf,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,vswprintf,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,vswscanf,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,vwprintf,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,vwscanf,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,wcrtomb,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,wcscat,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,wcscpy,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,wcsncat,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,wcsncpy,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,wcsrtombs,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,wcstok,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,wcstombs,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,wctomb,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,wmemcpy,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,wmemmove,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,wprintf,this function is unchecked [CERT C Recommendation MSC24-C])
+    -deprecate(function,wscanf,this function is unchecked [CERT C Recommendation MSC24-C])
+
+    -deprecate(function,I)
+
+/* MSC30-C. */
+/* Do not use the rand() function for generating pseudorandom numbers */
+
+    +e586   /* use of deprecated entity */
+    +elib(586)
+
+    -deprecate(function,rand,insecure random number generator [CERT C Rule MSC30-C])
+
+/* MSC32-C. */
+/* Properly seed pseudorandom number generators */
+
+    +e2461 /* call to rand/random without srand/srandom */
+    +elib(2461)
+    -append(2461,[CERT C Rule MSC32-C])
+
+    +e2760 /* call to srand/srandom with result of call to time */
+    +elib(2760)
+    -append(2760,[CERT C Rule MSC32-C])
+
+    -sem(srand, noliteral(1))
+    -sem(srandom, noliteral(1))
+
+    +e2460 /* literal provided to noliteral */
+    +elib(2460)
+    -append(2460(integer),[CERT C Rule MSC32-C])
+
+/* MSC33-C. */
+/* Do not pass invalid data to the asctime() function */
+
+    +e586   /* use of deprecated entity */
+    +elib(586)
+
+    -deprecate(function,asctime,asctime should be avoided in favor of strftime or asctime_s [CERT C Rule MSC33-C])
+
+/* MSC37-C. */
+/* Ensure that control never reaches the end of a non-void function */
+
+    +e533 /* function should return a value */
+    +elib(533)
+    -append(533,[CERT C Rule MSC37-C])
+
+/* MSC38-C. */
+/* Do not treat a predefined identifier as an object if it might only be implemented as a macro */
+
+    /* Not currently supported */
+
+/* MSC39-C. */
+/* Do not call va_arg() on a va_list that has an indeterminate value */
+
+    /* Not currently supported */
+
+/* MSC40-C. */
+/* Do not violate constraints */
+
+    /* Not currently supported */
+
+/* MSC41-C. */
+/* Never hard code sensitive information */
+
+    -sem(LogonUserA, noliteral(3))
+    -sem(LogonUserExA, noliteral(3))
+    -sem(LogonUserW, noliteral(3))
+    -sem(LogonUserExW, noliteral(3))
+    -sem(CreateProcessWithLogonW, noliteral(3))
+
+    +e2460
+    +elib(2460)
+    -append(2460(string),[CERT C Rule MSC41-C])
+
+/* WIN00-C. */
+/* Be specific when dynamically loading libraries */
+
+    +e586
+    +elib(586)
+    -deprecate(function, AfxLoadLibrary, [CERT C Recommendation WIN00-C])
+    -deprecate(function, CoLoadLibrary, [CERT C Recommendation WIN00-C])
+    -deprecate(function, LoadLibrary, [CERT C Recommendation WIN00-C])
+    -deprecate(macro, LOAD_LIBRARY_SEARCH_USER_DIRS, [CERT C Recommendation WIN00-C])
+
+/* WIN01-C. */
+/* Do not forcibly terminate execution */
+
+    +e586
+    +elib(586)
+    -deprecate(function, TerminateProcess, [CERT C Recommendation WIN01-C])
+    -deprecate(function, TerminateThread, [CERT C Recommendation WIN01-C])
+
+/* WIN02-C. */
+/* Restrict privileges when spawning child processes */
+
+    +e586
+    +elib(586)
+    -deprecate(macro, CreateProcess, [CERT C Recommendation WIN02-C])
+    -deprecate(function, CreateProcessA, [CERT C Recommendation WIN02-C])
+    -deprecate(function, CreateProcessW, [CERT C Recommendation WIN02-C])
+    -deprecate(function, CreateThread, [CERT C Recommendation WIN02-C])
+
+/* WIN03-C. */
+/* Understand HANDLE inheritance */
+
+    /* Not currently supported */
+
+/* WIN04-C. */
+/* Consider encrypting function pointers */
+
+    /* Not currently supported */
+
+/* WIN30-C. */
+/* Properly pair allocation and deallocation functions */
+
+    /* Not currently supported */
+
+/* CON01-C. */
+/* Acquire and release synchronization primitives in the same module, at the same level of abstraction */
+
+    +e454       /* mutex locked without being unlocked */
+    +elib(454)
+    -append(454,[CERT C Recommendation CON01-C])
+    +e455       /* mutex/locker unlocked without being locked */
+    +elib(455)
+    -append(455,[CERT C Recommendation CON01-C])
+    +e456       /* execution paths with different lock states */
+    +elib(456)
+    -append(456,[CERT C Recommendation CON01-C])
+
+/* CON02-C. */
+/* Do not use volatile as a synchronization primitive */
+
+    /* Not currently supported */
+
+/* CON03-C. */
+/* Ensure visibility when accessing shared variables */
+
+    /* Not currently supported */
+
+/* CON04-C. */
+/* Join or detach threads even if their exit status is unimportant */
+
+    /* Not currently supported */
+
+/* CON05-C. */
+/* Do not perform operations that can block while holding a lock */
+
+    /* Not currently supported */
+
+/* CON06-C. */
+/* Ensure that every mutex outlives the data it protects */
+
+    /* Not currently supported */
+
+/* CON07-C. */
+/* Ensure that compound operations on shared variables are atomic */
+
+    /* Not currently supported */
+
+/* CON08-C. */
+/* Do not assume that a group of calls to independently atomic methods is atomic */
+
+    /* Not currently supported */
+
+/* CON09-C. */
+/* Avoid the ABA problem when using lock-free algorithms */
+
+    /* Not currently supported */
+
+/* CON30-C. */
+/* Clean up thread-specific storage */
+
+    /* Not currently supported */
+
+/* CON31-C. */
+/* Do not destroy a mutex while it is locked */
+
+    /* Not currently supported */
+
+/* CON32-C. */
+/* Prevent data races when accessing bit-fields from multiple threads */
+
+    +e457       /* dangerous access */
+    +elib(457)
+    -append(457,[CERT C Rule CON32-C])
+
+/* CON33-C. */
+/* Avoid race conditions when using library functions */
+
+    +e586
+    +elib(586)
+    /*
+        -deprecate(macro, ATOMIC_VAR_INIT, [CERT C Rule CON33-C])
+        -deprecate(function, atomic_init, [CERT C Rule CON33-C])
+        -deprecate(macro, atomic_init, [CERT C Rule CON33-C])
+    */
+    /* ANSI functions and macros */
+    -deprecate(function, asctime, [CERT C Rule CON33-C])
+    -deprecate(function, c16rtomb, [CERT C Rule CON33-C])
+    -deprecate(function, c32rtomb, [CERT C Rule CON33-C])
+    -deprecate(function, ctime, [CERT C Rule CON33-C])
+    -deprecate(function, getenv, [CERT C Rule CON33-C])
+    -deprecate(function, getenv_s, [CERT C Rule CON33-C])
+    -deprecate(function, gmtime, [CERT C Rule CON33-C])
+    -deprecate(function, localtime, [CERT C Rule CON33-C])
+    -deprecate(function, mbrtoc16, [CERT C Rule CON33-C])
+    -deprecate(function, mbrtoc32, [CERT C Rule CON33-C])
+    -deprecate(function, rand, [CERT C Rule CON33-C])
+    -deprecate(function, setlocale, [CERT C Rule CON33-C])
+    -deprecate(function, srand, [CERT C Rule CON33-C])
+    -deprecate(function, strerror, [CERT C Rule CON33-C])
+    -deprecate(function, strtok, [CERT C Rule CON33-C])
+    -deprecate(function, tmpnam, [CERT C Rule CON33-C])
+
+    /* POSIX functions and macros */
+    -deprecate(function, basename, [CERT C Rule CON33-C])
+    -deprecate(function, catgets, [CERT C Rule CON33-C])
+    -deprecate(function, crypt, [CERT C Rule CON33-C])
+    -deprecate(function, dbm_clearerr, [CERT C Rule CON33-C])
+    -deprecate(function, dbm_close, [CERT C Rule CON33-C])
+    -deprecate(function, dbm_delete, [CERT C Rule CON33-C])
+    -deprecate(function, dbm_error, [CERT C Rule CON33-C])
+    -deprecate(function, dbm_fetch, [CERT C Rule CON33-C])
+    -deprecate(function, dbm_firstkey, [CERT C Rule CON33-C])
+    -deprecate(function, dbm_nextkey, [CERT C Rule CON33-C])
+    -deprecate(function, dbm_open, [CERT C Rule CON33-C])
+    -deprecate(function, dbm_store, [CERT C Rule CON33-C])
+    -deprecate(function, dirname, [CERT C Rule CON33-C])
+    -deprecate(function, dlerror, [CERT C Rule CON33-C])
+    -deprecate(function, drand48, [CERT C Rule CON33-C])
+    -deprecate(function, encrypt, [CERT C Rule CON33-C])
+    -deprecate(function, endgrent, [CERT C Rule CON33-C])
+    -deprecate(function, endpwent, [CERT C Rule CON33-C])
+    -deprecate(function, endutxent, [CERT C Rule CON33-C])
+    -deprecate(function, ftw, [CERT C Rule CON33-C])
+    -deprecate(function, getdate, [CERT C Rule CON33-C])
+    -deprecate(function, getgrent, [CERT C Rule CON33-C])
+    -deprecate(function, getgrgid, [CERT C Rule CON33-C])
+    -deprecate(function, getgrnam, [CERT C Rule CON33-C])
+    -deprecate(function, gethostent, [CERT C Rule CON33-C])
+    -deprecate(function, getlogin, [CERT C Rule CON33-C])
+    -deprecate(function, getnetbyaddr, [CERT C Rule CON33-C])
+    -deprecate(function, getnetbyname, [CERT C Rule CON33-C])
+    -deprecate(function, getnetent, [CERT C Rule CON33-C])
+    -deprecate(function, getopt, [CERT C Rule CON33-C])
+    -deprecate(function, getprotobyname, [CERT C Rule CON33-C])
+    -deprecate(function, getprotobynumber, [CERT C Rule CON33-C])
+    -deprecate(function, getprotoent, [CERT C Rule CON33-C])
+    -deprecate(function, getpwent, [CERT C Rule CON33-C])
+    -deprecate(function, getpwnam, [CERT C Rule CON33-C])
+    -deprecate(function, getpwuid, [CERT C Rule CON33-C])
+    -deprecate(function, getservbyname, [CERT C Rule CON33-C])
+    -deprecate(function, getservbyport, [CERT C Rule CON33-C])
+    -deprecate(function, getservent, [CERT C Rule CON33-C])
+    -deprecate(function, getutxent, [CERT C Rule CON33-C])
+    -deprecate(function, getutxid, [CERT C Rule CON33-C])
+    -deprecate(function, getutxline, [CERT C Rule CON33-C])
+    -deprecate(function, hcreate, [CERT C Rule CON33-C])
+    -deprecate(function, hdestroy, [CERT C Rule CON33-C])
+    -deprecate(function, hsearch, [CERT C Rule CON33-C])
+    -deprecate(function, inet_ntoa, [CERT C Rule CON33-C])
+    -deprecate(function, l64a, [CERT C Rule CON33-C])
+    -deprecate(function, lgamma, [CERT C Rule CON33-C])
+    -deprecate(function, lgammaf, [CERT C Rule CON33-C])
+    -deprecate(function, lgammal, [CERT C Rule CON33-C])
+    -deprecate(function, localeconv, [CERT C Rule CON33-C])
+    -deprecate(function, lrand48, [CERT C Rule CON33-C])
+    -deprecate(function, mblen, [CERT C Rule CON33-C])
+    -deprecate(function, mbtowc, [CERT C Rule CON33-C])
+    -deprecate(function, mrand48, [CERT C Rule CON33-C])
+    -deprecate(function, nftw, [CERT C Rule CON33-C])
+    -deprecate(function, nl_langinfo, [CERT C Rule CON33-C])
+    -deprecate(function, ptsname(), [CERT C Rule CON33-C])
+
+/* CON34-C. */
+/* Declare objects shared between threads with appropriate storage durations */
+
+    /* Not currently supported */
+
+/* CON35-C. */
+/* Avoid deadlock by locking in a predefined order */
+
+    +e2462          /* mutex lock order mismatch */
+    +elib(2462)
+    -append(2462,[CERT C Rule CON35-C])
+
+/* CON36-C. */
+/* Wrap functions that can spuriously wake up in a loop */
+
+    /* Not currently supported */
+
+/* CON37-C. */
+/* Do not call signal() in a multithreaded program */
+
+    +e586
+    +elib(586)
+    -deprecate(function,signal,[CERT C Rule CON37-C])
+
+/* CON38-C. */
+/* Preserve thread safety and liveness when using condition variables */
+
+    /* Not currently supported */
+
+/* CON39-C. */
+/* Do not join or detach a thread that was previously joined or detached */
+
+    /* Not currently supported */
+
+/* CON40-C. */
+/* Do not refer to an atomic variable twice in an expression */
+
+    /* Not currently supported */
+
+/* CON41-C. */
+/* Wrap functions that can fail spuriously in a loop */
+
+    /* Not currently supported */
+
+/* CON42-C. */
+/* Don't allow attackers to influence environment variables that control concurrency parameters */
+
+    /* Not currently supported */
+
+/* CON43-C. */
+/* Do not allow data races in multithreaded code */
+
+    +e457       /* dangerous access */
+    +elib(457)
+    -append(457,[CERT C Rule CON43-C])
+
+/* POS01-C. */
+/* Check for the existence of links when dealing with files */
+
+    /* Not currently supported */
+
+/* POS02-C. */
+/* Follow the principle of least privilege */
+
+    /* Not currently supported */
+
+/* POS04-C. */
+/* Avoid using PTHREAD_MUTEX_NORMAL type mutex locks */
+
+    +e586   /* use of deprecated entity */
+    +elib(586)
+
+    -deprecate(macro,PTHREAD_MUTEX_NORMAL,[CERT C Recommendation POS04-C])
+    -deprecate(variable,PTHREAD_MUTEX_NORMAL,[CERT C Recommendation POS04-C])
+
+/* POS05-C. */
+/* Limit access to files by creating a jail */
+
+    /* Not currently supported */
+
+/* POS30-C. */
+/* Use the readlink() function properly */
+
+    /* Not currently supported */
+
+/* POS33-C. */
+/* Do not use vfork() */
+
+    +e586   /* use of deprecated entity */
+    +elib(586)
+
+    -deprecate(function,vfork,[CERT C Rule POS33-C])
+
+/* POS34-C. */
+/* Do not call putenv() with a pointer to an automatic variable as the argument */
+
+    -sem(putenv,no_ptr_to_auto(1))
+
+    +e2601
+    +elib(2601)
+    -append(2601(putenv),[CERT C Rule POS34-C])
+
+/* POS35-C. */
+/* Avoid race conditions while checking for the existence of a symbolic link */
+
+    /* Not currently supported */
+
+/* POS36-C. */
+/* Observe correct revocation order while relinquishing privileges */
+
+    /* Not currently supported */
+
+/* POS37-C. */
+/* Ensure that privilege relinquishment is successful */
+
+    /* Not currently supported */
+
+/* POS38-C. */
+/* Beware of race conditions when using fork and file descriptors */
+
+    /* Not currently supported */
+
+/* POS39-C. */
+/* Use the correct byte ordering when transferring data between systems */
+
+    /* Not currently supported */
+
+/* POS44-C. */
+/* Do not use signals to terminate threads */
+
+    +e586   /* use of deprecated entity */
+    +elib(586)
+
+    -deprecate(function,pthread_kill,[CERT C Rule POS44-C])
+
+/* POS47-C. */
+/* Do not use threads that can be canceled asynchronously */
+
+    +e586   /* use of deprecated entity */
+    +elib(586)
+
+    -deprecate(macro,PTHREAD_CANCEL_ASYNCHRONOUS,[CERT C Rule POS47-C])
+    -deprecate(variable,PTHREAD_CANCEL_ASYNCHRONOUS,[CERT C Rule POS47-C])
+
+/* POS48-C. */
+/* Do not unlock or destroy another POSIX thread's mutex */
+
+    /* Not currently supported */
+
+/* POS49-C. */
+/* When data must be accessed by multiple threads, provide a mutex and guarantee no adjacent data is also accessed */
+
+    +e457       /* dangerous access */
+    +elib(457)
+    -append(457,[CERT C Rule POS49-C])
+
+/* POS50-C. */
+/* Declare objects shared between POSIX threads with appropriate storage durations */
+
+    /* Not currently supported */
+
+/* POS51-C. */
+/* Avoid deadlock with POSIX threads by locking in predefined order */
+
+    /* Not currently supported */
+
+/* POS52-C. */
+/* Do not perform operations that can block while holding a POSIX lock */
+
+    /* Not currently supported */
+
+/* POS53-C. */
+/* Do not use more than one mutex for concurrent waiting operations on a condition variable */
+
+    /* Not currently supported */
+
+/* POS54-C. */
+/* Detect and handle POSIX library errors */
+
+    /* Partially supported */
+
+    +esym(534, posix_memalign)
+    -append(534, [CERT C Rule POS54-C])
+
+    +e413
+    +elib(413)
+    -append(413, [CERT C Rule POS54-C])
+
+    +e613
+    +elib(613)
+    -append(613, [CERT C Rule POS54-C])
